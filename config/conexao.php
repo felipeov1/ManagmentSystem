@@ -3,7 +3,7 @@
 $dbHost = 'localhost';
 $dbUsername = 'root';
 $dbPassword = '';
-$dbName = 'empilhadeiras';
+$dbName = 'login';
 
 $conn = new mysqLi($dbHost, $dbUsername, $dbPassword, $dbName, 3306);
 
