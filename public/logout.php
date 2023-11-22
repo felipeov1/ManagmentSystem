@@ -1,13 +1,10 @@
 <?php
-session_start();
+// essa aba te redireciona até a pagina de loguin
+if(!isset($_SESSION)) {
+  session_start();
+}
 
-// Limpar todas as variáveis de sessão
-$_SESSION = array();
-
-// Destruir a sessão
 session_destroy();
 
-// Redirecionar para a página de login
 header('Location: index.php');
-exit();
 ?>
