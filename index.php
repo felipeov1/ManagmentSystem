@@ -61,7 +61,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
                 <input type="email" name="email" onchange="validateFields()" placeholder="E-mail" id="email">
                 <i class='bx bxs-user' style='color:#ff7500'></i>
             </div>
-            <div class= "error"> E-mail não informado. Por favor, preencha o corretamente! </div>
+            <div class= "error" id="email-required-error"> E-mail não informado. Por favor, preencha o corretamente! </div>
             <div class= "error"> E-mail inválido. Por favor preencha-o corretamente! </div>
 
             <div class="input-box">

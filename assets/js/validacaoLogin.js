@@ -35,7 +35,10 @@ function validateEmail (email) {
 
 
 function toggleEmailError () {
-
+    const email = document.getElementById("email").value;
+    if (!email) {
+        document.getElementById("email-required-error").style.display="block";
+    }
 }
 
 
