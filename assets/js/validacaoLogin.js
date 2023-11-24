@@ -21,35 +21,11 @@
 // por enquanto irei só colocar o ínicio para testar ela em tela.
 
 
-function validateFields () {
-    //pegar o valor do campo do e-mail 
-   const email = document.getElementById("email").value;
-    //verificar se o campo do e-mail não está em branco e verificar se ele é valido
-}
 function validateEmail (email) {
     return /\S+@\S+\.\S+/.test(email);
     //validação do tipo email
 
 }
-
-
-
-function toggleEmailErrors () {
-    const email = document.getElementById("email").value;
-    if (!email) {
-        document.getElementById("email-required-error").style.display="block";
-    } else {
-        document.getElementById("email-required-error").style.display="none";
-    }
-    if (!email) {
-        document.getElementById("email-invalid-error").style.display="none";
-    } else {
-        document.getElementById("email-invalid-error").style.display="block";
-    }
-
-}
-
-
 
 
 
