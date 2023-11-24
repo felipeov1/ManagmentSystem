@@ -58,14 +58,17 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         <form action="index.php" method="post">
             <h1> Faça seu login </h1>
             <div class="input-box">
-                <input type="text" name="email" placeholder="Email" id="Login">
+                <input type="email" name="email" onchange="validateFields()" placeholder="E-mail" id="email">
                 <i class='bx bxs-user' style='color:#ff7500'></i>
             </div>
+            <div class= "error"> E-mail não informado. Por favor, preencha o corretamente! </div>
+            <div class= "error"> E-mail inválido. Por favor preencha-o corretamente! </div>
 
             <div class="input-box">
                 <input type="password" name="senha" placeholder="Senha" id="Senha">
                 <i class='bx bxs-lock-alt' style='color:#ff7500'></i>
             </div>
+            <div class= "error"> Senha não informada. Por favor, preencha o campo! </div>
 
             <div class="remember-forgot">
                 <label><input type="checkbox">Lembrar-se de mim </label>
@@ -81,7 +84,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         </form>
 
     </div>
- <h1> Opaaa </h1>
+
 </body>
 
 <script src="assets/js/validacaoLogin.js"></script>

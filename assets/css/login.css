@@ -102,4 +102,8 @@ min-height: 100vh;
     color: orangered;
     font-weight: 600;
 }
-
+.error {
+    color: white;
+    background: red;
+    display: none; 
+}
