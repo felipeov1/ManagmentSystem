@@ -58,25 +58,66 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 
 <body>
 
+
     <div class="wrapper">
-        <form action="index.php" method="post">
+        <form action="" method="post">
             <h1> Faça seu login </h1>
 
-            <?php if (isset($_POST['email']) && strlen($_POST['email']) == 0 || isset($_POST['senha']) && strlen($_POST['senha']) == 0)
-                echo  "<div class='alert alert-danger text-center' role='alert'>Preencha todos os campos!</div>";
-            else{
-                echo  "<div class='alert alert-danger text-center' role='alert'>Credenciais inválidas!</div>";
+            <?php
+            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT );
+           
+            if(!empty($dados['AddMsgCont'])) { 
+             //var_dump($dados);
+
+            //aqui ocorrerá a validação dos dados individualmente
+            if (empty($dados['email']))
+            {
+                echo"<p style= 'color: #f00;'>Erro: É necessário preencher o campo e-mail.</p> ";
+            } elseif(empty($dados['senha'])){
+                echo"<p style= 'color: #f00;'>Erro: É necessário preencher o campo de senha.</p> ";
+            }
+            else {
+            
+            $query_contato = "INSERT INTO contatos (email, senha) VALUES (:email, :senha)";
+            $add_contato = $conn-> prepare($query_contato);
+            $add_contato->bindParam(':email', $dados['email'], PDO:: PARAM_STR);
+            $add_contato->bindParam(':senha', $dados['senha'], PDO:: PARAM_STR);
+            $add_contato->execute();
+
+            if($add_contato-> rowCount()) {
+            unset($dados);
+            echo "<p style = 'color: green;'> Em breve será redirecionado para a página inicial.</p>"; 
+            } else {
+            echo "Não foi possível acessar a página inicial."; 
+        }
+        }
+    }
+            ?>
+
+            <?php 
+            $email = "";
+            if(isset($dados['email']))
+            { 
+                $email =  $dados['email'];
             }
             ?>
-           
+
+            <?php 
+            $senha = "";
+            if(isset($dados['senha']))
+            { 
+                $senha =  $dados['senha'];
+            }
+            ?>
+
+
             <div class="input-box">
-                <input type="email" name="email" placeholder="E-mail" id="email">
+                <input type="text" name="email" placeholder="Email" value="<?php  echo $email; ?>" id="Login"  >
                 <i class='bx bxs-user' style='color:#ff7500'></i>
             </div>
 
-
             <div class="input-box">
-                <input type="password" name="senha" placeholder="Senha" id="Senha">
+                <input type="password" name="senha" placeholder="Senha" value="<?php echo $senha; ?>" id="Senha" >
                 <i class='bx bxs-lock-alt' style='color:#ff7500'></i>
             </div>
 
@@ -84,7 +125,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
                 <label><input type="checkbox">Lembrar-se de mim </label>
             </div>
 
-            <button type="submit" class="btn"> Entrar </button>
+            <input type="submit" name= "AddMsgCont" clas= btn value= "Enviar" >  
             <div class="register-link">
             </div>
 
@@ -97,6 +138,6 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 
 </body>
 
-<script src="assets/js/validacaoLogin.js"></script>
+
 
 </html>

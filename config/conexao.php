@@ -1,14 +1,18 @@
 <?php
-//conexao com o banco de dados, (valores alteraveis)
-$dbHost = 'localhost';
-$dbUsername = 'root';
-$dbPassword = '';
-$dbName = 'empilhadeiras';
 
-$conn = new mysqLi($dbHost, $dbUsername, $dbPassword, $dbName, 3306);
+$host = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "login";
+$port = 3306;
 
-if (!$conn) {
-  die("Falha na conexão ao banco de dados: " . mysqli_connect_error());
+try { 
+    $conn = new PDO ("mysql:host=$host;port=$port; dbname=". $dbname, $user, $pass); 
+  //  echo "Conexão com banco de dados realizada com sucesso";
+} catch(PDOException $err)
+{
+    echo "Erro: Conexão com banco de dados não realizada com sucesso. Erro gerado!" . $err->getMessage();
+
 }
 
 
