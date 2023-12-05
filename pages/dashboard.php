@@ -1,15 +1,21 @@
 <?php
-// Início do script PHP no dashboard.php
+include_once("../config/conexao.php");
 session_start();
 
 // Verificar se o usuário está autenticado
 if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
     // Se não estiver autenticado, redirecionar para a página de login
-    header('Location: login.php');
+    header('Location: ./index.php');
     exit();
 }
+$sql = "SELECT * FROM `usuarios` ";
+$result = $conn ->query($sql);
+$data = mysqli_fetch_assoc($result);
 
-// Restante do código do dashboard...
+if ($_SESSION["id"] == $data["id"]) {
+    $usuarios = $data['nome'];
+}
+// Restante do seu código do dashboard
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +29,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
     <link rel="icon" type="image/x-icon" href="../assets/img/faviconImg.ico">
     <title>Lú Salgados</title>
 </head>
+
 
 <body>
     <div class="container">
@@ -56,9 +63,9 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Sistema</h3>
                 </a>
-                <a href="logout.php" id="logout">
+                <a href="./index.php" id="logout">
                     <span class="material-icons-sharp">logout</span>
-                    <h3>Sair</h3>
+                    <h3>Sair</h3> \\trabalahar aqui para encerrar seção ===============================================================
                 </a>
 
 
@@ -70,7 +77,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
             <h1>Dashboard</h1>
 
             <div class="txtSytem">
-                <h2>Olá {$usuário} <!--  recebe dados do banco de dados --> - <span style="font-size: 70%; ">Aqui está
+                <h2>Olá <?php echo $usuarios ?> <!--  recebe dados do banco de dados --> - <span style="font-size: 70%; ">Aqui está
                         um resumo de sua loja</span></h2>
             </div>
 
