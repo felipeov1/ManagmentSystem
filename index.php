@@ -1,6 +1,7 @@
 <?php //login  Criação da Branch 19/11/2023 as 01:53hrs 
 include('config/conexao.php');
 
+
 if (isset($_POST['email']) || isset($_POST['senha'])) {
     if (strlen($_POST['email']) == 0) {
         echo 'Preencha seu e-mail';
