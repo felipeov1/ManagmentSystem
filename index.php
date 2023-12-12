@@ -24,44 +24,59 @@ include_once './config/conexao.php';
     <div class="wrapper">
         <form action="" method="post">
             <h1> Faça seu login </h1>
+           
+           <?php
 
-            <?php
-            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-            if (!empty($dados['AddMsgCont'])) {
-                //var_dump($dados);
+if(isset($_POST['email']) || isset($_POST['senha'])) {
+
+    if(strlen($_POST['email']== null)) {
+         echo "<br> Campo vazio! Por favor preencha todos os campos. </br>";
+
+    } else if(strlen($_POST['senha']== null)) {
+        echo "<br> Campo vazio! Por favor preencha todos os campos. </br>";
+    } else {
+
+        //email de teste: felipão@gmail.com
+        //senha de teste: 123456
+
+        $email = $mysqli->real_escape_string($_POST['email']);
+        $senha = $mysqli->real_escape_string($_POST['senha']);
+
+        $sql_code = "SELECT * FROM contatos WHERE email = '$email' AND senha = '$senha'";
+        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
+
+        $quantidade = $sql_query->num_rows;
+
+        if($quantidade == 1) {
             
-                //aqui ocorrerá a validação dos dados individualmente
-                if (empty($dados['email'])) {
-                    echo "<p style= 'color: #f00;'>Erro: É necessário preencher o campo e-mail.</p> ";
-                } elseif (empty($dados['senha'])) {
-                    echo "<p style= 'color: #f00;'>Erro: É necessário preencher o campo de senha.</p> ";
-                } else {
+            $usuario = $sql_query->fetch_assoc();
 
-                    $query_contato = "INSERT INTO users (user_email, user_password) VALUES (:email, :senha)";
-                    $add_contato = $conn->prepare($query_contato);
-                    $add_contato->bindParam(':email', $dados['email'], PDO::PARAM_STR);
-                    $add_contato->bindParam(':senha', $dados['senha'], PDO::PARAM_STR);
-                    $add_contato->execute();
-
-                    if ($add_contato->rowCount()) {
-                        unset($dados);
-                        echo "<p style = 'color: green;'> Em breve será redirecionado para a página inicial.</p>";
-                    } else {
-                        echo "Não foi possível acessar a página inicial.";
-                    }
-                }
+            if(!isset($_SESSION)) {
+                session_start();
             }
-            ?>
 
-      
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['email'] = $usuario['email'];
+
+            header('Location: dashboard.php');
+
+        } else {
+            echo "<br> Falha ao logar! E-mail ou senha incorretos. <brgit>";
+        }
+
+    }
+
+}
+?>
+
             <div class="input-box">
-                <input type="text" name="email" placeholder="Email" value="<?php echo $email; ?>" id="Login">
+                <input type="text" name="email" placeholder="Email" >
                 <i class='bx bxs-user' style='color:#ff7500'></i>
             </div>
 
             <div class="input-box">
-                <input type="password" name="senha" placeholder="Senha" value="<?php echo $senha; ?>" id="Senha">
+                <input type="password" name="senha" placeholder="Senha"  >
                 <i class='bx bxs-lock-alt' style='color:#ff7500'></i>
             </div>
 
@@ -69,7 +84,7 @@ include_once './config/conexao.php';
                 <label><input type="checkbox">Lembrar-se de mim </label>
             </div>
 
-            <input type="submit" name="AddMsgCont" clas=btn value="Enviar">
+            <input type="submit" name="AddMsgCont" class= "btn" value="Enviar">
             <div class="register-link">
             </div>
 
