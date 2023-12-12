@@ -1,3 +1,26 @@
+<<<<<<< HEAD
+<?php
+include_once("../config/conexao.php");
+session_start();
+
+// Verificar se o usuário está autenticado
+if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
+    // Se não estiver autenticado, redirecionar para a página de login
+    header('Location: ./index.php');
+    exit();
+}
+$sql = "SELECT * FROM `usuarios` ";
+$result = $conn ->query($sql);
+$data = mysqli_fetch_assoc($result);
+
+if ($_SESSION["id"] == $data["id"]) {
+    $usuarios = $data['nome'];
+}
+
+// Restante do seu código do dashboard
+?>
+=======
+>>>>>>> main
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +35,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/faviconImg.ico">
     <title>Lú Salgados</title>
 </head>
+
 
 <body>
     <div class="container">
@@ -45,7 +69,11 @@
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Sistema</h3>
                 </a>
+<<<<<<< HEAD
+                <a href='./logout.php'>
+=======
                 <a href="#" id="logout">
+>>>>>>> main
                     <span class="material-icons-sharp">logout</span>
                     <h3>Sair</h3>
                 </a>
@@ -57,7 +85,7 @@
             <h1>Dashboard</h1>
 
             <div class="txtSytem">
-                <h2>Olá {$usuário} <!--  recebe dados do banco de dados --> - <span style="font-size: 70%; ">Aqui está
+                <h2>Olá <?php echo $usuarios ?> <!--  recebe dados do banco de dados --> - <span style="font-size: 70%; ">Aqui está
                         um resumo de sua loja</span></h2>
             </div>
 
