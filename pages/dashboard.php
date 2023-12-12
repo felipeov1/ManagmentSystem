@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 include_once("../config/conexao.php");
 session_start();
@@ -18,6 +19,8 @@ if ($_SESSION["id"] == $data["id"]) {
 
 // Restante do seu código do dashboard
 ?>
+=======
+>>>>>>> main
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +29,8 @@ if ($_SESSION["id"] == $data["id"]) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link rel="stylesheet" href="body/body.css">
+    <link rel="stylesheet" href="slideBar/slideBar.css">
     <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="icon" type="image/x-icon" href="../assets/img/faviconImg.ico">
     <title>Lú Salgados</title>
@@ -64,12 +69,14 @@ if ($_SESSION["id"] == $data["id"]) {
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Sistema</h3>
                 </a>
+<<<<<<< HEAD
                 <a href='./logout.php'>
+=======
+                <a href="#" id="logout">
+>>>>>>> main
                     <span class="material-icons-sharp">logout</span>
                     <h3>Sair</h3>
                 </a>
-
-
             </div>
         </aside>
         <!-- fim do menu lateral -->

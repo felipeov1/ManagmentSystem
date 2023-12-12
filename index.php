@@ -11,7 +11,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         $email = $conn->real_escape_string($_POST['email']);
         $senha = $conn->real_escape_string($_POST['senha']);
 
-        $sql_code = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+        $sql_code = "SELECT * FROM users WHERE user_email = '$email' AND user_password = '$senha'";
         $sql_query = $conn->query($sql_code) or die("Falha na execução do Código SQL:" . $conn->error);
 
         $quantidade = $sql_query->num_rows;
@@ -33,27 +33,12 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
 
             header('Location: pages/dashboard.php');
         } else {
-            // Vamos vereificar se o email esta  correto 
-            $sql_email_check = "SELECT * FROM usuarios WHERE email = '$email'";
-            $email_check_query = $conn->query($sql_email_check);
-            $email_exist = $email_check_query->num_rows > 0;
-
-           // Vamos verificar se a senha esta correta
-            $sql_password_check = "SELECT * FROM users WHERE senha = '$senha'";
-            $password_check_query = $conn->query($sql_passwaord_check);
-            $password_exist = $password_check_query->num_rows > 0;
-
-            if (!$email_exist && !$password_exist) {
-                    echo "Falha no login! Email e senha incorretos";
-                } else if (!$email_exist) {
-                    echo "Falha no login! Email incorreto";
-                } else if (!$password_exist) {
-                    echo "Falha no login! Senha incorreta";
-                }    
-            }
+            echo "Falha no login! Email ou Senha incorretos";
         }
     }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -66,7 +51,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
     <link rel="stylesheet" href="assets/css/login.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    </head>
+</head>
 
 <body>
 
