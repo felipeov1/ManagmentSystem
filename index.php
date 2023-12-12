@@ -54,14 +54,13 @@ include_once './config/conexao.php';
             }
             ?>
 
-      
             <div class="input-box">
-                <input type="text" name="email" placeholder="Email" value="<?php echo $email; ?>" id="Login">
+                <input type="text" name="email" placeholder="Email">" id="Login">
                 <i class='bx bxs-user' style='color:#ff7500'></i>
             </div>
 
             <div class="input-box">
-                <input type="password" name="senha" placeholder="Senha" value="<?php echo $senha; ?>" id="Senha">
+                <input type="password" name="senha" placeholder="Senha">" id="Senha">
                 <i class='bx bxs-lock-alt' style='color:#ff7500'></i>
             </div>
 
