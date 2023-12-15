@@ -93,7 +93,5 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
     </div>
 
 </body>
-
-
-
+<script src="assets/js/validacaoLogin.js"></script>
 </html>
