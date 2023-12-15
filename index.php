@@ -44,8 +44,11 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
         $senha = $mysqli->real_escape_string($_POST['senha']);
 
         $sql_code = "SELECT * FROM contatos WHERE email = '$email' AND senha = '$senha'";
-        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
-
+        try {
+            $sql_query = $conn->query($sql_code);
+        } catch (PDOException $e) {
+            die("Falha na execução do código SQL: " . $e->getMessage());
+        }
         $quantidade = $sql_query->num_rows;
 
         if($quantidade == 1) {
