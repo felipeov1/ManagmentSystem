@@ -2,7 +2,7 @@
 
 $usuario = 'root';
 $senha = '';
-$database = 'login';
+$database = 'empilhadeiras';
 $host = 'localhost';
 $port = 3306;
 
