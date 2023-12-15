@@ -1,32 +1,6 @@
+
 <?php
 include_once './config/conexao.php';
-
-?>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1tzjvRp9Uq/8yFAalTTG0zXxPqe5i" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-</head>
-
-<body>
-
-
-    <div class="wrapper">
-        <form action="" method="post">
-            <h1> Faça seu login </h1>
-           
-           <?php
-
 
 if(isset($_POST['email']) || isset($_POST['senha'])) {
 
@@ -59,10 +33,10 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
             $_SESSION['id'] = $usuario['id'];
             $_SESSION['email'] = $usuario['email'];
 
-            header('Location: dashboard.php');
+            header('Location: pages/dashboard.php');
 
         } else {
-            echo "<br> Falha ao logar! E-mail ou senha incorretos. <brgit>";
+            echo "<br> Falha ao logar! E-mail ou senha incorretos. <br>";
         }
 
     }
@@ -70,6 +44,29 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1tzjvRp9Uq/8yFAalTTG0zXxPqe5i" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+
+    <div class="wrapper">
+        <form action="" method="post">
+            <h1> Faça seu login </h1>
+           
+           
             <div class="input-box">
                 <input type="text" name="email" placeholder="Email" >
                 <i class='bx bxs-user' style='color:#ff7500'></i>
