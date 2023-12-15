@@ -1,14 +1,15 @@
 <?php
-//conexao com o banco de dados, (valores alteraveis)
-$dbHost = 'localhost';
-$dbUsername = 'root';
-$dbPassword = '';
-$dbName = 'empilhadeiras';
 
-$conn = new mysqLi($dbHost, $dbUsername, $dbPassword, $dbName, 3306);
+$usuario = 'root';
+$senha = '';
+$database = 'login';
+$host = 'localhost';
+$port = 3306;
 
-if (!$conn) {
-  die("Falha na conexão ao banco de dados: " . mysqli_connect_error());
+$mysqli = new mysqli($host, $usuario, $senha, $database);
+
+if($mysqli->error) {
+    die("Erro: Conexão com banco de dados não realizada com sucesso. Erro gerado: " . $mysqli->error);
 }
 
 

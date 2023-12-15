@@ -9,14 +9,17 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
     exit();
 }
 $sql = "SELECT * FROM `usuarios` ";
-$result = $conn ->query($sql);
-$data = mysqli_fetch_assoc($result);
+$result = $conn ->prepare($sql);
+$result ->execute();
+$data = $result->fetch(PDO::FETCH_ASSOC);
+
+
+
 
 if ($_SESSION["id"] == $data["id"]) {
     $usuarios = $data['nome'];
 }
 
-// Restante do seu código do dashboard
 ?>
 
 <!DOCTYPE html>
