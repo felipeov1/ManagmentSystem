@@ -66,7 +66,7 @@ if ($_SESSION["id"] == $data["id"]) {
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Sistema</h3>
                 </a>
-                <a href='./logout.php'>
+                <a href='../index.php'>
                     <span class="material-icons-sharp">logout</span>
                     <h3>Sair</h3>
                 </a>
