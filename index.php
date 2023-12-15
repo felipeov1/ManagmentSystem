@@ -1,7 +1,7 @@
 <?php
 include_once './config/conexao.php';
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -80,7 +80,5 @@ include_once './config/conexao.php';
     </div>
 
 </body>
-
-
-
+<script src="assets/js/validacaoLogin.js"></script>
 </html>
