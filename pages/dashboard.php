@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include_once("../config/conexao.php");
 session_start();
@@ -19,8 +18,6 @@ if ($_SESSION["id"] == $data["id"]) {
 
 // Restante do seu código do dashboard
 ?>
-=======
->>>>>>> main
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,11 +66,7 @@ if ($_SESSION["id"] == $data["id"]) {
                     <span class="material-icons-sharp">admin_panel_settings</span>
                     <h3>Sistema</h3>
                 </a>
-<<<<<<< HEAD
                 <a href='./logout.php'>
-=======
-                <a href="#" id="logout">
->>>>>>> main
                     <span class="material-icons-sharp">logout</span>
                     <h3>Sair</h3>
                 </a>
