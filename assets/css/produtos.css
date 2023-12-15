@@ -1,17 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body{
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-    background-color: rgb(255, 218, 123);
-    min-height: 100vh;
-}
 .table{
     width: 100%;
     border-collapse: collapse;

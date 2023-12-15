@@ -6,10 +6,10 @@ $database = 'empilhadeiras';
 $host = 'localhost';
 $port = 3306;
 
-$mysqli = new mysqli($host, $usuario, $senha, $database);
+$conn = new mysqli($host, $usuario, $senha, $database);
 
-if($mysqli->error) {
-    die("Erro: Conexão com banco de dados não realizada com sucesso. Erro gerado: " . $mysqli->error);
+if($conn->error) {
+    die("Erro: Conexão com banco de dados não realizada com sucesso. Erro gerado: " . $conn->error);
 }
 
 

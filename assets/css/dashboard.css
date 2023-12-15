@@ -149,6 +149,7 @@ main .nextOrder button{
     background-color: rgb(3, 185, 3);
     color: white;
     border-radius: 3px;
+    border: none;
     padding: 4px;
     cursor: pointer;
 }
@@ -156,9 +157,9 @@ main .nextOrder button{
 /* alerta de pedidos próximos */
 
 .right{
-    margin-top: 4rem;
+    margin-top: 1rem;
     margin-left: 2rem;
-    margin-right: 4rem;
+    margin-right: 2rem;
 }
 
 .right .orderAlert{
@@ -192,7 +193,7 @@ main .nextOrder button{
 .addClient{
     display: grid;
     text-align: center;
-    margin-top: 4rem;
+    margin-top: 3rem;
     height: 250px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: all 300ms ease;
@@ -201,6 +202,7 @@ main .nextOrder button{
 .addClient button{
     background-color: white;
     border-radius: 10px;
+    border: none;
 }
 
 .addClient button:hover{
