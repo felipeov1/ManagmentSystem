@@ -3,20 +3,39 @@ include_once("../config/conexao.php");
 session_start();
 
 // Verificar se o usuário está autenticado
+// Verificar se o usuário está autenticado
 if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
     // Se não estiver autenticado, redirecionar para a página de login
     header('Location: ./index.php');
     exit();
 }
-$sql = "SELECT * FROM `usuarios` ";
-$result = $conn ->query($sql);
-$data = mysqli_fetch_assoc($result);
 
-if ($_SESSION["id"] == $data["id"]) {
-    $usuarios = $data['nome'];
+//Conexão com tabela de usuários
+$sql = "SELECT * FROM `usuarios` WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $_SESSION["id"]);
+$stmt->execute();
+$resultUsuarios = $stmt->get_result();
+$usuario = $resultUsuarios->fetch_assoc();
+
+if ($usuario) {
+    $usuarios = $usuario['nome'];
 }
 
-// Restante do seu código do dashboard
+//Conexão com tabela de clientes
+$sqlClientes = "SELECT * FROM `clientess` WHERE id = ?";
+$stmtClientes = $connClientes->prepare($sqlClientes);
+$stmtClientes->bind_param("i", $_SESSION["id"]);
+$stmtClientes->execute();
+$resultClientes = $stmtClientes->get_result();
+$cliente = $resultClientes->fetch_assoc();
+
+if ($cliente) {
+    $clientess = $cliente['nome'];
+}
+
+// Restante do seu código...
+
 ?>
 
 <!DOCTYPE html>
@@ -151,35 +170,35 @@ if ($_SESSION["id"] == $data["id"]) {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Nome completo/Empresa</td>
+                            <td><?php echo $clientess ?></td>
                             <td>xxxxxxx</td>
                             <td>Data + horário</td>
                             <td>Data + horário</td>
                             <td><button>Entregue</button></td>
                         </tr>
                         <tr>
-                            <td>Nome completo/Empresa</td>
+                            <td><?php echo $clientess ?></td>
                             <td>xxxxxxx</td>
                             <td>Data + horário</td>
                             <td>Data + horário</td>
                             <td><button>Entregue</button></td>
                         </tr>
                         <tr>
-                            <td>Nome completo/Empresa</td>
+                            <td><?php echo $clientess ?></td>
                             <td>xxxxxxx</td>
                             <td>Data + horário</td>
                             <td>Data + horário</td>
                             <td><button>Entregue</button></td>
                         </tr>
                         <tr>
-                            <td>Nome completo/Empresa</td>
+                            <td><?php echo $clientess ?></td>
                             <td>xxxxxxx</td>
                             <td>Data + horário</td>
                             <td>Data + horário</td>
                             <td><button>Entregue</button></td>
                         </tr>
                         <tr>
-                            <td>Nome completo/Empresa</td>
+                            <td><?php echo $clientess ?></td>
                             <td>xxxxxxx</td>
                             <td>Data + horário</td>
                             <td>Data + horário</td>
@@ -201,19 +220,19 @@ if ($_SESSION["id"] == $data["id"]) {
                         <div class="message">
                             <p>
                                 <b>Alerta!</b>
-                                A entrega do pedido do(a) {$nome} está próxima.<br>
+                                A entrega do pedido do(a) <?php echo $clientess ?> está próxima.<br>
                                 <small class="text-muted">2 minutos atrás.</small><br>
                                 <a href="">Visualizar pedido</a>
                             </p>
                             <p>
                                 <b>Alerta!</b>
-                                A entrega do pedido do(a) {$nome} está próxima.<br>
+                                A entrega do pedido do(a) <?php echo $clientess ?> está próxima.<br>
                                 <small class="text-muted">25 minutos atrás.</small><br>
                                 <a href="">Visualizar pedido</a>
                             </p>
                             <p>
                                 <b>Alerta!</b>
-                                A entrega do pedido do(a) {$nome} está próxima.<br>
+                                A entrega do pedido do(a) <?php echo $clientess ?> está próxima.<br>
                                 <small class="text-muted">30 minutos atrás.</small><br>
                                 <a href="">Visualizar pedido</a>
                             </p>
