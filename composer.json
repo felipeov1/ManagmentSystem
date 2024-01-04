@@ -1,0 +1,22 @@
+{
+    "name": "ofeli/lu-salgados",
+    "description": "lusalgados",
+    "authors": [
+        {
+            "name": "Felipe Ferreira",
+            "email": "100241185+felipeov1@users.noreply.github.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "app/router/router.php"
+        ],
+
+        "psr-4": {
+            "app\\":"app"
+        }
+    },
+
+    "require": {}
+}
+
