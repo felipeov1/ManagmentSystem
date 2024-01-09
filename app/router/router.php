@@ -31,7 +31,7 @@ function params($uri, $matchedUri)
     if (!empty($matchedUri)) {
         $matchedToGetParams = array_keys($matchedUri)[0];
         return array_diff(
-            explode('/', ltrim($uri, characters: '/')),
+            $uri,
             explode('/', ltrim($matchedToGetParams, characters: '/'))
         );
     }
@@ -39,12 +39,12 @@ function params($uri, $matchedUri)
     return [];
 }
 
-function paramsFormat($uri, $params){
-    $uri = explode('/', ltrim($uri, characters: '/'));
+function paramsFormat($uri, $params)
+{
     $paramsData = [];
-    foreach ($params as $index => $param){
+    foreach ($params as $index => $param) {
         $paramsData[$uri[$index - 1]] = $param;
-        
+
     }
     return $paramsData;
 }
@@ -58,18 +58,20 @@ function router()
 
     $matchedUri = exactMatchUriInArrayRoutes($uri, $routes);
 
+    $params = [];
     if (empty($matchedUri)) {
         $matchedUri = regularExpressionMatchArrayRoutes($uri, $routes);
-        if(!empty($matchedUri)){
-            $params = params($uri, $matchedUri);
-            $params = paramsFormat($uri, $params);
-
-            var_dump($params['user']);
-            die();
-
-        }
-
+        $uri = explode('/', ltrim($uri, '/'));
+        $params = params($uri, $matchedUri);
+        $params = paramsFormat($uri, $params);
     }
+
+    if(!empty($matchedUri)){
+        controller($matchedUri, $params);
+        return;
+    }
+
+    throw new Exception("There is something wrong");
 
 
 }

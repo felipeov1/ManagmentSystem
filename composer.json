@@ -9,7 +9,9 @@
     ],
     "autoload": {
         "files": [
-            "app/router/router.php"
+            "app/helpers/constants.php",
+            "app/router/router.php",
+            "app/core/controller.php"
         ],
 
         "psr-4": {
