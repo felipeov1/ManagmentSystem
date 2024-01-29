@@ -5,9 +5,11 @@ namespace app\controllers;
 class Home
 {
     public function index($params){
-        var_dump($params);
-        die();
-        
+        $users = all('users');
+        return[
+            'view' => 'home.php',
+            'data' => ['title' => 'Home','users' => $users]
+        ];
     }
 
-}
+} 

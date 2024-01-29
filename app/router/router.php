@@ -32,7 +32,7 @@ function params($uri, $matchedUri)
         $matchedToGetParams = array_keys($matchedUri)[0];
         return array_diff(
             $uri,
-            explode('/', ltrim($matchedToGetParams, characters: '/'))
+            explode('/', ltrim($matchedToGetParams, '/'))
         );
     }
 
@@ -67,13 +67,8 @@ function router()
     }
 
     if(!empty($matchedUri)){
-        controller($matchedUri, $params);
-        return;
+        return controller($matchedUri, $params);
+        
     }
-
     throw new Exception("There is something wrong");
-
-
 }
-
-?>
