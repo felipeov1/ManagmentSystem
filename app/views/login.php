@@ -1,6 +1,3 @@
-<?php
-include_once './config/conexao.php';
-?>
 
 
 <!DOCTYPE html>
@@ -27,48 +24,17 @@ include_once './config/conexao.php';
     <div class="wrapper">
         <form action="/login" method="post">
             <h1> Faça seu login </h1>
-            <?php
-            if (isset($_POST['email']) || isset($_POST['senha'])) {
 
-                if (strlen($_POST['email'] == null)) {
-                    echo "<div class='alert alert-danger' role='alert' style='text-align: center'>Por favor preencha todos os campos.</div>";
-
-                } else if (strlen($_POST['senha'] == null)) {
-                    echo "<div class='alert alert-danger' role='alert' style='text-align: center'>Por favor preencha todos os campos.</div>";
-                } else {
-
-                    $email = $conn->real_escape_string($_POST['email']);
-                    $senha = $conn->real_escape_string($_POST['senha']);
-
-                    $sql = "SELECT * FROM users WHERE user_email = '$email' AND user_password = '$senha'";
-
-                    $result = $conn->query($sql);
-
-                    if (mysqli_num_rows($result) < 1) {
-                        unset($_SESSION['email']);
-                        unset($_SESSION['password']);
-                        echo "<div class='alert alert-danger' role='alert' style='text-align: center'>Email ou senha incorretos.</div>";
-                    } else {
-                        $_SESSION['email'] = $email;
-                        $_SESSION['password'] = $password;
-                        header('Location: pages/dashboard.php');
-                    }
-
-                }
-
-            }
-            ?>
+            <?php echo getFlash('message'); ?>
 
             <div class="input-box">
-                <input type="text" name="email" placeholder="Email">
+                <input type="text" name="email" placeholder="Email" value="ofelipe439@gmail.com">
                 <i class='bx bxs-user' style='color:#ff7500'></i>
             </div>
-
             <div class="input-box">
-                <input type="password" name="senha" placeholder="Senha">
+                <input type="password" name="senha" placeholder="Senha" value="123">
                 <i class='bx bxs-lock-alt' style='color:#ff7500'></i>
             </div>
-
             <div class="remember-forgot">
                 <label><input type="checkbox">Lembrar-se de mim </label>
             </div>

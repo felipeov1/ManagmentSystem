@@ -5,10 +5,10 @@ namespace app\controllers;
 class Home
 {
     public function index($params){
-        $users = all('users');
+        $users = all('usuarios');
         return[
             'view' => 'home.php',
-            'data' => ['title' => 'Home','users' => $users]
+            'data' => ['title' => 'Home','usuarios' => $users]
         ];
     }
 
