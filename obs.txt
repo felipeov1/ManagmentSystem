@@ -1,5 +1,0 @@
-* Após qualquer modificação realizar comando (diretorio deve ser o seu): 
-php 'C:\Users\ofeli\AppData\Roaming\Composer\latest.phar' dump-autoload -o
-
-* Iniciar Servidor:
-php -S localhost:8000 -t public

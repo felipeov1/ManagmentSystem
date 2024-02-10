@@ -25,8 +25,8 @@ class User
     public function store(){
         $validate = validate([
             'nome' => 'required',
-            'email' => 'email|unique',
-            'password' => 'required|maxlen',
+            'email' => 'email|unique:users',   // | -> it's a pipe
+            'password' => 'required|maxlen:10',
         ]);
 
         if(!$validate){
