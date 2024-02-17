@@ -1,4 +1,5 @@
-Para rodar o projeto
-composer install - Para instalar as dependências do composer
-npm install - Para instalar as dependências do npm
-php -S localhost:8000 - Para iniciar o servidor do php
+* Após qualquer modificação realizar comando (diretorio deve ser o seu): 
+php 'C:\Users\ofeli\AppData\Roaming\Composer\latest.phar' dump-autoload -o
+
+* Iniciar Servidor:
+php -S localhost:8000 -t public
