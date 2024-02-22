@@ -14,9 +14,9 @@ try {
     }
 
     
-    if(!isset($data['view'])){
-        throw new Exception('There isnt indice "view"');
-    }
+    // if(!isset($data['view'])){
+    //     throw new Exception('There isnt indice "view"');
+    // }
     
     if(!file_exists(VIEWS.$data['view'])){
         throw new Exception("This view {$data['view']} doesn't exist");

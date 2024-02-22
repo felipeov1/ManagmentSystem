@@ -19,13 +19,13 @@ class Login
         $password = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 
         if (empty($email) || empty($password)) {
-            return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/login');
+            return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/');
         }
 
         $user = findBy('usuarios', 'email', $email);
 
         if (!$user) {
-            return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/login');
+            return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/');
         }
 
         if (!password_verify($password, $user->$password)) {
@@ -33,7 +33,7 @@ class Login
         }       
 
         $_SESSION[LOGGED] = $user;
-        return redirect('/');
+        return redirect('/home');
 
 
     }
