@@ -1,9 +1,12 @@
+#header{
+    display: flex;
+}
+
 .boxSide{
-    display: grid;
-    width: 100%;
+    display: flex;
+    width: 12%;
     margin: 0;
     gap: 1.8rem;
-    grid-template-columns: 13rem auto 23rem;
 }
 
 a{
@@ -34,23 +37,21 @@ h5{
 }
 
 aside{
-    height: 100vh;
+    height: 100%;
     background-color: white;
     width: 250px;
-
 }
 
 aside .slideBarHeader{
     background-color: white;
-    display: flex;
     align-items: center;
-    justify-content: center;
     margin-top: 1.4rem;
 }
 
 aside .logo{
     display: flex;
     gap: 0.8rem;
+    justify-content: center;
 }
 
 aside .slideBarHeader img{

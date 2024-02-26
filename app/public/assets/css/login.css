@@ -8,13 +8,19 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: white;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     align-items: center;
     min-height: 100vh;
-
 }
 
+.container .loginForm{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
 
 .wrapper {
     width: 420px;

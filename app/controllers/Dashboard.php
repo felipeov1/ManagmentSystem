@@ -2,13 +2,13 @@
 
 namespace app\controllers;
 
-class Home
+class Dashboard
 {
     public function index($params){
         $users = all('usuarios');
         return[
-            'view' => 'home.php',
-            'data' => ['title' => 'Home','usuarios' => $users]
+            'view' => 'dashboard.php',
+            'data' => ['title' => 'Dashboard','usuarios' => $users]
         ];
     }
 

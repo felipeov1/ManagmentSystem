@@ -5,8 +5,8 @@
             '/user/store' => 'user@store'
         ],
         'GET' =>[
-        '/home' => 'Home@index',
-        '/products' => 'Products@index',
+        '/dashboard' => 'Dashboard@index',
+        '/produtos' => 'Produtos@index',
         '/user/create' => 'User@create',
         '/user/[0-9]+' => 'User@show',
         '/' => 'Login@index',

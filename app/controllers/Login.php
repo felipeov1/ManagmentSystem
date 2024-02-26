@@ -28,12 +28,21 @@ class Login
             return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/');
         }
 
-        if (!password_verify($password, $user->$password)) {
-            // return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/login');
-        }       
+        // if (!password_verify($password, $user->$password)) {
+        //     return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/login');
+        // }   
+        
+        // if (password_verify($password, $user->$password)) {
+        //     // Check if either the algorithm or the options have changed
+        //     if (password_needs_rehash($user->$password, $algorithm, $options)) {
+        //         // If so, create a new hash, and replace the old one
+        //         $newHash = password_hash($password, $algorithm, $options);
+        //     }
+        //     return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/login');
+        // }
 
         $_SESSION[LOGGED] = $user;
-        return redirect('/home');
+        return redirect('/dashboard');
 
 
     }

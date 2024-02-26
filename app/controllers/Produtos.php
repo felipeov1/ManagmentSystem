@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-class Products
+class Produtos
 {
     public function index()
     {
         return [
-            'view' => 'products.php',
+            'view' => 'produtos.php',
             'data' => ['title' => 'Produtos']
         ];
     }
