@@ -1,17 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body{
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-    background-color: rgb(218, 218, 218);
-    min-height: 100vh;
-}
 .table{
     width: 100%;
     border-collapse: collapse;
@@ -30,7 +17,7 @@ body{
     
 
 }
-button{
+#tableProduct button{
     border-radius: 6px;
     outline: none;
     border: 1px solid rgb(130, 133, 137);
@@ -39,13 +26,13 @@ button{
     padding: 10px;
     color: #fff;
 }
-td button:nth-child(1){
+#tableProduct td button:nth-child(1){
     background-color: rgb(169, 173, 179);
 }
-td button:nth-child(2){
+#tableProduct td button:nth-child(2){
     background-color:  rgb(169, 173, 179);
 }
-td button:nth-child(3){
+#tableProduct td button:nth-child(3){
     background-color:  rgb(169, 173, 179);
 }
 
@@ -65,30 +52,29 @@ input{
 }
 
 .table_section{
-    height: 600px;
-    overflow: auto;
+    height: 800px;
 }
-table{
+#tableProduct{
     width: 100%;
     table-layout: fixed;
     min-width: 900px;
     border-collapse: collapse;
 }
-thead th{
+#tableProduct thead th{
     position: sticky;
     top: 0;
     background-color:rgb(86, 86, 86);
     font-size: 15px;
     color:#fff;
 
-}
-th,td{
+} 
+#tableProduct th,td{
     border-bottom: 1px solid rgb(130, 133, 137);
     padding: 10px 20px;
     word-break: break-all;
     text-align: center;
 }
-tr:hover td{
+#tableProduct tr:hover td{
     color: rgb(255, 255, 255);
     cursor: pointer;
     background-color: rgb(130, 133, 137);

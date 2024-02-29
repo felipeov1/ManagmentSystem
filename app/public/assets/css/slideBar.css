@@ -80,7 +80,6 @@ aside .slideBar{
 
 aside .slideBar a{
     display: flex;
-    margin-left: 2rem;
     gap: 1rem;
     align-items: center;
     position: relative;
@@ -98,6 +97,11 @@ aside .slideBar a:last-child{
     position: absolute;
     bottom: 2rem;
     width: 100%;
+}
+
+.slideBar a.selected {
+    background-color: #b38b6d94;
+    color: #964b00;
 }
 
 aside .slideBar a.hoverOption{

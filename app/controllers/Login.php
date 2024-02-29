@@ -43,14 +43,12 @@ class Login
 
         $_SESSION[LOGGED] = $user;
         return redirect('/dashboard');
-
-
     }
 
     public function destroy(){
         unset($_SESSION[LOGGED]);
 
-        return redirect('/');
+        return redirect('/login');
     }
 
 }

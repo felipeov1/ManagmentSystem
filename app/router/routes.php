@@ -9,7 +9,7 @@
         '/produtos' => 'Produtos@index',
         '/user/create' => 'User@create',
         '/user/[0-9]+' => 'User@show',
-        '/' => 'Login@index',
+        '/login' => 'Login@index',
         '/logout' => 'Login@destroy',
         ]
     ];

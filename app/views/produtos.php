@@ -12,7 +12,7 @@
         <div class="mostly-customized-scrollbar"></div>
         <div class="container boxSide">
 
-            <table>
+            <table id="tableProduct">
                 <thead>
                     <tr>
                         <th>ID</th>

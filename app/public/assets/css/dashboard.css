@@ -128,7 +128,7 @@ main .nextOrder table:hover{
     box-shadow: none;
 }
 
-main table tbody td{
+main .nextOrder table tbody td{
     height: 4.8rem;
     border-bottom: 1px solid lightgray;
     color: black;

@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/login.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/slideBar.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/products.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/body.css">
     <!-- fim css -->
     <title>
@@ -23,12 +24,16 @@
 </head>
 
 <body>
+    <!-- JS -->
+    <script src="/scripts/nav-link.js"></script>
+    <!-- FIM JS -->
     <div id="header">
         <?php require "partials/header.php"; ?>
     </div>
     <div class="container">
         <?php require VIEWS . $view; ?>
     </div>
+    
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
