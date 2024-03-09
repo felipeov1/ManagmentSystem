@@ -27,13 +27,16 @@
     <!-- JS -->
     <script src="/scripts/nav-link.js"></script>
     <!-- FIM JS -->
-    <div id="header">
-        <?php require "partials/header.php"; ?>
+    <?php $current_url = $_SERVER['REQUEST_URI'];
+        if (strpos($current_url, '/login') === false): ?>
+            <div id="header">
+                <?php require "partials/header.php"; ?>
+            </div>
+        <?php endif; ?>
+            <div class="container">
+            <?php require VIEWS . $view; ?>
     </div>
-    <div class="container">
-        <?php require VIEWS . $view; ?>
-    </div>
-    
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -44,4 +47,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
+
 </html>

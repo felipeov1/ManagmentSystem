@@ -1,5 +1,4 @@
-<?php $current_url = $_SERVER['REQUEST_URI'];
-if (strpos($current_url, '/login') === false): ?>
+
     <div class="container boxSide">
         <aside>
             <div class="slideBarHeader">
@@ -49,4 +48,3 @@ if (strpos($current_url, '/login') === false): ?>
                 <?php echo user()->nome; ?> | <a href="/logout">Logout</a>
             </div>
         </ul> -->
-    <?php endif; ?>
