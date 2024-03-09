@@ -1,0 +1,12 @@
+* Iniciar Servidor:
+1 - cd app
+2 - php -S localhost:8000 -t public
+3 - Na URL do navegador colocar: http://localhost:8000/login
+
+
+Backend:
+
+* Após qualquer modificação realizar comando (diretorio deve ser o seu): 
+php 'C:\Users\ofeli\AppData\Roaming\Composer\latest.phar' dump-autoload -o
+    ou
+composer dump-autoload -o

@@ -1,0 +1,117 @@
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(211, 216, 211, 0.4);
+    flex-wrap: wrap;
+}
+.table_header h2 {
+    color:rgb(0, 0, 0);
+    
+
+}
+#tableProduct button{
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid rgb(130, 133, 137);
+    cursor: pointer;
+    background-color: rgb(130, 133, 137);
+    padding: 10px;
+    color: #fff;
+}
+#tableProduct td button:nth-child(1){
+    background-color: rgb(169, 173, 179);
+}
+#tableProduct td button:nth-child(2){
+    background-color:  rgb(169, 173, 179);
+}
+#tableProduct td button:nth-child(3){
+    background-color:  rgb(169, 173, 179);
+}
+
+.div{
+   
+    text-align: center ;
+}
+
+
+input{
+    padding: 8px 10px;
+    margin: 0 10px;
+    outline: none;
+    border: 1px solid rgb(156, 156, 156);
+    border-radius: 6px;
+    color: black;
+}
+
+.table_section{
+    height: 800px;
+}
+#tableProduct{
+    width: 100%;
+    table-layout: fixed;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+#tableProduct thead th{
+    position: sticky;
+    top: 0;
+    background-color:rgb(86, 86, 86);
+    font-size: 15px;
+    color:#fff;
+
+} 
+#tableProduct th,td{
+    border-bottom: 1px solid rgb(130, 133, 137);
+    padding: 10px 20px;
+    word-break: break-all;
+    text-align: center;
+}
+#tableProduct tr:hover td{
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    background-color: rgb(130, 133, 137);
+
+    
+}
+
+.pagination{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 20px;
+    background: transparent;
+}
+
+.pagination div{
+    background: transparent;
+    padding: 10px;
+    border: 2px solid #d5d0d0;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(67, 67, 67);
+    color: #fff;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+::placeholder{
+    color: rgb(165, 182, 165);
+}
+.mostly-customized-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #aaa;}
+

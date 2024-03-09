@@ -1,0 +1,132 @@
+#header{
+    display: flex;
+}
+
+.boxSide{
+    display: flex;
+    width: 12%;
+    margin: 0;
+    gap: 1.8rem;
+}
+
+a{
+    color: rgba(0, 0, 0, 0.651);
+}
+
+
+img{
+    display: block;
+    width: 100%;
+}
+
+h1{
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2{
+    font-size: 1.4rem;
+}
+
+h3{
+    font-size: 1rem;
+}
+
+h5{
+    font-size: 0.77rem;
+}
+
+aside{
+    height: 100%;
+    background-color: white;
+    width: 250px;
+}
+
+aside .slideBarHeader{
+    background-color: white;
+    align-items: center;
+    margin-top: 1.4rem;
+}
+
+aside .logo{
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+}
+
+aside .slideBarHeader img{
+    width: 10rem;
+    height: 10rem;
+}
+
+aside .btnClose{
+    display: none;
+
+}
+
+/* menu lateral */
+
+aside{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
+
+aside .slideBar{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 82vh;
+    position: relative;
+    top: 1rem;
+}
+
+aside .slideBar a{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: all 300ms ease;
+    text-decoration: none;
+}
+
+aside .slideBar a span{
+    font-size: 1.6rem;
+    transition: all 300ms ease;
+}
+
+aside .slideBar a:last-child{
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+}
+
+.slideBar a.selected {
+    background-color: #b38b6d94;
+    color: #964b00;
+}
+
+aside .slideBar a.hoverOption{
+    background-color: #b38b6d94;
+    color: #964b00;
+    margin-left: 0;
+}
+
+aside .slideBar a.hoverOption:before{
+    content: "";
+    width: 6px;
+    height: 100%;
+    background-color: #964b00;
+}
+
+
+aside .slideBar a.hoverOption span{
+    color: #964b00;
+    margin-left: calc(1rem - 3px);
+}
+
+aside .slideBar a:hover{
+    color: #964b00;
+}
+
+aside .slideBar a:hover span{
+    margin-left: 1rem;
+}
