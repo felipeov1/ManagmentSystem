@@ -11,5 +11,6 @@
         '/user/[0-9]+' => 'User@show',
         '/login' => 'Login@index',
         '/logout' => 'Login@destroy',
+        '/recuperar' => 'Recuperar@index',
         ]
     ];

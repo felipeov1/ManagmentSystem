@@ -21,7 +21,7 @@
             <div class="register-link">
             </div>
 
-            <button type="submit" class="button" onclick="recuperar(); return false"> Esqueci minha senha </button>
+            <button type="submit" class="button"><a id="recuperar" href="/recuperar">Esqueci minha senha</a></button>
             <div class="register-link">
             </div>
         </form>

@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/products.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/body.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/recuperar.css">
     <!-- fim css -->
     <title>
         <?php echo $title ?>
