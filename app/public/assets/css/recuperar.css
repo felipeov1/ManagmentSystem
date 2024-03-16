@@ -1,17 +1,24 @@
+.boxRec{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    transform: translateY(50%);
+}
 .wrapper{
     width: 420px;
     background-color: rgba(255, 255, 255, 0.4);
-    color: orangered;
+    color: rgb(0, 0, 0);
     border-radius: 10px;
     padding: 30px 40px;
 }
 .wrapper h3{
     font-size: 26px;
     text-align: center;
+    margin-top: 12px;
 }
 .wrapper h5{
     font-size: 13px;
-    text-align: justify;
+    text-align: center;
 }
 .wrapper .input-box {
     position: relative;
@@ -26,7 +33,7 @@
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid rgba(255, 68, 0, 0.4);
+    border: 2px solid rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     font-size: 16px;
     color: black;
@@ -34,7 +41,7 @@
 }
 
 .input-box input::placeholder {
-    color: rgba(247, 167, 18, 0.884)
+    color: rgba(0, 0, 0, 0.884)
 }
 .input-box i {
     position: absolute;
@@ -55,5 +62,14 @@
     font-size: 16px;
     color: #fff;
     font-weight: 600;
+}
+
+
+#voltar-recuperacao h5{
+    width: 80px;
+    font-size: 15px;
+    background-color: orangered;
+    border-radius: 12px;
+    color: white;
 }
 

@@ -7,11 +7,11 @@
 
             <div class="input-box">
                 <input type="text" name="email" placeholder="Email" value="ofelipe439@gmail.com">
-                <i class='bx bxs-user' style='color:#ff7500'></i>
+                <i class='bx bxs-user' style='color:black'></i>
             </div>
             <div class="input-box">
                 <input type="password" name="senha" placeholder="Senha" value="123">
-                <i class='bx bxs-lock-alt' style='color:#ff7500'></i>
+                <i class='bx bxs-lock-alt' style='color:black'></i>
             </div>
             <div class="remember-forgot">
                 <label><input type="checkbox">Lembrar-se de mim </label>
@@ -21,7 +21,7 @@
             <div class="register-link">
             </div>
 
-            <button type="submit" class="button"><a id="recuperar" href="/recuperar">Esqueci minha senha</a></button>
+            <button class="button"><a id="recuperar" href="/recuperar">Esqueci minha senha</a></button>
             <div class="register-link">
             </div>
         </form>

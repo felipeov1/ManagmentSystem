@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/products.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/body.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/recuperar.css">
+    <link rel="shortcut icon" href="/assets/images/faviconImg.ico" type="image/x-icon">
     <!-- fim css -->
     <title>
         <?php echo $title ?>
@@ -29,7 +30,7 @@
     <script src="/scripts/nav-link.js"></script>
     <!-- FIM JS -->
     <?php $current_url = $_SERVER['REQUEST_URI'];
-        if (strpos($current_url, '/login') === false): ?>
+        if (strpos($current_url, '/login') === false && strpos($current_url, '/recuperar') === false) : ?>
             <div id="header">
                 <?php require "partials/header.php"; ?>
             </div>
