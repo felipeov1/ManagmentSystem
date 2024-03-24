@@ -5,8 +5,5 @@
 
 
 Backend:
-
-* Após qualquer modificação realizar comando (diretorio deve ser o seu): 
-php 'C:\Users\ofeli\AppData\Roaming\Composer\latest.phar' dump-autoload -o
-    ou
+Qualquer alteração no arquivo "composer" ou primeira vez que rodar o projeto digitar no console:
 composer dump-autoload -o
