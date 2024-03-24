@@ -1,11 +1,9 @@
 <div class="container boxDashboard">
     <main>
         <h1>Dashboard</h1>
-
         <div class="txtSytem">
             <h2>Olá
-                <?php echo user()->nome; ?> - <span style="font-size: 70%; ">Aqui está
-                    um resumo de sua loja</span>
+                <?php echo user()->nome; ?> - <span style="font-size: 70%; ">Aqui está um resumo de sua loja</span>
             </h2>
         </div>
 
@@ -15,7 +13,7 @@
                 <div class="middle">
                     <div class="left">
                         <h3>Vendas Totais (mês):</h3>
-                        <h1>R$2.357,00</h1> <!--  recebe dados do banco de dados -->
+                        <h1><?php echo "R$$totalSalesMonth"; ?></h1> <!--  recebe dados do banco de dados -->
                     </div>
                     <div class="graphic">
                         <svg>
