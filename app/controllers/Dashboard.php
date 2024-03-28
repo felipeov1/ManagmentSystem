@@ -2,21 +2,25 @@
 
 namespace app\controllers;
 
-use app\controllers\VendasController;
+use app\controllers\SalesController;
 
 
 class Dashboard
 {
     public function index($params)
     {
-        $vendasController = new VendasController();
-        $totalSalesMonth = $vendasController->salesCalculator();
+        $salesController = new SalesController();
+        $allSalesMonth = $salesController->allSalesMonth();
+        $allSalesYear = $salesController->allSalesYear();
+        $monthlySalesProgression = $salesController->monthlySalesProgression($allSalesMonth);
 
         return [
             'view' => 'dashboard.php',
             'data' => [
                 'title' => 'Dashboard', 
-                'totalSalesMonth' => $totalSalesMonth,
+                'allSalesMonth' => $allSalesMonth,
+                'allSalesYear' => $allSalesYear,
+                'monthlySalesProgression' => $monthlySalesProgression,
             ],
         ];
     }   
