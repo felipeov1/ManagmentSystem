@@ -1,5 +1,5 @@
 
-    <div class="container boxSide">
+    <div class="boxSide">
         <aside>
             <div class="slideBarHeader">
                 <div class="logo">

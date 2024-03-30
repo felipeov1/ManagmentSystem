@@ -1,6 +1,6 @@
 /* principal */
-.container .boxDashboard{
-    display: flex;
+.boxDashboard{
+    display: inline-flex !important;
 }
 
 .txtSytem{
@@ -34,22 +34,27 @@ main .salesData{
     margin-left: 0.5rem;
 }
 
+
+
 main .sales, .compare, .yearly{
     margin: 1rem;
     background-color: white;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 10px;
+    width: 300px;
+    height: 150px;
+    justify-content: space-around;
+}
+
+main .sales, .compare, .yearly, .middle{
+    display: flex;
+    align-items: center;
 }
 
 main .sales:hover, .compare:hover, .yearly:hover{
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-main .salesData > div .middle{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
 main .salesData h3{
     margin: 1rem 0 0.6rem;

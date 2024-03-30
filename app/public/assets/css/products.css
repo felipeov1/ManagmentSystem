@@ -1,97 +1,136 @@
-
-.table{
-    width: 100%;
-    border-collapse: collapse;
+.pageTitle h5 {
+    background-color: rgb(245, 245, 245) !important;
 }
 
 .table_header {
-    display: flex;
-    justify-content: space-between;
+    left: 75%;
     align-items: center;
-    padding: 15px;
-    background-color: rgba(211, 216, 211, 0.4);
+    padding: 20px;
+    display: inline;
+    justify-content: space-between;
+}
+
+
+
+.table_header p {
+    color: black;
+    bottom: 50px;
     flex-wrap: wrap;
+    background-color: rgb(245, 245, 245);
 }
-.table_header h2 {
-    color:rgb(0, 0, 0);
-    
 
-}
-#tableProduct button{
+.table_header button {
+    outline: none;
+    border: none;
     border-radius: 6px;
-    outline: none;
-    border: 1px solid rgb(130, 133, 137);
     cursor: pointer;
-    background-color: rgb(130, 133, 137);
     padding: 10px;
-    color: #fff;
-}
-#tableProduct td button:nth-child(1){
-    background-color: rgb(169, 173, 179);
-}
-#tableProduct td button:nth-child(2){
-    background-color:  rgb(169, 173, 179);
-}
-#tableProduct td button:nth-child(3){
-    background-color:  rgb(169, 173, 179);
 }
 
-.div{
-   
-    text-align: center ;
+.searchInput {
+    position: relative;
+    padding-left: 0 !important;
+    background-color: rgb(245, 245, 245) !important;
 }
 
+.searchInput .fa-search {
 
-input{
-    padding: 8px 10px;
-    margin: 0 10px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ca3af;
+}
+
+.searchInput span {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db;
+}
+
+.left-pan {
+    padding-left: 7px;
+}
+
+.left-pan i {
+
+    padding-left: 10px;
+}
+
+.form-input {
+    height: 35px;
+    width: 400px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+.form-input:focus {
+    box-shadow: none;
+    border: none;
+}
+
+.table_header input {
+    padding: 10px 15px;
+    margin: 0;
     outline: none;
-    border: 1px solid rgb(156, 156, 156);
+    border: 1px solid black;
     border-radius: 6px;
     color: black;
 }
 
-.table_section{
-    height: 800px;
+.createBtn {
+    background-color: rgb(245, 245, 245) !important;
 }
-#tableProduct{
+
+.table_section {
+    height: 100%;
+}
+
+.table_section table {
     width: 100%;
     table-layout: fixed;
-    min-width: 900px;
+    min-width: 1000px;
     border-collapse: collapse;
 }
-#tableProduct thead th{
+
+.table_section thead th {
     position: sticky;
     top: 0;
-    background-color:rgb(86, 86, 86);
-    font-size: 15px;
-    color:#fff;
+    background-color: bisque;
+    color: #000000;
+}
 
-} 
-#tableProduct th,td{
-    border-bottom: 1px solid rgb(130, 133, 137);
-    padding: 10px 20px;
-    word-break: break-all;
+.table_section th,
+td {
     text-align: center;
+    border-bottom: 1px solid #6d6767;
+    padding: 10px 20px;
+    word-break: break-allk;
 }
-#tableProduct tr:hover td{
-    color: rgb(255, 255, 255);
+
+.table_section tr:hover td {
+    color: #6d6767;
     cursor: pointer;
-    background-color: rgb(130, 133, 137);
-
-    
+    background-color: #ffffff;
 }
 
-.pagination{
+.pagination {
+    padding-top: 15px !important;
     display: flex;
     justify-content: flex-end;
     width: 100%;
     padding: 10px 20px;
-    background: transparent;
+    background: #d8d8d8;
+    --bs-pagination-color: black;
+    --bs-pagination-active-bg: black;
+    --bs-pagination-active-border-color: black;
+    --bs-pagination-hover-color: black;
+    --bs-pagination-focus-color: black;
+
 }
 
-.pagination div{
-    background: transparent;
+.pagination div {
     padding: 10px;
     border: 2px solid #d5d0d0;
     height: 40px;
@@ -100,18 +139,32 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(67, 67, 67);
-    color: #fff;
+    background-color: #ffffff;
+    color: #000000;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
     margin: 0 5px;
     cursor: pointer;
 }
 
-::placeholder{
-    color: rgb(165, 182, 165);
+::placeholder {
+    color: #0298cf;
 }
-.mostly-customized-scrollbar::-webkit-scrollbar {
-    width: 5px;
-    height: 8px;
-    background-color: #aaa;}
 
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.options_header {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}

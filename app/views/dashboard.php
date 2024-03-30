@@ -1,4 +1,4 @@
-<div class="container boxDashboard">
+<div class="boxDashboard">
     <main>
         <h1>Dashboard</h1>
         <div class="txtSytem">
@@ -8,11 +8,11 @@
         </div>
 
         <div class="salesData">
-            <div class="sales" style="width: 350px; height: 200px;">
+            <div class="sales">
                 <span class="material-icons-sharp">insert_chart</span>
                 <div class="middle">
                     <div class="left">
-                        <h3>Vendas Totais (mês):</h3>
+                        <h3>Vendas nesse mês:</h3>
                         <h1><?php echo "R$$allSalesMonth"; ?></h1> <!--  recebe dados do banco de dados -->
                     </div>
                     <div class="graphic">
@@ -25,11 +25,11 @@
                     </div>
                 </div>
             </div>
-            <div class="compare" style="width: 350px; height: 200px;">
+            <div class="compare">
                 <span class="material-icons-sharp">insert_chart</span>
                 <div class="middle">
                     <div class="left">
-                        <h3>Vendas Comparadas ao Mês Anterior:</h3>
+                        <h3>Comparação Mensal:</h3>
                         <h1><?php echo "R$$monthlySalesProgression"; ?></h1> <!--  recebe dados do banco de dados -->
                     </div>
                     <div class="graphic">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="yearly" style="width: 350px; height: 200px;">
+            <div class="yearly">
                 <span class="material-icons-sharp">insert_chart</span>
                 <div class="middle">
                     <div class="left">

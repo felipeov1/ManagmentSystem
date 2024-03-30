@@ -10,6 +10,9 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1tzjvRp9Uq/8yFAalTTG0zXxPqe5i" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <!-- fim links -->
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/assets/css/login.css">
@@ -30,14 +33,13 @@
     <script src="/scripts/nav-link.js"></script>
     <!-- FIM JS -->
     <?php $current_url = $_SERVER['REQUEST_URI'];
-        if (strpos($current_url, '/login') === false && strpos($current_url, '/recuperar') === false) : ?>
-            <div id="header">
-                <?php require "partials/header.php"; ?>
-            </div>
-        <?php endif; ?>
-            <div class="container">
-            <?php require VIEWS . $view; ?>
-    </div>
+    if (strpos($current_url, '/login') === false && strpos($current_url, '/recuperar') === false): ?>
+        <div id="header">
+            <?php require "partials/header.php"; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php require VIEWS . $view; ?>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
