@@ -13,7 +13,9 @@
                 <div class="middle">
                     <div class="left">
                         <h3>Vendas nesse mês:</h3>
-                        <h1><?php echo "R$$allSalesMonth"; ?></h1> <!--  recebe dados do banco de dados -->
+                        <h1>
+                            <?php echo "R$$allSalesMonth"; ?>
+                        </h1> <!--  recebe dados do banco de dados -->
                     </div>
                     <div class="graphic">
                         <svg>
@@ -30,7 +32,9 @@
                 <div class="middle">
                     <div class="left">
                         <h3>Comparação Mensal:</h3>
-                        <h1><?php echo "R$$monthlySalesProgression"; ?></h1> <!--  recebe dados do banco de dados -->
+                        <h1>
+                            <?php echo "R$$monthlySalesProgression"; ?>
+                        </h1> <!--  recebe dados do banco de dados -->
                     </div>
                     <div class="graphic">
                         <svg>
@@ -47,7 +51,9 @@
                 <div class="middle">
                     <div class="left">
                         <h3>Vendas esse ano:</h3>
-                        <h1><?php echo "R$allSalesYear"; ?></h1> <!--  recebe dados do banco de dados -->
+                        <h1>
+                            <?php echo "R$allSalesYear"; ?>
+                        </h1> <!--  recebe dados do banco de dados -->
                     </div>
                     <div class="graphic">
                         <svg>
@@ -74,36 +80,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Senai</td>
-                        <td>35534545</td>
-                        <td>15/12/2023 17:30</td>
-                        <td><button>Entregue</button></td>
-                    </tr>
-                    <tr>
-                        <td>Unicesumar</td>
-                        <td>3534545</td>
-                        <td>15/12/2023 18:00</td>
-                        <td><button>Entregue</button></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <?php foreach ($orders as $order): ?>
+                        <tr>
+                            <td>Senai</td>
+                            <td><?php echo $order->numero_pedido; ?></td>
+                            <td><?php echo $order->data_entrega; ?></td>
+                            <td><button>Entregue</button></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <a href="">Mostrar Todas</a>

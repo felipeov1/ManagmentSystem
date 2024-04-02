@@ -25,6 +25,7 @@ function findBy($table, $field, $value, $fields = '*')
   }
 };
 
+//////////// Sales
 function findAllSalesMonth($table, $dateField, $valueField, $fields = '*')
 {
   try {
@@ -73,3 +74,18 @@ function findAllSalesYear($table, $field, $fields = '*')
   }
 };
 
+//////////// Orders
+
+function getOrders($table, $dateField, $valueField, $fields = '*')
+{
+  try{
+    $connect = connect();
+    $query = $connect->prepare("select {$fields} from {$table} where year({$dateField}) = year(curdate()) and month({$dateField}) = month(curdate())  order by {$dateField} asc");
+    $query->execute();
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
+    return $results;
+  } catch (PDOException $e) {
+    var_dump($e->getMessage());
+    return false;
+  }
+}

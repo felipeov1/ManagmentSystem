@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\controllers\SalesController;
+use app\controllers\OrdersController;
 
 
 class Dashboard
@@ -13,7 +14,10 @@ class Dashboard
         $allSalesMonth = $salesController->allSalesMonth();
         $allSalesYear = $salesController->allSalesYear();
         $monthlySalesProgression = $salesController->monthlySalesProgression($allSalesMonth);
-
+        
+        $ordersController = new OrdersController();
+        $orders = $ordersController->getOrders();
+        
         return [
             'view' => 'dashboard.php',
             'data' => [
@@ -21,6 +25,8 @@ class Dashboard
                 'allSalesMonth' => $allSalesMonth,
                 'allSalesYear' => $allSalesYear,
                 'monthlySalesProgression' => $monthlySalesProgression,
+
+                'orders' => $orders,
             ],
         ];
     }   

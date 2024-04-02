@@ -7,18 +7,17 @@ class SalesController
     public function allSalesMonth()
     {
         $salesMonth = findAllSalesMonth('vendas', 'data', 'valor');
-
+        
         $totalSalesMonth = 0;
-
+        
         foreach ($salesMonth as $sales) {
             $salesMonth = $sales->valor;
             $totalSalesMonth += $salesMonth;
-            $valueTotalSalesMonth = number_format($totalSalesMonth, 2, ',', '.');
-
         }
+        $valueTotalSalesMonth = number_format($totalSalesMonth, 2, ',', '.');
         return $valueTotalSalesMonth;
     }
-
+    
     public  function allSalesYear()
     {
         $salesMonth = findAllSalesYear('vendas', 'data', 'valor');
@@ -37,6 +36,10 @@ class SalesController
 
     public function monthlySalesProgression($valueTotalSalesMonth)
     {
+
+    
+
+
         $salesLastMonth = findLastSalesMonth('vendas', 'data', 'valor');
 
         $totalsalesLastMonth = 0;
