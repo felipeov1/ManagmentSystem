@@ -3,7 +3,7 @@
         <h1>Dashboard</h1>
         <div class="txtSytem">
             <h2>Olá
-                <?php echo user()->nome; ?> - <span style="font-size: 70%; ">Aqui está um resumo de sua loja</span>
+                <?php  ?> - <span style="font-size: 70%; ">Aqui está um resumo de sua loja</span>
             </h2>
         </div>
 
@@ -84,7 +84,13 @@
                         <tr>
                             <td>Senai</td>
                             <td><?php echo $order->numero_pedido; ?></td>
-                            <td><?php echo $order->data_entrega; ?></td>
+                            <td>
+                            <?php 
+                                $data = $order->data_entrega; 
+                                $dataFormatada = date('d/m/y', strtotime($data));
+                                echo $dataFormatada;
+                            ?>
+                            </td>
                             <td><button>Entregue</button></td>
                         </tr>
                     <?php endforeach; ?>

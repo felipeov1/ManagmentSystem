@@ -22,6 +22,7 @@ class Dashboard
             'view' => 'dashboard.php',
             'data' => [
                 'title' => 'Dashboard', 
+                
                 'allSalesMonth' => $allSalesMonth,
                 'allSalesYear' => $allSalesYear,
                 'monthlySalesProgression' => $monthlySalesProgression,

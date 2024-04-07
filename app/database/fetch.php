@@ -76,11 +76,11 @@ function findAllSalesYear($table, $field, $fields = '*')
 
 //////////// Orders
 
-function getOrders($table, $dateField, $valueField, $fields = '*')
+function getOrders($table, $idField, $statusField, $fields = '*')
 {
   try{
     $connect = connect();
-    $query = $connect->prepare("select {$fields} from {$table} where year({$dateField}) = year(curdate()) and month({$dateField}) = month(curdate())  order by {$dateField} asc");
+    $query = $connect->prepare("select {$fields} from {$table} where {$statusField} = 0  order by {$idField} asc");
     $query->execute();
     $results = $query->fetchAll(PDO::FETCH_OBJ);
     return $results;
