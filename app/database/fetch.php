@@ -9,7 +9,8 @@ function all($table, $fields = '*')
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-};
+}
+;
 
 function findBy($table, $field, $value, $fields = '*')
 {
@@ -23,7 +24,8 @@ function findBy($table, $field, $value, $fields = '*')
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-};
+}
+;
 
 //////////// Sales
 function findAllSalesMonth($table, $dateField, $valueField, $fields = '*')
@@ -32,13 +34,14 @@ function findAllSalesMonth($table, $dateField, $valueField, $fields = '*')
     $connect = connect();
     $query = $connect->prepare("SELECT {$fields} FROM {$table} WHERE YEAR({$dateField}) = YEAR(CURDATE()) AND MONTH({$dateField}) = MONTH(CURDATE())");
     $query->execute();
-    $results = $query->fetchAll(PDO::FETCH_OBJ); 
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
     return $results;
   } catch (PDOException $e) {
     var_dump($e->getMessage());
     return false;
   }
-};
+}
+;
 function findLastSalesMonth($table, $dateField, $valueField, $fields = '*')
 {
   try {
@@ -48,10 +51,10 @@ function findLastSalesMonth($table, $dateField, $valueField, $fields = '*')
     $connect = connect();
     $query = $connect->prepare("select {$fields} from {$table} where {$dateField} >= :firstDay and {$dateField} <= :lastDay");
     $query->execute([
-        'firstDay' => $firstDayOfLastMonth,
-        'lastDay' => $lastDayOfLastMonth
+      'firstDay' => $firstDayOfLastMonth,
+      'lastDay' => $lastDayOfLastMonth
     ]);
-    $results = $query->fetchAll(PDO::FETCH_OBJ); 
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
     return $results;
   } catch (PDOException $e) {
     var_dump($e->getMessage());
@@ -66,21 +69,31 @@ function findAllSalesYear($table, $field, $fields = '*')
     $connect = connect();
     $query = $connect->prepare("select {$fields} from {$table} where YEAR({$field}) = YEAR(CURDATE())");
     $query->execute();
-    $results = $query->fetchAll(PDO::FETCH_OBJ); 
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
     return $results;
   } catch (PDOException $e) {
     var_dump($e->getMessage());
     return false;
   }
-};
+}
+;
+
 
 //////////// Orders
 
-function getOrders($table, $idField, $statusField, $fields = '*')
+
+function getOrders($table, $idField, $statusField, $deliveryDateField, $fields = '*')
 {
-  try{
+  try {
     $connect = connect();
-    $query = $connect->prepare("select {$fields} from {$table} where {$statusField} = 0  order by {$idField} asc");
+    $query = $connect->prepare("
+      SELECT *, C.Nome AS NomeCliente, P.Nome AS NomeProduto
+      FROM Vendas AS V
+      JOIN Clientes AS C ON V.IDCliente = C.IDCliente
+      JOIN Produtos AS P ON V.IDProduto = P.IDProduto
+      WHERE V.Situacao = 0
+      ORDER BY V.DataEntrega ASC
+      ");
     $query->execute();
     $results = $query->fetchAll(PDO::FETCH_OBJ);
     return $results;
@@ -89,3 +102,4 @@ function getOrders($table, $idField, $statusField, $fields = '*')
     return false;
   }
 }
+

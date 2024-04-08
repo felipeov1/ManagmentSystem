@@ -3,7 +3,7 @@
         <h1>Dashboard</h1>
         <div class="txtSytem">
             <h2>Olá
-                <?php  ?> - <span style="font-size: 70%; ">Aqui está um resumo de sua loja</span>
+                <?php ?> - <span style="font-size: 70%; ">Aqui está um resumo de sua loja</span>
             </h2>
         </div>
 
@@ -33,8 +33,15 @@
                     <div class="left">
                         <h3>Comparação Mensal:</h3>
                         <h1>
-                            <?php echo "R$$monthlySalesProgression"; ?>
-                        </h1> <!--  recebe dados do banco de dados -->
+                            <?php
+                            if ($monthlySalesProgression >= 0) {
+                                echo "+R$$monthlySalesProgression";
+                            } else {
+                                echo "-R$$monthlySalesProgression";
+                            }
+
+                            ?>
+                        </h1>
                     </div>
                     <div class="graphic">
                         <svg>
@@ -82,14 +89,14 @@
                 <tbody>
                     <?php foreach ($orders as $order): ?>
                         <tr>
-                            <td>Senai</td>
-                            <td><?php echo $order->numero_pedido; ?></td>
                             <td>
-                            <?php 
-                                $data = $order->data_entrega; 
-                                $dataFormatada = date('d/m/y', strtotime($data));
-                                echo $dataFormatada;
-                            ?>
+                                <?php echo $order->NomeCliente; ?>
+                            </td>
+                            <td>
+                                <?php echo $order->IDVenda; ?>
+                            </td>
+                            <td>
+                                <?php echo date('d/m/Y', strtotime($order->DataEntrega)); ?>
                             </td>
                             <td><button>Entregue</button></td>
                         </tr>

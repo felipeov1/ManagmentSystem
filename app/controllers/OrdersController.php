@@ -6,7 +6,7 @@ class OrdersController{
 
     public function getOrders(){
 
-        $orders = getOrders('pedidos', 'id', 'situacao');
-        return $orders;
+        $nextOrders = getOrders('Vendas', 'IDVenda', 'DataEntrega', 'Situacao');
+        return $nextOrders;
     }
 }

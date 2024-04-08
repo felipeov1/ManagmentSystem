@@ -12,11 +12,14 @@ class Dashboard
     {
         $salesController = new SalesController();
         $allSalesMonth = $salesController->allSalesMonth();
+
         $allSalesYear = $salesController->allSalesYear();
+        
         $monthlySalesProgression = $salesController->monthlySalesProgression($allSalesMonth);
         
         $ordersController = new OrdersController();
         $orders = $ordersController->getOrders();
+
         
         return [
             'view' => 'dashboard.php',

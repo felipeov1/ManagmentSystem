@@ -30,13 +30,11 @@
     <!-- JS -->
     <script src="/scripts/nav-link.js"></script>
     <!-- FIM JS -->
-    <?php $current_url = $_SERVER['REQUEST_URI'];
-    if (strpos($current_url, '/login') === false && strpos($current_url, '/recuperar') === false): ?>
+    <?php if ($_SERVER['REQUEST_URI'] !== "/"): ?>
         <div id="header">
             <?php require "partials/header.php"; ?>
         </div>
     <?php endif; ?>
-
     <?php require VIEWS . $view; ?>
 
 </body>

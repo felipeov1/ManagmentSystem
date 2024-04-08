@@ -48,7 +48,7 @@ class Login
     public function destroy(){
         unset($_SESSION[LOGGED]);
 
-        return redirect('/login');
+        return redirect('/');
     }
 
 }

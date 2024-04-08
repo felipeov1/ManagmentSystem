@@ -9,7 +9,7 @@ class User
             return redirect('/');
         }
 
-        $user = findBy('usuarios', 'id', $params['usuarios']);
+        $user = findBy('usuarios', 'IDUsuario', $params['usuarios']);
         var_dump($user);
         die();
     }

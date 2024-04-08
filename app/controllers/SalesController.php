@@ -6,12 +6,12 @@ class SalesController
 {
     public function allSalesMonth()
     {
-        $salesMonth = findAllSalesMonth('vendas', 'data', 'valor');
+        $salesMonth = findAllSalesMonth('vendas', 'DataEntrega', 'Valor');
         
         $totalSalesMonth = 0;
         
         foreach ($salesMonth as $sales) {
-            $salesMonth = $sales->valor;
+            $salesMonth = $sales->Valor;
             $totalSalesMonth += $salesMonth;
         }
         $valueTotalSalesMonth = number_format($totalSalesMonth, 2, ',', '.');
@@ -20,12 +20,12 @@ class SalesController
     
     public  function allSalesYear()
     {
-        $salesMonth = findAllSalesYear('vendas', 'data', 'valor');
+        $salesMonth = findAllSalesYear('vendas', 'DataEntrega', 'Valor');
 
         $totalSalesYears = 0;
 
         foreach ($salesMonth as $sales) {
-            $salesMonth = $sales->valor;
+            $salesMonth = $sales->Valor;
             $totalSalesYears += $salesMonth;
             $valueTotalSalesYear = number_format($totalSalesYears, 2, ',', '.');
 
@@ -40,12 +40,12 @@ class SalesController
     
 
 
-        $salesLastMonth = findLastSalesMonth('vendas', 'data', 'valor');
+        $salesLastMonth = findLastSalesMonth('vendas', 'DataEntrega', 'Valor');
 
         $totalsalesLastMonth = 0;
 
         foreach ($salesLastMonth as $sales) {
-            $salesLastMonth = $sales->valor;
+            $salesLastMonth = $sales->Valor;
             $totalsalesLastMonth += $salesLastMonth;
             $valueTotalSalesLastMonth = number_format($totalsalesLastMonth, 2, ',', '.');
         }
