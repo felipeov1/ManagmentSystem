@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-class User
+class UserController
 {
     public function show($params){
         if(!isset($params['usuarios'])){

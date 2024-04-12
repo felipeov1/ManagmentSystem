@@ -2,7 +2,8 @@
     return[
         'POST' =>[
             '/' => 'Login@store',
-            '/user/store' => 'user@store'
+            '/user/store' => 'user@store',
+            '/dashboard/changeStatus' => 'OrdersController@changeStatus'
         ],
         'GET' =>[
         '/dashboard' => 'Dashboard@index',
