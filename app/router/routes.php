@@ -13,5 +13,6 @@
         '/' => 'Login@index',
         '/logout' => 'Login@destroy',
         '/recuperar' => 'Recuperar@index',
+        '/sistema' => 'SistemaController@index'
         ]
     ];
