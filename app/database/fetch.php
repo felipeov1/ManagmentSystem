@@ -120,23 +120,24 @@ function changeStatus($table, $situationFiled, $field, $value)
 
 function ordersNotification($table, $situationField, $deliveryDateField, $deliveryTimeField)
 {
-  try {
-    $connect = connect();
-    $query = $connect->prepare("
-    SELECT v.*, c.Nome AS NomeCliente 
-    FROM {$table} v 
-    JOIN clientes c ON v.IDCliente = c.IDCliente 
-    WHERE {$situationField} = 0 
-    AND TIMESTAMP({$deliveryDateField}, {$deliveryTimeField}) 
-    BETWEEN NOW() - INTERVAL 350 HOUR AND NOW()
-");
+    try {
+        $connect = connect();
+        $query = $connect->prepare("
+            SELECT v.*, c.Nome AS NomeCliente 
+            FROM {$table} v 
+            JOIN clientes c ON v.IDCliente = c.IDCliente 
+            WHERE {$situationField} = 0 
+            AND TIMESTAMP({$deliveryDateField}, {$deliveryTimeField}) > NOW()
+            AND TIMESTAMP({$deliveryDateField}, {$deliveryTimeField}) <= NOW() + INTERVAL 2 HOUR
+        ");
 
-    $query->execute();
-    $results = $query->fetchAll(PDO::FETCH_OBJ);
-    return $results;
-  } catch (PDOException $e) {
-    var_dump($e->getMessage());
-    return false;
-  }
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    } catch (PDOException $e) {
+        var_dump($e->getMessage());
+        return false;
+    }
 }
+
 
