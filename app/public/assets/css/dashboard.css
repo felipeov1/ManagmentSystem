@@ -1,0 +1,202 @@
+/* principal */
+.boxDashboard{
+    display: inline-flex !important;
+}
+
+.txtSytem{
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+}
+
+main{
+    margin-top: 0.9rem;
+    margin-left: 2.5rem;
+}
+
+main h1{
+    margin-left: 1rem;
+}
+
+
+main .salesData{
+    display: flex;
+}
+
+.left h3{
+    margin-top: 0.2rem;
+}
+
+.left h1{
+    margin: 0;
+}
+
+.middle{
+    margin-left: 0.5rem;
+}
+
+
+
+main .sales, .compare, .yearly{
+    margin: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 300px;
+    height: 150px;
+    justify-content: space-around;
+}
+
+main .sales, .compare, .yearly, .middle{
+    display: flex;
+    align-items: center;
+}
+
+main .sales:hover, .compare:hover, .yearly:hover{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+main .salesData h3{
+    margin: 1rem 0 0.6rem;
+}
+
+main .salesData .right{
+ position: relative;
+}
+
+main .salesData svg{
+    width: 7rem;
+    height: 7rem;
+}
+
+main .salesData svg circle{
+    fill: none;
+    stroke: #ebc460;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    stroke-dasharray: 110;
+    stroke-dashoffset: 92;
+}
+
+main .salesData .sales svg circle{
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+
+main .salesData .compare svg circle{
+    stroke-dashoffset: 20;
+    stroke-dasharray: 80;
+}
+
+main .salesData .yearly svg circle{
+    stroke-dashoffset: 35;
+    stroke-dasharray: 110;
+}
+
+
+/* pedidos recentes */
+
+main .nextOrder{
+    margin-top: 2rem;
+}
+
+main .nextOrder h2{
+    margin-bottom: 0.8rem;
+}
+
+main .nextOrder table{
+    background-color: white;
+    width: 100%;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 300ms ease;
+}
+
+main .nextOrder table:hover{
+    box-shadow: none;
+}
+
+main .nextOrder table tbody td{
+    height: 4.8rem;
+    border-bottom: 1px solid lightgray;
+    color: black;
+}
+
+main .nextOrder a{
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color: #ebc460;
+    font-size: 1rem;
+}
+
+main .nextOrder a:hover{
+    transform: scale(1.1);
+}
+
+main .nextOrder button{
+    background-color: rgb(3, 185, 3);
+    color: white;
+    border-radius: 3px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/* alerta de pedidos próximos */
+
+.right{
+    margin-top: 0.9rem;
+    margin-left: 2rem;
+    margin-right: 4rem;
+}
+
+.right .orderAlert{
+    margin-top: 1rem;
+}
+
+.right .orderAlert h2{
+    margin-bottom: 2rem;
+}
+
+.right .orderAlert .news{
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 300ms ease;
+}
+
+.right .orderAlert .news:hover{
+    box-shadow: none;
+}
+
+.message p{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* adiconar cliente */
+
+
+.addClient{
+    display: grid;
+    text-align: center;
+    margin-top: 2.5rem;
+    height: 200px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 300ms ease;
+}
+
+.addClient button{
+    background-color: white;
+    border-radius: 10px;
+}
+
+.addClient button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 1s;
+}

@@ -1,0 +1,9 @@
+* Iniciar Servidor:
+1 - cd app
+2 - php -S localhost:8000 -t public
+3 - Na URL do navegador colocar: http://localhost:8000/login
+
+
+Backend:
+Qualquer alteração no arquivo "composer" ou primeira vez que rodar o projeto digitar no console:
+composer dump-autoload -o
