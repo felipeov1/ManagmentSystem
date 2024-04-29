@@ -14,12 +14,10 @@ class ProductsController
 
     public function index()
     {
-        // Aqui você pode chamar métodos do repositório para obter os produtos
         $products = $this->productRepository->getAllProducts();
 
-        // Retornar os produtos para a view ou fazer qualquer outra ação necessária
         return [
-            'view' => 'products/index.php',
+            'view' => 'produtos.php',
             'data' => [
                 'title' => 'Produtos',
                 'products' => $products 

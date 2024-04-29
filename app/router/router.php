@@ -1,6 +1,8 @@
 <?php
 
 
+use app\repository\ProductRepository;
+
 
 
 function exactMatchUriInArrayRoutes($uri, $routes)
@@ -44,26 +46,21 @@ function paramsFormat($uri, $params)
 }
 
 
-function router()
+function router($matchedUri, $params)
 {
-    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    // Obtém o nome do controlador e o método da rota correspondente
+    list($controllerName, $method) = explode('@', $matchedUri[0]);
 
-    $routes = require 'routes.php';
-    $requestMethod = $_SERVER['REQUEST_METHOD'];
-
-    $matchedUri = exactMatchUriInArrayRoutes($uri, $routes[$requestMethod]);
-
-    $params = [];
-    if (empty($matchedUri)) {
-        $matchedUri = regularExpressionMatchArrayRoutes($uri, $routes[$requestMethod]);
-        $uri = explode('/', ltrim($uri, '/'));
-        $params = params($uri, $matchedUri);
-        $params = paramsFormat($uri, $params);
+    // Verifica se o controlador existe
+    $controllerClassName = 'app\\controllers\\' . $controllerName;
+    if (!class_exists($controllerClassName)) {
+        throw new Exception("Controller $controllerClassName not found");
     }
 
-    if(!empty($matchedUri)){
-        return controller($matchedUri, $params);
-        
-    }
-    throw new Exception("There is something wrong");
+    $connection = connect();
+
+    // Cria uma instância do controlador e passa a conexão PDO para o construtor
+    $controller = new $controllerClassName(new ProductRepository($connection));
+
+    return $controller->$method($params);
 }
