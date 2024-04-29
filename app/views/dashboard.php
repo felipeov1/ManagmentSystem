@@ -115,6 +115,7 @@
                 </div>
             </div>
         </div>
+
         <?php
         function timeElapsedString($deliveryDate, $deliveryTime, $full = false)
         {
@@ -148,6 +149,7 @@
             return $result ? implode(' e ', $result) . ' atrás' : 'agora';
         }
         ?>
+
         <div class="client">
             <div class="addClient">
                 <button><span class="material-icons-sharp" style="font-size: 45px;">person_add</span><br>

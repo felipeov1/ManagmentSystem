@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\database\connect;
+
 class Login
 {
     public function index()

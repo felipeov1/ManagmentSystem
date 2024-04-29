@@ -7,7 +7,7 @@
         ],
         'GET' =>[
         '/dashboard' => 'Dashboard@index',
-        '/produtos' => 'Produtos@index',
+        '/produtos' => 'ProductsController@index',
         '/user/create' => 'User@create',
         '/user/[0-9]+' => 'User@show',
         '/' => 'Login@index',
