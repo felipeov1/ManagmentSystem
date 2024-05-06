@@ -9,6 +9,7 @@ class Dashboard
 {
     public function index($params)
     {
+        
         $salesController = new SalesController();
         $allSalesMonth = $salesController->allSalesMonth();
         $allSalesYear = $salesController->allSalesYear();
