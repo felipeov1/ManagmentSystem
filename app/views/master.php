@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/slideBar.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/products.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/clientes.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/body.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/recuperar.css">
     <link rel="shortcut icon" href="/assets/images/faviconImg.ico" type="image/x-icon">
