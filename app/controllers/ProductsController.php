@@ -1,15 +1,13 @@
-<?php 
+<?php
 
 namespace app\controllers;
 
 class ProductsController
 {
-    public function index()
-    {
-        return [
-            'view' => 'produtos.php',
-            'data' => ['title' => 'Produtos']
-        ];
-    }
+    public function getAllProducts(){
 
-} 
+        $allProducts = all('produtos');
+
+        return $allProducts;
+    }
+}
