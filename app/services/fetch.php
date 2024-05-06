@@ -119,6 +119,10 @@ function changeStatus($table, $situationFiled, $field, $value)
   }
 }
 
+
+//////////// Notifications
+
+
 function ordersNotification($table, $situationField, $deliveryDateField, $deliveryTimeField)
 {
     try {
@@ -140,5 +144,36 @@ function ordersNotification($table, $situationField, $deliveryDateField, $delive
         return false;
     }
 }
+
+
+//////////// Products
+
+function addProduct($table, $productName, $productQuantity, $productPrice)
+{
+  try {
+    $connect = connect();
+    $query = $connect->prepare("INSERT INTO produtos (nome, quantidade, valor)
+      VALUES ($productName, $productQuantity, $productPrice");
+
+    $query->bindParam('nome', $nome);
+    $query->bindParam('quantidade', $quantidade);
+    $query->bindParam('valor', $valor);
+
+    $query->execute();
+
+    if ($query->rowCount() > 0) {
+      echo "Inserção bem-sucedida!";
+    } else {
+      echo "Nenhuma linha inserida!";
+    }
+  } catch (PDOException $e) {
+    var_dump($e->getMessage());
+  }
+}
+
+
+
+
+
 
 

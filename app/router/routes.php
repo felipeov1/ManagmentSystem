@@ -4,14 +4,15 @@ use app\controllers\PageClientsController;
         'POST' =>[
             '/' => 'Login@store',
             '/user/store' => 'user@store',
-            '/dashboard/changeStatus' => 'OrdersController@changeStatus'
+            '/dashboard/changeStatus' => 'OrdersController@changeStatus',
+            '/produtos/adicionar' => 'ProductsController@addProducts'
         ],
         'GET' =>[
+        '/' => 'Login@index',
         '/dashboard' => 'Dashboard@index',
         '/produtos' => 'PageProductsController@index',
         '/user/create' => 'User@create',
         '/user/[0-9]+' => 'User@show',
-        '/' => 'Login@index',
         '/logout' => 'Login@destroy',
         '/recuperar' => 'Recuperar@index',
         '/clientes' => 'PageClientsController@index',
