@@ -28,11 +28,7 @@
                         <h3>Comparação Mensal:</h3>
                         <h1>
                             <?php
-                            if ($monthlySalesProgression >= 0) {
-                                echo "+R$$monthlySalesProgression";
-                            } else {
-                                echo "-R$$monthlySalesProgression";
-                            }
+                                echo "R$$monthlySalesProgression";
 
                             ?>
                         </h1>
