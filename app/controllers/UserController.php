@@ -2,14 +2,14 @@
 
 namespace app\controllers;
 
-class User
+class UserController
 {
     public function show($params){
-        if(!isset($params['usuario'])){
+        if(!isset($params['usuarios'])){
             return redirect('/');
         }
 
-        $user = findBy('usuario', 'id', $params['usuario']);
+        $user = findBy('usuarios', 'IDUsuario', $params['usuarios']);
         var_dump($user);
         die();
     }
@@ -25,7 +25,7 @@ class User
     public function store(){
         $validate = validate([
             'nome' => 'required',
-            'email' => 'email|unique:usuario',   // | -> it's a pipe ("usaurios" esta realacionado com a tabela do db)
+            'email' => 'email|unique:usuarios',   // | -> it's a pipe ("usaurios" esta realacionado com a tabela do db)
             'senha' => 'required|maxlen:10',
         ]);
 

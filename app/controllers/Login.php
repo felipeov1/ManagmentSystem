@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\database\connect;
+
 class Login
 {
     public function index()
@@ -48,7 +50,7 @@ class Login
     public function destroy(){
         unset($_SESSION[LOGGED]);
 
-        return redirect('/login');
+        return redirect('/');
     }
 
 }

@@ -11,7 +11,6 @@
 }
 
 
-
 .table_header p {
     color: black;
     bottom: 50px;
@@ -168,6 +167,7 @@ td {
     width: 100%;
     justify-content: space-between;
 }
+<<<<<<< HEAD
 /*MODAL NOVO PRODUTO*/
 dialog::backdrop{
     background-color: rgb(0 0 0 / .5);
@@ -220,3 +220,8 @@ button[type="submit"]:hover, .cancel-button:hover {
     color: black;
     background-color: #ffe6e6
 }
+=======
+
+
+/* Modal */
+>>>>>>> desenvolvimento
