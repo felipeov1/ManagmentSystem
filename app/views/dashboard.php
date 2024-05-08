@@ -1,6 +1,7 @@
 <div class="boxDashboard">
     <main>
         <h1>Dashboard</h1>
+
         <div class="txtSytem">
             <h2>Olá
                 <?php echo user()->Nome; ?> - <span style="font-size: 70%; ">Aqui está um resumo de sua loja</span>
@@ -28,7 +29,7 @@
                         <h3>Comparação Mensal:</h3>
                         <h1>
                             <?php
-                                echo "R$$monthlySalesProgression";
+                            echo "R$$monthlySalesProgression";
 
                             ?>
                         </h1>
