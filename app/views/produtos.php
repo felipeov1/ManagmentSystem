@@ -63,12 +63,8 @@
 </div>
 
 
-
-
-
-
-
 <!-- modal novo produto -->
+
 <div class="modal fade" id="novoProdutoModal" tabindex="-1" aria-labelledby="novoProdutoModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -106,11 +102,8 @@
     </div>
 </div>
 
+
 <!-- modal editar produto -->
-
-
-
-<!-- Modal -->
 <div class="modal" id="editarModal" tabindex="-1" aria-labelledby="editarModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -146,10 +139,8 @@
         </div>
     </div>
 </div>
+
 <!-- modal EXLUIR produto -->
-
-
-<!-- Modal -->
 <div class="modal fade"  id="modalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -167,4 +158,3 @@
     </div>
   </div>
 </div>
-<!-- Modal exluir -->
