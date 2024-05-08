@@ -34,6 +34,7 @@
     <!-- JS -->
     <script src="/scripts/nav-link.js"></script>
 
+    <script src="/scripts/produt-modal.js"></script>
     <!-- FIM JS -->
     <?php if ($_SERVER['REQUEST_URI'] !== "/"): ?>
         <div id="header">

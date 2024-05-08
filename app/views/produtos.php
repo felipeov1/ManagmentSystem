@@ -10,7 +10,8 @@
                 <input type="text" class="form-control form-input" placeholder="Busque um produto...">
             </div>
             <div class="createBtn">
-                <button type="button" class="btn btn-dark">Novo Produto</button>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                    data-bs-target="#novoProdutoModal">Novo Produto</button>
             </div>
         </div>
     </div>
@@ -29,12 +30,15 @@
                 <td>Bolo de chocolate</td>
                 <td>20,00</td>
                 <td>
-                    <button style="background-color: white; border: none; height: 20px">
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
                         <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
                     </button>
-                    <button style="background-color: white; border: none">
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
                         <i class="fa-solid fa-trash" style="font-size: 15px"></i>
                     </button>
+
                 </td>
             </TBody>
         </table>
@@ -59,3 +63,108 @@
 </div>
 
 
+
+
+
+
+
+<!-- modal novo produto -->
+<div class="modal fade" id="novoProdutoModal" tabindex="-1" aria-labelledby="novoProdutoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="novoProdutoModal">Novo produto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="txt-news">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" id="inputGroup-sizing-default">Descrição</label>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Unidade</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select><br>
+                    <div class="preco-uni">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" id="inputGroup-sizing-default">Preço unitário</label>
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal editar produto -->
+
+
+
+<!-- Modal -->
+<div class="modal" id="editarModal" tabindex="-1" aria-labelledby="editarModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editarModal">Editar produtos</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="txt-edit">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" id="inputGroup-sizing-default">Descrição</label>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Unidade
+                        <option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select><br>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" id="inputGroup-sizing-default">Preço unitário</label>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal EXLUIR produto -->
+
+
+<!-- Modal -->
+<div class="modal fade"  id="modalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" id="md-excluir">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Excluir</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Confirme no botão abaixo a exclusão deste registro</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="md-close">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal exluir -->
