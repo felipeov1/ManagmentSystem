@@ -1,11 +1,11 @@
 <?php
-use app\controllers\PageClientsController;
     return[
         'POST' =>[
             '/' => 'Login@store',
             '/user/store' => 'user@store',
             '/dashboard/changeStatus' => 'OrdersController@changeStatus',
-            '/produtos/adicionar' => 'ProductsController@addProducts'
+            '/produtos/add/:id' => 'ProductsController@addProducts',
+            '/produtos/delete/:id' => 'ProductsController@deleteProducts'
         ],
         'GET' =>[
         '/' => 'Login@index',
@@ -16,5 +16,6 @@ use app\controllers\PageClientsController;
         '/logout' => 'Login@destroy',
         '/recuperar' => 'Recuperar@index',
         '/clientes' => 'PageClientsController@index',
+        '/produtos/search' => 'ProductsController@searchProduct',
         ]
     ];

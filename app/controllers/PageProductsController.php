@@ -7,13 +7,15 @@ class PageProductsController
     public function index()
     {
         $products = new ProductsController();
-        $allProduct = $products->getAllProducts();
+        $allProducts = $products->getAllProducts();
+
+        
 
         return [
             'view' => 'produtos.php',
             'data' => [
                 'title' => 'Produtos',
-                'allProducts' => $allProduct
+                'allProducts' => $allProducts,
             ]
         ];
     }

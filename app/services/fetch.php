@@ -125,9 +125,9 @@ function changeStatus($table, $situationFiled, $field, $value)
 
 function ordersNotification($table, $situationField, $deliveryDateField, $deliveryTimeField)
 {
-    try {
-        $connect = connect();
-        $query = $connect->prepare("
+  try {
+    $connect = connect();
+    $query = $connect->prepare("
             SELECT v.*, c.Nome AS NomeCliente 
             FROM {$table} v 
             JOIN clientes c ON v.IDCliente = c.IDCliente 
@@ -136,13 +136,13 @@ function ordersNotification($table, $situationField, $deliveryDateField, $delive
             AND TIMESTAMP({$deliveryDateField}, {$deliveryTimeField}) <= NOW() + INTERVAL 2 HOUR
         ");
 
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_OBJ);
-        return $results;
-    } catch (PDOException $e) {
-        var_dump($e->getMessage());
-        return false;
-    }
+    $query->execute();
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
+    return $results;
+  } catch (PDOException $e) {
+    var_dump($e->getMessage());
+    return false;
+  }
 }
 
 
@@ -152,14 +152,13 @@ function addProduct($table, $productName, $productQuantity, $productPrice)
 {
   try {
     $connect = connect();
-    $query = $connect->prepare("INSERT INTO produtos (nome, quantidade, valor)
-      VALUES ($productName, $productQuantity, $productPrice");
+    $query = $connect->prepare("INSERT INTO produtos (Nome, Quantidade, ValorQuantidade) VALUES (:Nome, :Quantidade, :ValorQuantidade)");
 
-    $query->bindParam('nome', $nome);
-    $query->bindParam('quantidade', $quantidade);
-    $query->bindParam('valor', $valor);
-
-    $query->execute();
+    $query->execute([
+      ':Nome' => $productName,
+      ':Quantidade' => $productQuantity,
+      ':ValorQuantidade' => $productPrice
+    ]);
 
     if ($query->rowCount() > 0) {
       echo "Inserção bem-sucedida!";
