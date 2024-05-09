@@ -26,29 +26,214 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <?php foreach ($allProducts as $product): ?>
-                <TBody>
-                    <td id="numId"><?php echo $product->IDProduto; ?></td>
-                    <td><?php echo $product->Nome; ?> </td>
-                    <td><?php echo $product->ValorQuantidade; ?> </td>
-                    <td><?php echo $product->Quantidade; ?> </td>
-                    <td>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
 
-                        <button style="background-color: white; border: none; height: 20px" class="editar-btn"
-                            data-bs-toggle="modal" data-bs-target="#editarModal"
-                            data-id="<?php echo $product->IDProduto ?>">
-                            <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                        </button>
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
 
-                        <button style="background-color: white; border: none" data-bs-toggle="modal"
-                            data-bs-target="#modalExcluir" data-id="<?php echo $product->IDProduto ?>">
-                            <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                        </button>
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
 
-                    </td>
-                </TBody>
-            <?php endforeach ?>
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+
+
         </table>
+
         <nav aria-label="Page navigation ">
             <ul class="pagination">
                 <li class="page-item">
