@@ -172,7 +172,7 @@ function addProduct($table, $productName, $productQuantity, $productPrice)
 
 
 
-
+//teste
 
 
 
