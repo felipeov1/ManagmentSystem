@@ -10,8 +10,8 @@ function all($table, $fields = '*')
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-}
-;
+};
+
 
 function findBy($table, $field, $value, $fields = '*')
 {
@@ -145,31 +145,18 @@ function ordersNotification($table, $situationField, $deliveryDateField, $delive
   }
 }
 
-
 //////////// Products
 
-function addProduct($table, $productName, $productQuantity, $productPrice)
+function allProducts($table, $fields = '*')
 {
   try {
     $connect = connect();
-    $query = $connect->prepare("INSERT INTO produtos (Nome, Quantidade, ValorQuantidade) VALUES (:Nome, :Quantidade, :ValorQuantidade)");
-
-    $query->execute([
-      ':Nome' => $productName,
-      ':Quantidade' => $productQuantity,
-      ':ValorQuantidade' => $productPrice
-    ]);
-
-    if ($query->rowCount() > 0) {
-      echo "Inserção bem-sucedida!";
-    } else {
-      echo "Nenhuma linha inserida!";
-    }
+    $query = $connect->query("select {$fields} from {$table} where ativo = 0");
+    return $query->fetchAll();
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-}
-
+};
 
 
 

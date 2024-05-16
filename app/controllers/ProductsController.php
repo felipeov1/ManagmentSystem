@@ -8,16 +8,16 @@ class ProductsController
     public function getAllProducts()
     {
 
-        $allProducts = all('produtos');
+        $allProducts = allProducts('produtos');
 
         return $allProducts;
     }
+    
     public function addProducts()
     {
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['txtNameProduct']) && isset($_POST['optionsQuantity']) && isset($_POST['txtValuePerQuantity'])) {
-
+                
                 $productName = $_POST['txtNameProduct'];
                 $productQuantity = $_POST['optionsQuantity'];
                 $productPrice = $_POST['txtValuePerQuantity'];
@@ -58,8 +58,20 @@ class ProductsController
     //     updateProduc('produtos', $productName, $productPrice, $productQuantity);
     // }
 
-    public function addProductsDelete()
+    public function deleteProduct()
     {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['productID'])) {
+                
+                $productID = $_POST['productID'];
+                deleteProduct('produtos', $productID);
 
+                echo "Produto excluído com sucesso. ID do Produto: $productID";
+            } else {
+                echo "Erro: ID do produto não foi fornecido na solicitação.";
+            }
+        } else {
+            echo "Método de requisição inválido.";
+        }
     }
 }

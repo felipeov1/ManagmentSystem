@@ -28,6 +28,7 @@ try {
     $view = $data['view'];
     
     require VIEWS.'master.php';
+
 } catch (Exception $e) {
     var_dump($e->getMessage());
 }

@@ -40,7 +40,7 @@
                             <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
                         </button>
 
-                        <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        <button class="getId-excluir" style="background-color: white; border: none" data-bs-toggle="modal"
                             data-bs-target="#modalExcluir" data-id="<?php echo $product->IDProduto ?>">
                             <i class="fa-solid fa-trash" style="font-size: 15px"></i>
                         </button>
@@ -111,6 +111,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
         $('#productForm').submit(function (e) {
@@ -121,9 +122,7 @@
                 data: $(this).serialize(),
                 success: function (response) {
                     alert("Produto adicionado com sucesso!");
-
                     $('#myModal').modal('hide');
-
                     location.reload();
                 }
             });
@@ -171,6 +170,8 @@
         </div>
     </div>
 </div>
+
+
 <script>
     $(document).ready(function () {
         $('.editar-btn').click(function () {
@@ -189,15 +190,7 @@
                 }
             });
         });
-
-        $('.excluir-btn').click(function () {
-            var productID = $(this).data('id');
-
-        });
     });
-
-
-
 </script>
 
 <!-- modal EXLUIR produto -->
@@ -213,8 +206,40 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="md-close">Excluir</button>
+                <button type="button" class="btn btn-primary excluir-btn" id="md-close">Excluir</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+   $(document).ready(function () {
+
+    var productID;
+    
+    $('.getId-excluir').click(function () {
+        productID = $(this).data('id');
+    });
+    
+    $('.excluir-btn').click(function () {
+
+        console.log(productID);
+        if (productID) {
+
+            console.log($.ajax({
+                type: 'POST',
+                url: '/produtos/delete',
+                data: { productID: productID },
+                success: function (response) {
+
+                    $('#myModal').modal('hide');
+                    location.reload();
+                }
+            }));
+        } else {
+            alert("Erro: Não foi possível obter o ID do produto.");
+        }
+    });
+});
+
+</script>

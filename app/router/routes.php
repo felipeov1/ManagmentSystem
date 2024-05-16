@@ -4,8 +4,8 @@
             '/' => 'Login@store',
             '/user/store' => 'user@store',
             '/dashboard/changeStatus' => 'OrdersController@changeStatus',
-            '/produtos/add/:id' => 'ProductsController@addProducts',
-            '/produtos/delete/:id' => 'ProductsController@deleteProducts'
+            '/produtos/add' => 'ProductsController@addProducts',
+            '/produtos/delete' => 'ProductsController@deleteProduct'
         ],
         'GET' =>[
         '/' => 'Login@index',
