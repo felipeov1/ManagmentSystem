@@ -9,13 +9,25 @@
                 <i class="fa fa-search"></i>
                 <input type="text" class="form-control form-input" placeholder="Busque um produto...">
             </div>
+            <div class="select-show"  style="background-color: #F5F5F5;">
+                <label for="text">Mostrar</label>
+                <select>
+                    <option >5</option>
+                    <option >15</option>
+                    <option >20</option>
+                    <option >25</option>
+                    <option >30</option>
+                    <option >todos</option>
+                </select>
+                <label for="text">produtos</label>
+            </div>
             <div class="createBtn">
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                     data-bs-target="#novoProdutoModal">Novo Produto</button>
             </div>
         </div>
     </div>
-    <div class="table_section">
+    <div class="table_section" id="tab-produtos">
         <table>
             <thead>
                 <tr>
@@ -26,6 +38,74 @@
                     <th>Ações</th>
                 </tr>
             </thead>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
+            <TBody>
+                <td>1</td>
+                <td>Bolo de chocolate</td>
+                <td>20,00</td>
+                <td>50</td>
+                <td>
+                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                        data-bs-target="#editarModal">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                    </button>
+                    <button style="background-color: white; border: none" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluir">
+                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                    </button>
+
+                </td>
+            </TBody>
             <TBody>
                 <td>1</td>
                 <td>Bolo de chocolate</td>
