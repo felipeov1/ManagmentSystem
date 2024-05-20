@@ -14,6 +14,7 @@ use app\controllers\PageClientsController;
         '/' => 'Login@index',
         '/logout' => 'Login@destroy',
         '/recuperar' => 'Recuperar@index',
+        '/sistema' => 'SistemaController@index'
         '/clientes' => 'PageClientsController@index',
         ]
     ];
