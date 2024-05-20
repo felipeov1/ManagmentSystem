@@ -1,4 +1,5 @@
 <?php
+use app\controllers\PageClientsController;
     return[
         'POST' =>[
             '/' => 'Login@store',
@@ -7,12 +8,13 @@
         ],
         'GET' =>[
         '/dashboard' => 'Dashboard@index',
-        '/produtos' => 'Produtos@index',
+        '/produtos' => 'PageProductsController@index',
         '/user/create' => 'User@create',
         '/user/[0-9]+' => 'User@show',
         '/' => 'Login@index',
         '/logout' => 'Login@destroy',
         '/recuperar' => 'Recuperar@index',
         '/sistema' => 'SistemaController@index'
+        '/clientes' => 'PageClientsController@index',
         ]
     ];

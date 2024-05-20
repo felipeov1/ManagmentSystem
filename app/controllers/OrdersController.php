@@ -2,7 +2,8 @@
 
 namespace app\controllers;
 
-class OrdersController{
+class OrdersController
+{
 
     public function getOrders(){
 
