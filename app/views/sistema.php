@@ -6,7 +6,7 @@
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
          <hr>
 
-         <div class="container-fluid">
+         <div class="container-fluid boxConfig">
              <div class="tabs">
                  <div class="tab-header">
                      <div class="active">
@@ -72,7 +72,7 @@
 
                          <div class="row mb-5">
                              <div class="col-12">
-                                 <button type="button" class="btn btn-danger float-end">Salvar</button>
+                                 <button type="button" id="btnConfig" class="btn btn-danger float-end">Salvar</button>
                              </div>
                          </div>
 
