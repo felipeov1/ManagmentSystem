@@ -1,6 +1,8 @@
 <?php
 
 
+use app\repository\ProductRepository;
+
 
 
 function exactMatchUriInArrayRoutes($uri, $routes)
@@ -67,3 +69,4 @@ function router()
     }
     throw new Exception("There is something wrong");
 }
+
