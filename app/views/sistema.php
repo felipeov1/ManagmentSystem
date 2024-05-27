@@ -200,6 +200,31 @@
 
                     </div> <!-- fim div active -->
 
+ <div class="table" style="margin-right: 20px">
+     <div class="table_header">
+         <div class="pageTitle">
+             <h5>Sistema</h5>
+         </div>
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+         <hr>
+
+         <div class="container-fluid boxConfig">
+             <div class="tabs">
+                 <div class="tab-header">
+                     <div class="active">
+                         <i class="fa fa-user"></i> Usuário
+                     </div>
+                     <div>
+                         <i class="fa fa-pencil-square"></i> Sobre
+                     </div>
+                     <div>
+                         <i class="fa fa-bar-chart"></i> Serviços
+                     </div>
+                     <div>
+                         <i class="fa fa-envelope"></i> Contato
+                     </div>
+                 </div>
+
 
 
                 </div>
@@ -267,6 +292,15 @@
                          </div>
 
     
+
+                         <div class="row mb-5">
+                             <div class="col-12">
+                                 <button type="button" id="btnConfig" class="btn btn-danger float-end">Salvar</button>
+                             </div>
+                         </div>
+
+
+
                      </div> <!-- fim div active -->
 
                      

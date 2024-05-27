@@ -4,13 +4,14 @@
 }
 
 .txtSytem{
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     margin-left: 1rem;
 }
 
 main{
-    margin-top: 0.9rem;
-    margin-left: 2.5rem;
+    /* margin-top: 0.9rem; */
+    /* margin-left: 2.5rem; */
+    margin: 8rem 0 0 calc(12% + 150px);
 }
 
 main h1{
@@ -20,6 +21,39 @@ main h1{
 
 main .salesData{
     display: flex;
+}
+
+.btn3 {
+    border-radius: 10px;
+    border: 1px solid rgb(136, 224, 136);
+    color: rgb(0, 99, 0);
+}
+
+.btn2{
+    border-radius: 10px;
+    border: 1px solid #ffbb00;
+    color: #000;
+    margin-left: 5px;
+}
+
+.btn3:hover{
+    background: linear-gradient(to bottom left, #88f488, #6cc76c);
+    color: rgb(0, 99, 0);
+}
+
+.btn2:hover{
+    background: linear-gradient(to top left,#ffbb00,#b98801);
+    color: #000;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+}
+
+#left2{
+    display: flex;
+    flex-direction: row;
 }
 
 .left h3{
@@ -34,25 +68,39 @@ main .salesData{
     margin-left: 0.5rem;
 }
 
+main .sales{
+    border-bottom: 5px solid #00f;
+}
 
+main .compare{
+    border-bottom: 5px solid #8f0000;
+}
+
+main .yearly{
+    border-bottom: 5px solid #ffbb00;
+}
 
 main .sales, .compare, .yearly{
     margin: 1rem;
     background-color: white;
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 300px;
     height: 150px;
     justify-content: space-around;
 }
 
 main .sales, .compare, .yearly, .middle{
-    display: flex;
     align-items: center;
 }
 
-main .sales:hover, .compare:hover, .yearly:hover{
+main .sales, .compare, .yearly{
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+main .sales:hover, .compare:hover, .yearly:hover{
+    transform: scale(1.1);
+    transition: .2s;
 }
 
 
@@ -65,8 +113,13 @@ main .salesData .right{
 }
 
 main .salesData svg{
-    width: 7rem;
-    height: 7rem;
+     width: 7rem;
+     height: 7rem;
+}
+
+#container-compare{
+    display: flex;
+    flex-direction: column;
 }
 
 main .salesData svg circle{
@@ -98,12 +151,18 @@ main .salesData .yearly svg circle{
 /* pedidos recentes */
 
 main .nextOrder{
-    margin-top: 2rem;
+    height: 245px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    box-shadow: #0000002a 0 8px 24px;
 }
 
-main .nextOrder h2{
+#nextOrder-h2{
+    margin-top: 2rem;
     margin-bottom: 0.8rem;
 }
+
+/* tabela */
 
 main .nextOrder table{
     background-color: white;
@@ -113,10 +172,15 @@ main .nextOrder table{
     text-align: center;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: all 300ms ease;
+    overflow: hidden;
 }
 
-main .nextOrder table:hover{
-    box-shadow: none;
+main .nextOrder table th{
+    padding: 10px;
+}
+
+#color-th{
+    background-color: #ffe4c4;
 }
 
 main .nextOrder table tbody td{
@@ -125,16 +189,20 @@ main .nextOrder table tbody td{
     color: black;
 }
 
-main .nextOrder a{
-    text-align: center;
-    display: block;
-    margin: 1rem auto;
-    color: #ebc460;
-    font-size: 1rem;
+main .nextOrder tbody tr:hover td{
+    background-color: rgb(240, 240, 240);
 }
 
-main .nextOrder a:hover{
-    transform: scale(1.1);
+#mostrar-pedidos{
+    text-align: center;
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+}
+
+#mostrar-pedidos a{
+    color: #ebc460;
+    font-size: 1rem;
 }
 
 main .nextOrder button{
@@ -148,13 +216,11 @@ main .nextOrder button{
 /* alerta de pedidos próximos */
 
 .right{
-    margin-top: 0.9rem;
-    margin-left: 2rem;
-    margin-right: 4rem;
+    margin: 8.5rem 4rem 0 2.5rem;
 }
 
 .right .orderAlert{
-    margin-top: 1rem;
+    margin-top: 2.8rem; /* 1rem */
 }
 
 .right .orderAlert h2{
@@ -167,10 +233,14 @@ main .nextOrder button{
     border-radius: 10px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: all 300ms ease;
+    width: 335px;
+    height: 280px;
 }
 
-.right .orderAlert .news:hover{
-    box-shadow: none;
+.message {
+    max-height: 250px;
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 .message p{
@@ -179,13 +249,27 @@ main .nextOrder button{
 }
 
 /* adiconar cliente */
-
+.client {
+    display: flex;
+    flex-direction: row;
+}
 
 .addClient{
     display: grid;
     text-align: center;
-    margin-top: 2.5rem;
-    height: 200px;
+    margin-top: 8rem;
+    height: 182px;
+    width: 150px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 300ms ease;
+}
+
+.addPedido{
+    display: grid;
+    text-align: center;
+    margin-top: 8rem;
+    height: 182px;
+    width: 160px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: all 300ms ease;
 }
@@ -193,10 +277,347 @@ main .nextOrder button{
 .addClient button{
     background-color: white;
     border-radius: 10px;
+    width: 160px;
+}
+
+.addPedido button{
+    background-color: white;
+    border-radius: 10px; 
+    width: 160px;
+    margin-left: 25px;
 }
 
 .addClient button:hover{
     cursor: pointer;
     transform: scale(1.1);
-    transition: 1s;
+    transition: .5s;
+}
+
+.addPedido button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+/* responsivo */
+/* 1920x1080 - OK */
+@media (min-width: 1682px) and (max-width: 1920px){
+    main{
+        margin: 2rem 0 0 calc(12% + 130px);
+    }
+
+    main .sales, .compare, .yearly{
+        width: 345px;
+        height: 180px;
+    }
+
+    .right .orderAlert .news{
+        width: 370px;
+    }
+
+    main h1{
+        font-size: 3rem;
+    }
+
+    .txtSytem h2{
+        font-size: 3rem;
+    }
+
+    #nextOrder-h2{
+        font-size: 3rem;
+        margin-left: 1rem;
+    }
+
+    main .nextOrder{
+        margin-left: 1rem;
+        height: 517px;
+    }
+
+    /* cards */
+    .salesData h1{
+        font-size: 2.7rem;
+    }
+
+    .salesData h3{
+        font-size: 2.3rem;
+    }
+
+    /* table */
+    table th{
+        font-size: 1.3rem;
+    }
+
+    table tr{
+        font-size: 1.3rem;
+    }
+
+    table td input{
+        height: 40px;
+    }
+
+    #mostrar-pedidos a{
+        font-size: 1.3rem;
+    }
+
+    /* notify */
+    .right{
+        margin: 7.5rem 4rem 0 3.5rem;
+    }
+
+    .message{
+        max-height: 560px;
+        overflow-y: auto;
+    }
+
+    /* botões */
+    .addClient, .addPedido{
+        margin-top: 1rem;
+    }
+
+    .addClient button{
+        width: 180px;
+    }
+
+    .addPedido button{
+        width: 180px;
+        margin-left: 40px;
+    }
+
+    .right .orderAlert .news{
+        height: 600px;
+    }
+}
+
+/* 1680x1050  - OK */
+@media (min-width: 1442px) and (max-width: 1680px){
+    main{
+        margin: 2rem 0 0 calc(12% + 80px);
+        width: 1030px;
+    }
+
+    main .sales, .compare, .yearly{
+        width: 345px;
+        height: 210px;
+    }
+
+    main h1{
+        font-size: 2.6rem;
+    }
+
+    .txtSytem h2{
+        font-size: 2.6rem;
+    }
+
+    #nextOrder-h2{
+        font-size: 2.6rem;
+        margin-left: 1rem;
+    }
+
+    main .nextOrder{
+        margin-left: 1rem;
+        height: 455px;
+    }
+
+    /* cards */
+    .salesData h1{
+        font-size: 2.7rem;
+    }
+
+    .salesData h3{
+        font-size: 2.3rem;
+    }
+
+    /* table */
+    table th{
+        font-size: 1.3rem;
+    }
+
+    table tr{
+        font-size: 1.3rem;
+    }
+
+    table td input{
+        height: 40px;
+    }
+
+    #mostrar-pedidos a{
+        font-size: 1.6rem;
+    }
+
+    #mostrar-pedidos {
+        margin-top: 30px;
+    }
+
+    /* notify */
+    .right{
+        margin: 5.9rem 4rem 0 2rem;
+    }
+
+    .message{
+        max-height: 530px;
+        overflow-y: auto;
+    }
+
+    /* botões */
+    .addClient, .addPedido{
+        margin-top: 1rem;
+    }
+
+    .addClient button{
+        width: 160px;
+    }
+
+    .addPedido button{
+        width: 160px;
+        margin-left: 25px;
+    }
+
+    .right .orderAlert .news{
+        height: 570px;
+    }
+    main .left h3{
+        padding-right: 25px;
+    }
+}
+
+/* 1440x900 - OK */
+@media (min-width: 1368px) and (max-width: 1440px){
+    main{
+        margin: 2rem 0 0 calc(12% + 100px);
+        width: 800px;
+    }
+
+    #nextOrder-h2{
+        margin-left: 1rem;
+    }
+
+    .right{
+        margin: 4.5rem 4rem 0 1.5rem;
+    }
+
+    .right .orderAlert .news{
+        height: 483px;
+    }
+
+    .message{
+        max-height: 450px;
+    }
+
+    .addClient, .addPedido{
+        margin-top: 1rem;
+    }
+
+    main .nextOrder{
+        margin-left: 0.9rem;
+        height: 445px;
+        overflow-y: auto;
+    }
+
+    main .salesData h1{
+        font-size: 2rem;
+    }
+
+    main .sales, .compare, .yearly{
+        height: 160px;
+    }
+
+    main .salesData h3{
+        margin: 0.2rem 0 0.6rem;
+    }
+
+    main .left h3{
+        padding-right: 10px;
+    }
+}
+
+/* 1366x768 - OK */
+@media (min-width: 1282px) and (max-width: 1366px){
+    main {
+        margin: 2rem 0 0 calc(12% + 50px);
+    }
+
+    .right{
+        margin-top: 3rem;
+    }
+
+    main .sales, .compare, .yearly{
+        width: 210px;
+        height: 140px;
+    }
+
+    .salesData h3, h1{
+        font-size: 1.3rem;
+    }
+
+    .addClient{
+        margin-top: 0.8rem;
+        margin-left: 0;
+    }
+
+    .addPedido{
+        margin-top: 0.8rem;
+        margin-left: 0;
+    }
+
+    #nextOrder-h2{
+        margin-left: 1rem;
+    }
+
+    main .nextOrder{
+        margin-left: 0.9rem;
+    }
+
+    .message{
+        max-height: 250px;
+    }
+}
+
+/* 1280x800 - OK */
+@media (min-width: 1026px) and (max-width: 1280px){
+    main {
+        margin: 2rem 0 0 calc(12% + 26px);
+    }
+
+    #nextOrder-h2{
+        margin-left: 1rem;
+    }
+
+    main .nextOrder{
+        margin-left: 1rem;
+        height: 310px;
+    }
+
+    main .salesData .sales, .compare, .yearly{
+        width: 219px;
+        height: 172px;
+    }
+
+    .right{
+        margin: 4.5rem 2rem 0 1.3rem;
+    }
+
+    .right .orderAlert .news{
+        height: 369px;
+    }
+
+    .right .orderAlert .news .message{
+        max-height: 345px;
+        overflow-y: auto;
+    }
+
+    main .salesData h3{
+        font-size: 1.6rem;
+    }
+
+    main .salesData h1{
+        font-size: 1.8rem;
+    }
+
+    main .salesData .left h3{
+        padding-right: 20px;
+    }
+
+    .right .client .addClient, .addPedido{
+        margin-top: 1.3rem;
+    }
 }
