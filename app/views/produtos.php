@@ -38,280 +38,31 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <TBody>         
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
+            <tbody>
+                <?php foreach ($allProducts as $product): ?>
+                    <tr>
+                        <td id="numId"><?php echo $product->IDProduto; ?></td>
+                        <td><?php echo $product->Nome; ?> </td>
+                        <td><?php echo $product->ValorQuantidade; ?> </td>
+                        <td><?php echo $product->Quantidade; ?> </td>
+                        <td>
 
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
+                            <button style="background-color: white; border: none; height: 20px" class="editar-btn"
+                                data-bs-toggle="modal" data-bs-target="#editarModal"
+                                data-id="<?php echo $product->IDProduto ?>">
+                                <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                            </button>
 
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
+                            <button class="getId-excluir" style="background-color: white; border: none"
+                                data-bs-toggle="modal" data-bs-target="#modalExcluir"
+                                data-id="<?php echo $product->IDProduto ?>">
+                                <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                            </button>
 
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-            <TBody>
-                <td>1</td>
-                <td>Bolo de chocolate</td>
-                <td>20,00</td>
-                <td>50</td>
-                <td>
-                    <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                        data-bs-target="#editarModal">
-                        <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                    </button>
-                    <button style="background-color: white; border: none" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluir">
-                        <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                    </button>
-
-                </td>
-            </TBody>
-
-
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
         </table>
 
         <nav aria-label="Page navigation ">
@@ -376,6 +127,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
         $('#productForm').submit(function (e) {
@@ -386,9 +138,7 @@
                 data: $(this).serialize(),
                 success: function (response) {
                     alert("Produto adicionado com sucesso!");
-
                     $('#myModal').modal('hide');
-
                     location.reload();
                 }
             });
@@ -396,73 +146,90 @@
     });
 </script>
 
-<!-- modal editar produto -->
-<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="novoProdutoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog modal-dialog-centered">
+<!-- Modal Editar Produto -->
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form id="form" action="/produtos/adicionar" method="POST">
+            <form id="editProductForm">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editarModal">Editar Produto</h1>
+                    <h1 class="modal-title fs-5" id="editarModalLabel">Editar Produto</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="txt-news">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default" value=""></label>
-                            <input type="text" name="txtNameProduct" id="txtNameProduct" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        <select class="form-select" name="optionsQuantity" aria-label="Default select example">
-                            <option selected>Quantidade</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select><br>
-                        <div class="preco-uni">
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" id="inputGroup-sizing-default">Preço por
-                                    Quantidade</label>
-                                <input type="text" name="txtValuePerQuantity" class="form-control"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                            </div>
-                        </div>
+                    <input type="hidden" name="productID" id="editProductID">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="editTxtNameProduct">Nome</label>
+                        <input type="text" name="editTxtNameProduct" id="editTxtNameProduct" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="editOptionsQuantity">Quantidade</label>
+                        <input type="number" name="editOptionsQuantity" id="editOptionsQuantity" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="editTxtValuePerQuantity">Preço por Quantidade</label>
+                        <input type="text" name="editTxtValuePerQuantity" id="editTxtValuePerQuantity"
+                            class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" id="submitBtn" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 <script>
-    $(document).ready(function () {
-        $('.editar-btn').click(function () {
-            var productID = $(this).data('id');
-            $.ajax({
-                type: 'GET',
-                url: '/produtos/search',
-                data: { id: productID },
-                success: function (response) {
-
-                    $('#txtNameProduct').val(response.Nome);
-                    $('#optionsQuantity').val(response.Quantidade);
-                    $('#txtValuePerQuantity').val(response.ValorQuantidade);
-
-                    console.log(response);
+$(document).ready(function () {
+    // Lógica para carregar os dados do produto no modal de edição
+    $('.editar-btn').click(function () {
+        var productID = $(this).data('id');
+        
+        $.ajax({
+            type: 'GET',
+            url: '/produtos/search',
+            data: { id: productID },
+            success: function (response) {
+                if (response.error) {
+                    alert(response.error);
+                } else {
+                    $('#editProductID').val(response.IDProduto);
+                    $('#editTxtNameProduct').val(response.Nome);
+                    $('#editOptionsQuantity').val(response.Quantidade);
+                    $('#editTxtValuePerQuantity').val(response.ValorQuantidade);
+                    $('#editarModal').modal('show');
                 }
-            });
-        });
-
-        $('.excluir-btn').click(function () {
-            var productID = $(this).data('id');
-
+            },
+            error: function () {
+                alert("Erro ao carregar os dados do produto.");
+            }
         });
     });
 
+    // Lógica para salvar as alterações do produto
+    $('#editProductForm').submit(function (e) {
+        e.preventDefault();
 
-
+        $.ajax({
+            type: 'POST',
+            url: '/produtos/update',
+            data: $(this).serialize(),
+            success: function (response) {
+                if (response.error) {
+                    alert(response.error);
+                } else {
+                    alert(response.success);
+                    $('#editarModal').modal('hide');
+                    location.reload();
+                }
+            },
+            error: function () {
+                alert("Erro ao atualizar o produto.");
+            }
+        });
+    });
+});
 </script>
 
 <!-- modal EXLUIR produto -->
@@ -478,8 +245,40 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="md-close">Excluir</button>
+                <button type="button" class="btn btn-primary excluir-btn" id="md-close">Excluir</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+
+        var productID;
+
+        $('.getId-excluir').click(function () {
+            productID = $(this).data('id');
+        });
+
+        $('.excluir-btn').click(function () {
+
+            console.log(productID);
+            if (productID) {
+
+                console.log($.ajax({
+                    type: 'POST',
+                    url: '/produtos/delete',
+                    data: { productID: productID },
+                    success: function (response) {
+
+                        $('#myModal').modal('hide');
+                        location.reload();
+                    }
+                }));
+            } else {
+                alert("Erro: Não foi possível obter o ID do produto.");
+            }
+        });
+    });
+
+</script>

@@ -13,11 +13,14 @@
             "app/router/router.php",
             "app/core/controller.php",
             "app/database/connect.php",
+            "app/services/fetch.php",
+            "app/services/create.php",
+            "app/services/update.php",
+            "app/services/delete.php",
             "app/helpers/redirect.php",
             "app/helpers/flash.php",
             "app/helpers/sessions.php",
-            "app/helpers/validate.php",
-            "app/services/fetch.php"
+            "app/helpers/validate.php"
         ],
 
         "psr-4": {
