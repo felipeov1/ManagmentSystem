@@ -24,7 +24,7 @@ class Login
             return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/');
         }
 
-        $user = findBy('usuario', 'email', $email);
+        $user = findBy('usuarios', 'email', $email);
 
         if (!$user) {
             return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/');

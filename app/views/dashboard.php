@@ -1,46 +1,3 @@
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-
-        /*         var data1 = google.visualization.arrayToDataTable([
-                    ['Effort', 'Amount given'],
-                    ['My all', 100],
-                ]); */
-
-        var data2 = google.visualization.arrayToDataTable([
-            ['Effort', 'Amount given'],
-            ['My compare', 50],
-        ]);
-
-        /*         var data3 = google.visualization.arrayToDataTable([
-                    ['Effort', 'Amount given'],
-                    ['My year', 150],
-                ]); */
-
-        var options = {
-            pieHole: 0,
-            pieSliceTextStyle: {
-                color: 'black',
-            },
-            legend: 'none'
-        };
-
-        /*         var chart1 = new google.visualization.PieChart(document.getElementById('donut_single_all_sales_month')); */
-        var chart2 = new google.visualization.PieChart(document.getElementById('donut_single_compare_sales_month'));
-        /*         var chart3 = new google.visualization.PieChart(document.getElementById('donut_single_all_sales_year')); */
-
-
-        /*         chart1.draw(data1, options); */
-        chart2.draw(data2, options);
-        /*         chart3.draw(data3, options); */
-    }
-</script>
-
 <div class="boxDashboard">
     <main>
         <h1>Dashboard</h1>
@@ -60,11 +17,6 @@
                             <?php echo "R$" . $allSalesMonth; ?>
                         </h1> <!--  recebe dados do banco de dados -->
                     </div>
-                  
-                     <div class="right">
-                        <div id="donut_single_all_sales_month" style="width: 200px; height: 200px;"></div>
-                    </div> 
-
                 </div>
             </div>
 
@@ -99,10 +51,6 @@
                             <?php echo "R$$allSalesYear"; ?>
                         </h1> <!--  recebe dados do banco de dados -->
                     </div>
-                     <div class="right">
-                        <div id="donut_single_all_sales_year" style="width: 200px; height: 200px;"></div>
-                    </div> 
-
                 </div>
             </div>
         </div>
@@ -119,14 +67,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($orders as $order) : ?>
+                    <?php foreach ($orders as $order): ?>
                         <form action="/dashboard/changeStatus" method="POST">
                             <tr id="linha-tabela">
                                 <td>
                                     <?php echo $order->NomeCliente; ?>
                                 </td>
                                 <td>
-                                    <input type="text" style="border: none; pointer-events: none; background-color: transparent; text-align: center;" name="IDVenda" value="<?php echo $order->IDVenda; ?>">
+                                    <input type="text"
+                                        style="border: none; pointer-events: none; background-color: transparent; text-align: center;"
+                                        name="IDVenda" value="<?php echo $order->IDVenda; ?>">
                                 </td>
                                 <td>
                                     <?php echo date('d/m/Y', strtotime($order->DataEntrega)); ?>
@@ -134,7 +84,8 @@
                                 </td>
                                 <td>
                                     <input type="submit" name="AddMsgCont" class="btn btn3" value="Entregue">
-                                    <input type="button" name="Visualize" class="btn btn2" value="Visualizar" data-bs-toggle="modal" data-bs-target="#MyModal">
+                                    <input type="button" name="Visualize" class="btn btn2" value="Visualizar"
+                                        data-bs-toggle="modal" data-bs-target="#MyModal">
                                 </td>
                             </tr>
                         </form>
@@ -178,7 +129,7 @@
             <div class="new">
                 <div class="news">
                     <div class="message">
-                        <!-- <?php foreach ($ordersNotifications as $notification) : ?>
+                        <!-- <?php foreach ($ordersNotifications as $notification): ?>
                             <p>
                                 <b>Alerta!</b>
                                 A entrega do pedido do(a) <?php echo $notification->NomeCliente ?> está próxima.<br>
