@@ -3,15 +3,20 @@
         'POST' =>[
             '/' => 'Login@store',
             '/user/store' => 'user@store',
-            '/dashboard/changeStatus' => 'OrdersController@changeStatus'
+            '/dashboard/changeStatus' => 'OrdersController@changeStatus',
+            '/produtos/add/:id' => 'ProductsController@addProducts',
+            '/produtos/delete/:id' => 'ProductsController@deleteProducts'
         ],
         'GET' =>[
+        '/' => 'Login@index',
         '/dashboard' => 'Dashboard@index',
-        '/produtos' => 'Produtos@index',
+        '/produtos' => 'PageProductsController@index',
         '/user/create' => 'User@create',
         '/user/[0-9]+' => 'User@show',
-        '/' => 'Login@index',
         '/logout' => 'Login@destroy',
         '/recuperar' => 'Recuperar@index',
+        '/sistema' => 'SistemaController@index',
+        '/clientes' => 'PageClientsController@index',
+        '/produtos/search' => 'ProductsController@searchProduct',
         ]
     ];

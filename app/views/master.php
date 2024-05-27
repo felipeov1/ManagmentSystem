@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
     <!-- fim links -->
@@ -18,8 +19,10 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/slideBar.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/products.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/clientes.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/body.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/recuperar.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/sistema.css">
     <link rel="shortcut icon" href="/assets/images/faviconImg.ico" type="image/x-icon">
     <!-- fim css -->
 
@@ -29,10 +32,11 @@
 </head>
 
 <body>
-    
+
     <!-- JS -->
     <script src="/scripts/nav-link.js"></script>
 
+    <script src="/scripts/produt-modal.js"></script>
     <!-- FIM JS -->
     <?php if ($_SERVER['REQUEST_URI'] !== "/"): ?>
         <div id="header">

@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\database\connect;
+
 class Login
 {
     public function index()
@@ -22,7 +24,7 @@ class Login
             return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/');
         }
 
-        $user = findBy('usuarios', 'email', $email);
+        $user = findBy('usuario', 'email', $email);
 
         if (!$user) {
             return setMessageAndRedirect('message', 'Usuário ou senha inválidos', '/');

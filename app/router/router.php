@@ -1,5 +1,10 @@
 <?php
 
+
+use app\repository\ProductRepository;
+
+
+
 function exactMatchUriInArrayRoutes($uri, $routes)
 {
     return (array_key_exists($uri, $routes)) ? [$uri => $routes[$uri]] : [];
@@ -64,3 +69,4 @@ function router()
     }
     throw new Exception("There is something wrong");
 }
+
