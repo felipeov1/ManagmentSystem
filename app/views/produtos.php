@@ -38,7 +38,7 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <TBody>
+            <TBody>         
                 <td>1</td>
                 <td>Bolo de chocolate</td>
                 <td>20,00</td>
