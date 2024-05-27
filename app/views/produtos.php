@@ -133,33 +133,29 @@
     });
 </script>
 
-<!-- modal editar produto -->
+<!-- Modal Editar Produto -->
 <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form id="editProductForm" action="/produtos/update" method="POST">
+            <form id="editProductForm">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="editarModalLabel">Editar Produto</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="productID" id="editProductID">
-                    <div class="txt-news">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Nome</label>
-                            <input type="text" name="txtNameProduct" id="editTxtNameProduct" class="form-control"
-                                aria-label="Nome">
-                        </div>
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Quantidade</label>
-                            <input type="number" name="editOptionsQuantity" id="editOptionsQuantity"
-                                class="form-control" aria-label="Quantidade">
-                        </div>
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Preço por Quantidade</label>
-                            <input type="text" name="editTxtValuePerQuantity" id="editTxtValuePerQuantity"
-                                class="form-control" aria-label="Preço por Quantidade">
-                        </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="editTxtNameProduct">Nome</label>
+                        <input type="text" name="editTxtNameProduct" id="editTxtNameProduct" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="editOptionsQuantity">Quantidade</label>
+                        <input type="number" name="editOptionsQuantity" id="editOptionsQuantity" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="editTxtValuePerQuantity">Preço por Quantidade</label>
+                        <input type="text" name="editTxtValuePerQuantity" id="editTxtValuePerQuantity"
+                            class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -172,58 +168,55 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('.editar-btn').click(function () {
-            var productID = $(this).data('id');
-            $.ajax({
-                type: 'GET',
-                url: '/produtos/search',
-                data: { id: productID },
-                success: function (response) {
+$(document).ready(function () {
+    // Lógica para carregar os dados do produto no modal de edição
+    $('.editar-btn').click(function () {
+        var productID = $(this).data('id');
+        
+        $.ajax({
+            type: 'GET',
+            url: '/produtos/search',
+            data: { id: productID },
+            success: function (response) {
+                if (response.error) {
+                    alert(response.error);
+                } else {
                     $('#editProductID').val(response.IDProduto);
                     $('#editTxtNameProduct').val(response.Nome);
                     $('#editOptionsQuantity').val(response.Quantidade);
                     $('#editTxtValuePerQuantity').val(response.ValorQuantidade);
+                    $('#editarModal').modal('show');
                 }
-            });
-        });
-
-        $('#editProductForm').submit(function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '/produtos/update',
-                data: $(this).serialize(), // Aqui está correto, ele envia os dados do formulário serializados
-                success: function (response) {
-                    console.log(response);
-                },
-                error: function () {
-                    alert("Erro ao atualizar o produto.");
-                }
-            });
+            },
+            error: function () {
+                alert("Erro ao carregar os dados do produto.");
+            }
         });
     });
-</script>
 
-<script>
+    // Lógica para salvar as alterações do produto
+    $('#editProductForm').submit(function (e) {
+        e.preventDefault();
 
-    $(document).ready(function () {
-        $('.editar-btn').click(function () {
-            var productID = $(this).data('id');
-            $.ajax({
-                type: 'GET',
-                url: '/produtos/search',
-                data: { id: productID },
-                success: function (response) {
-
-                    $('#txtNameProduct').val(response.Nome);
-                    $('#optionsQuantity').val(response.Quantidade);
-                    $('#txtValuePerQuantity').val(response.ValorQuantidade);
-
+        $.ajax({
+            type: 'POST',
+            url: '/produtos/update',
+            data: $(this).serialize(),
+            success: function (response) {
+                if (response.error) {
+                    alert(response.error);
+                } else {
+                    alert(response.success);
+                    $('#editarModal').modal('hide');
+                    location.reload();
                 }
-            });
+            },
+            error: function () {
+                alert("Erro ao atualizar o produto.");
+            }
         });
     });
+});
 </script>
 
 <!-- modal EXLUIR produto -->
