@@ -19,6 +19,7 @@ return [
         '/recuperar' => 'Recuperar@index',
         '/sistema' => 'SistemaController@index',
         '/clientes' => 'PageClientsController@index',
+        '/pedidos' => 'PageOrdersController@index',
         '/produtos/search' => 'ProductsController@searchProduct',
     ]
 ];
