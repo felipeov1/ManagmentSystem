@@ -17,6 +17,7 @@ return [
         '/user/[0-9]+' => 'User@show',
         '/logout' => 'Login@destroy',
         '/recuperar' => 'Recuperar@index',
+        '/sistema' => 'SistemaController@index',
         '/clientes' => 'PageClientsController@index',
         '/produtos/search' => 'ProductsController@searchProduct',
     ]

@@ -9,13 +9,25 @@
                 <i class="fa fa-search"></i>
                 <input type="text" class="form-control form-input" placeholder="Busque um produto...">
             </div>
+            <div class="select-show"  style="background-color: #F5F5F5;">
+                <label for="text">Mostrar</label>
+                <select>
+                    <option >5</option>
+                    <option >15</option>
+                    <option >20</option>
+                    <option >25</option>
+                    <option >30</option>
+                    <option >todos</option>
+                </select>
+                <label for="text">produtos</label>
+            </div>
             <div class="createBtn">
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                     data-bs-target="#novoProdutoModal">Novo Produto</button>
             </div>
         </div>
     </div>
-    <div class="table_section">
+    <div class="table_section" id="tab-produtos">
         <table>
             <thead>
                 <tr>
@@ -52,6 +64,7 @@
                 <?php endforeach ?>
             </tbody>
         </table>
+
         <nav aria-label="Page navigation ">
             <ul class="pagination">
                 <li class="page-item">

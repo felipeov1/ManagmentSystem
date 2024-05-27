@@ -1,3 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&family=Open+Sans:ital,wght@0,600;1,600&display=swap');
+
+.boxConfig  {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    height: 680px;
+    background-color: white;
+}
+
+.tabs {
+    background: none !important;
+
+
+}
+
+.tabs .tab-header {
+    float: left;
+    width: 180px;
+    height: 660px;
+    padding: 20px 0px;
+    border-right: 1px solid #ccc;
+    right: 5px;
+}
+
+.tabs .tab-header>div {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #505050f4;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.tabs .tab-header div i {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.tabs .tab-content {
+    position: relative;
+    left: 5px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.tabs .tab-content>div>i {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: #555;
+    color: #f5f5f5;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+}
+
+.tabs .tab-content>div {
+    display: none;
+
+    padding: 40px 20px;
+
+    transition: all 500ms ease-in-out;
+
+}
+
+.tabs .tab-content>div.active {
+    display: block;
+}
+
+.tabs .tab-header>div:hover,
+.tabs .tab-header>div.active {
+    color: #f4771e;
+    transition: all 500ms ease-in-out;
+}
+
+.tabs .tab-header>div:hover {
+    transform: translateX(8px);
+}
+
+
+.tabs .tab-indicator {
+    position: relative;
+    width: 5px;
+    height: 50px;
+    background: #f4771e;
+    left: 177px;
+    top: 20px;
+    transition: all 500ms ease-in-out;
+}
+
+#btnConfig {
+    width: 100px;
+    background-color: #f4771e
+}
+
+
+div i .fa-eye {
+    padding-left: 10px;
+
+    
+
+    display: flex;
+    justify-content: center;
+
+
+}
+
+.fa-eye {
+    cursor: pointer;
+    /* position: relative;
+    bottom: 30px;
+    left: 95%; */
+}
+
+div i .fa-eye-slash {
+    display: flex;
+    justify-content: center;
+
+}
+
+.fa-eye-slash {
+    cursor: pointer;
+    /* position: relative;
+    bottom: 30px;
+    left: 95%; */
+
+}
+
 .pageTitle h5 {
     background-color: rgb(245, 245, 245) !important;
 }
@@ -128,10 +263,6 @@ td {
     --bs-pagination-focus-color: black;
 
 }
-#tab-produtos{
-    max-height: 550px; 
-    overflow-y: auto; 
-}
 
 .pagination div {
     padding: 10px;
@@ -171,19 +302,6 @@ td {
     width: 100%;
     justify-content: space-between;
 }
-
-/* Estilização do select mostrar*/
-.select-show {
-    background-color: none;
-    background: #F5F5F5;
-    margin-right: 400px;
-    justify-content: center;    
-}
-.select-show select{
-    cursor: pointer;
-
-}
-
 /*MODAL NOVO PRODUTO*/
 dialog::backdrop{
     background-color: rgb(0 0 0 / .5);
@@ -236,10 +354,6 @@ button[type="submit"]:hover, .cancel-button:hover {
     color: black;
     background-color: #ffe6e6
 }
-#submitBtn:hover{
-    background-color: #4a91fc;
-    color: white;
-}
 
 /*MODAL EXCLUIR PRODUTO*/
 
@@ -281,14 +395,12 @@ button[type="submit"]:hover, .cancel-button:hover {
     background-color: rgb(255, 40, 40);
 }
 #md-excluir{
-    background-color: rgb(255, 218, 218);
+    background-color: rgb(228, 155, 155);
     color: red;
 }
 #md-close{
     color: rgb(255, 255, 255);
     background-color: red;
     margin-bottom: 0%;
-    border: none;
-    width: 75x;
 
 }
