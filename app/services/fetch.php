@@ -10,8 +10,8 @@ function all($table, $fields = '*')
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-}
-;
+};
+
 
 function findBy($table, $field, $value, $fields = '*')
 {
@@ -119,11 +119,15 @@ function changeStatus($table, $situationFiled, $field, $value)
   }
 }
 
+
+//////////// Notifications
+
+
 function ordersNotification($table, $situationField, $deliveryDateField, $deliveryTimeField)
 {
-    try {
-        $connect = connect();
-        $query = $connect->prepare("
+  try {
+    $connect = connect();
+    $query = $connect->prepare("
             SELECT v.*, c.Nome AS NomeCliente 
             FROM {$table} v 
             JOIN clientes c ON v.IDCliente = c.IDCliente 
@@ -132,13 +136,30 @@ function ordersNotification($table, $situationField, $deliveryDateField, $delive
             AND TIMESTAMP({$deliveryDateField}, {$deliveryTimeField}) <= NOW() + INTERVAL 2 HOUR
         ");
 
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_OBJ);
-        return $results;
-    } catch (PDOException $e) {
-        var_dump($e->getMessage());
-        return false;
-    }
+    $query->execute();
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
+    return $results;
+  } catch (PDOException $e) {
+    var_dump($e->getMessage());
+    return false;
+  }
 }
+
+//////////// Products
+
+function allProducts($table, $fields = '*')
+{
+  try {
+    $connect = connect();
+    $query = $connect->query("select {$fields} from {$table} where ativo = 0");
+    return $query->fetchAll();
+  } catch (PDOException $e) {
+    var_dump($e->getMessage());
+  }
+};
+
+
+
+
 
 
