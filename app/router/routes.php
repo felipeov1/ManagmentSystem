@@ -20,6 +20,6 @@ return [
         '/sistema' => 'SistemaController@index',
         '/clientes' => 'PageClientsController@index',
         '/pedidos' => 'PageOrdersController@index',
-        '/produtos/search' => 'ProductsController@searchProduct',
+        '/produtos/search/[0-9]+' => 'ProductsController@searchProduct',
     ]
 ];

@@ -27,7 +27,7 @@ class ProductsController
                 $productQuantity = $_POST['optionsQuantity'];
                 $productPrice = $_POST['txtValuePerQuantity'];
 
-                $stmt = $this->db->prepare("INSERT INTO produtos (Nome, Quantidade, ValorQuantidade) VALUES (:name, :quantity, :price)");
+                $stmt = $this->db->prepare("INSERT INTO produtos (Nome, Quantidade, ValorQuantidade, ativo) VALUES (:name, :quantity, :price, 0)");
                 $stmt->bindParam(':name', $productName);
                 $stmt->bindParam(':quantity', $productQuantity);
                 $stmt->bindParam(':price', $productPrice);
@@ -45,7 +45,12 @@ class ProductsController
     public function searchProduct()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $productID = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
+            $productID = isset($_GET["id"]) ? intval($_GET["id"]) : null;
+
+            echo $productID;
+
+            
             if ($productID) {
                 $stmt = $this->db->prepare("SELECT * FROM produtos WHERE IDProduto = :id");
                 $stmt->bindParam(':id', $productID);

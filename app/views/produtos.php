@@ -180,13 +180,14 @@
     </div>
 </div>
 
+
 <script>
 $(document).ready(function () {
     // Lógica para carregar os dados do produto no modal de edição
     $('.editar-btn').click(function () {
         var productID = $(this).data('id');
         
-        $.ajax({
+        console.log($.ajax({
             type: 'GET',
             url: '/produtos/search',
             data: { id: productID },
@@ -204,10 +205,10 @@ $(document).ready(function () {
             error: function () {
                 alert("Erro ao carregar os dados do produto.");
             }
-        });
+        }));
     });
 
-    // Lógica para salvar as alterações do produto
+
     $('#editProductForm').submit(function (e) {
         e.preventDefault();
 
