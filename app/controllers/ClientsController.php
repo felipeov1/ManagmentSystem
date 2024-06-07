@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use PDOException;
 use PDO;
 
 class ClientsController
@@ -14,7 +15,7 @@ class ClientsController
 
     public function getAllClients()
     {
-        $stmt = $this->db->query("SELECT * FROM clientes");
+        $stmt = $this->db->query("SELECT * FROM clientes WHERE ativo = 0");
         $allClients = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $allClients;
     }
@@ -22,19 +23,19 @@ class ClientsController
     public function addClient()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['txtNameClient']) && isset($_POST['txtAddress']) && isset($_POST['txtPhone1']) && isset($_POST['txtPhone2'])) {
-                $clientName = $_POST['txtNameClient'];
-                $clientAddress = $_POST['txtAddress'];
-                $clientPhone1 = $_POST['txtPhone1'];
-                $clientPhone2 = $_POST['txtPhone2'];
-                $clientUpdateDate = date('Y-m-d H:i:s');
+            if (isset($_POST['txtNameCliente']) && isset($_POST['txtEndCliente']) && isset($_POST['txtTelCel1']) && isset($_POST['txtTelCel2'])  && isset($_POST['txtCPFCNPJ'] )) {
+                $clientName = $_POST['txtNameCliente'];
+                $clientAddress = $_POST['txtEndCliente'];
+                $clientPhone1 = $_POST['txtTelCel1'];
+                $clientPhone2 = $_POST['txtTelCel2'];
+                $cpf = $_POST['txtCPFCNPJ'];
 
-                $stmt = $this->db->prepare("INSERT INTO clientes (Nome, Endereço, Telefone1, Telefone2, DataAtualizacao, ativo) VALUES (:name, :address, :phone1, :phone2, :updateDate, 0)");
+                $stmt = $this->db->prepare("INSERT INTO clientes (Nome, Endereco, Telefone1, Telefone2, cpf, DataAtualizacao, ativo) VALUES (:name, :address, :phone1, :phone2, :cpf, '2024-06-05 14:39:15', 0)");
                 $stmt->bindParam(':name', $clientName);
                 $stmt->bindParam(':address', $clientAddress);
                 $stmt->bindParam(':phone1', $clientPhone1);
                 $stmt->bindParam(':phone2', $clientPhone2);
-                $stmt->bindParam(':updateDate', $clientUpdateDate);
+                $stmt->bindParam(':cpf', $cpf);
                 $stmt->execute();
 
                 echo "Cliente adicionado com sucesso.";
@@ -46,48 +47,44 @@ class ClientsController
         }
     }
 
-    public function searchClient()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $clientID = isset($_GET["id"]) ? intval($_GET["id"]) : null;
-
-            if ($clientID) {
-                $stmt = $this->db->prepare("SELECT * FROM clientes WHERE IDCliente = :id");
-                $stmt->bindParam(':id', $clientID);
-                $stmt->execute();
-                $resultSelected = $stmt->fetch(PDO::FETCH_OBJ);
-                header('Content-Type: application/json');
+    public function searchClient($id) {
+        $clientID = intval($id);
+    
+        if ($clientID) {
+            $resultSelected = findBy('clientes', 'IDCliente', $clientID);
+    
+            header('Content-Type: application/json');
+            if (isset($resultSelected->IDCliente)) {
                 echo json_encode($resultSelected);
             } else {
-                header('Content-Type: application/json');
-                echo json_encode(["error" => "ID do cliente inválido."]);
+                echo json_encode(["error" => "Cliente não encontrado."]);
             }
         } else {
             header('Content-Type: application/json');
-            echo json_encode(["error" => "Método de requisição inválido."]);
+            echo json_encode(["error" => "ID do cliente inválido."]);
         }
     }
 
     public function updateClient()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['clientID']) && isset($_POST['editTxtNameClient']) && isset($_POST['editTxtAddress']) && isset($_POST['editTxtPhone1']) && isset($_POST['editTxtPhone2'])) {
+            if (isset($_POST['clientID']) && isset($_POST['editTxtNameClient']) && isset($_POST['editTxtAddress']) && isset($_POST['editTxtPhone1']) && isset($_POST['editTxtPhone2']) && isset($_POST['editTxtCPF-CNPJ'])) {
                 $clientID = $_POST['clientID'];
                 $clientName = $_POST['editTxtNameClient'];
                 $clientAddress = $_POST['editTxtAddress'];
                 $clientPhone1 = $_POST['editTxtPhone1'];
                 $clientPhone2 = $_POST['editTxtPhone2'];
-                $clientUpdateDate = date('Y-m-d H:i:s');
-
-                $stmt = $this->db->prepare("UPDATE clientes SET Nome = :name, Endereço = :address, Telefone1 = :phone1, Telefone2 = :phone2, DataAtualizacao = :updateDate WHERE IDCliente = :id");
+                $clientCpf = $_POST['editTxtCPF-CNPJ'];
+    
+                $stmt = $this->db->prepare("UPDATE clientes SET Nome = :name, Endereço = :address, Telefone1 = :phone1, Telefone2 = :phone2, CPF = :cpf WHERE IDCliente = :id");
                 $stmt->bindParam(':id', $clientID);
                 $stmt->bindParam(':name', $clientName);
                 $stmt->bindParam(':address', $clientAddress);
                 $stmt->bindParam(':phone1', $clientPhone1);
                 $stmt->bindParam(':phone2', $clientPhone2);
-                $stmt->bindParam(':updateDate', $clientUpdateDate);
+                $stmt->bindParam(':cpf', $clientCpf);
                 $stmt->execute();
-
+    
                 header('Content-Type: application/json');
                 echo json_encode(["success" => "Cliente atualizado com sucesso."]);
             } else {
@@ -103,8 +100,8 @@ class ClientsController
     public function deleteClient()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['clientID'])) {
-                $clientID = $_POST['clientID'];
+            if (isset($_POST['IDCliente'])) {
+                $clientID = $_POST['IDCliente'];
 
                 $stmt = $this->db->prepare("UPDATE clientes SET ativo = 1 WHERE IDCliente = :id");
                 $stmt->bindParam(':id', $clientID);
@@ -120,4 +117,5 @@ class ClientsController
             echo "Método de requisição inválido.";
         }
     }
+
 }

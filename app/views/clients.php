@@ -40,28 +40,29 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <?php foreach ($allClients as $client): ?>
-                <TBody>
-                    <td><?php echo $client->IDCliente; ?></td>
-                    <td><?php echo $client->Nome; ?></td>
-                    <td><?php echo $client->Endereco; ?></td>
-                    <td><?php echo $client->Telefone1; ?></td>
-                    <td><?php echo $client->Telefone2; ?></td>
-                    <td><?php echo $client->cpf; ?></td>
-                    <td>
-                        <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                            data-id="<?php echo $client->IDCliente ?>" data-bs-target="#editarClienteModal">
-                            <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
-                        </button>
-                        <button style="background-color: white; border: none" data-bs-toggle="modal"
-                            data-id="<?php echo $client->IDCliente ?>" data-bs-target="#excluirCliente2">
-                            <i class="fa-solid fa-trash" style="font-size: 15px"></i>
-                        </button>
-
-                    </td>
-                </TBody>
-            <?php endforeach ?>
-
+            <tbody>
+                <?php foreach ($allClients as $client): ?>
+                    <tr>
+                        <td><?php echo $client->IDCliente; ?></td>
+                        <td><?php echo $client->Nome; ?></td>
+                        <td><?php echo $client->Endereco; ?></td>
+                        <td><?php echo $client->Telefone1; ?></td>
+                        <td><?php echo $client->Telefone2; ?></td>
+                        <td><?php echo $client->cpf; ?></td>
+                        <td>
+                            <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
+                                data-client-id="<?php echo $client->IDCliente ?>" data-bs-target="#editarClienteModal">
+                                <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
+                            </button>
+                            <button class="getId-excluir" style="background-color: white; border: none"
+                                data-bs-toggle="modal" data-id="<?php echo $client->IDCliente ?>"
+                                data-bs-target="#excluirCliente2">
+                                <i class="fa-solid fa-trash" style="font-size: 15px"></i>
+                            </button>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
         </table>
         <nav aria-label="Page navigation ">
             <ul class="pagination">
@@ -82,59 +83,14 @@
         </nav>
     </div>
 </div>
-<!-- modal novo cliente -->
-<div class="modal" tabindex="-1" id="novoClienteModal">
-    <div class="modal-dialog  modal-dialog-centered">
+
+<!-- Modal Novo Cliente -->
+<div class="modal fade" tabindex="-1" aria-labelledby="novoProdutoModal" id="novoClienteModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Novo Cliente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="txt-news">
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" id="inputGroup-sizing-default">Nome</label>
-                        <input type="text" name="txtNameProduct" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" id="inputGroup-sizing-default">Endereço</label>
-                        <input type="text" name="txtEndProduct" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <div class="preco-uni">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Telefone/Celular1</label>
-                            <input type="text" name="txtValuePerQuantity" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Telefone/Celular2</label>
-                            <input type="text" name="txtValuePerQuantity" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">CPF/CNPJ</label>
-                            <input type="text" name="txtValuePerQuantity" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- modal Editar cliente -->
-<div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="novoProdutoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form id="form" action="" method="">
+            <form id="clientsForm" action="/cliente/add" method="POST">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editarModal">Editar Cliente</h1>
+                    <h5 class="modal-title">Novo Cliente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -152,38 +108,171 @@
                         <div>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" id="inputGroup-sizing-default">Telefone/Celular1</label>
-                                <input type="text" name="txtTel-Cel" class="form-control"
+                                <input type="text" name="txtTelCel1" class="form-control"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                             </div>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" id="inputGroup-sizing-default">Telefone/Celular2</label>
-                                <input type="text" name="txtTel-Cel" class="form-control"
+                                <input type="text" name="txtTelCel2" class="form-control"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                             </div>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" id="inputGroup-sizing-default">CPF/CNPJ</label>
-                                <input type="text" name="txtCPF-CNPJ" class="form-control"
+                                <input type="text" name="txtCPFCNPJ" class="form-control"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="submitBtn" class="btn btn-primary">Salvar</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $('#clientsForm').submit(function (e) {
+            e.preventDefault();
+            console.log($.ajax({
+                type: 'POST',
+                url: '/cliente/add',
+                data: $(this).serialize(),
+                success: function (response) {
+                    alert("cliente adicionado com sucesso!");
+                    $('#clientsForm').modal('hide');
+                    location.reload();
+                }
+            }));
+        });
+    });
+</script>
 
+<!-- Modal Editar Cliente -->
+<div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="editarModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form id="editClientForm" action="/cliente/update" method="POST">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editarModal">Editar Cliente</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="txt-news">
+                        <input type="hidden" name="clientID" id="editClientID">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" id="inputGroup-sizing-default">Nome</label>
+                            <input type="text" name="editTxtNameClient" id="editTxtNameClient" value=""
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" id="inputGroup-sizing-default">Endereço</label>
+                            <input type="text" name="editTxtAddress" id="editTxtAddress" class="form-control"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" id="inputGroup-sizing-default">Telefone/Celular1</label>
+                            <input type="text" name="editTxtPhone1" id="editTxtPhone1" class="form-control"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" id="inputGroup-sizing-default">Telefone/Celular2</label>
+                            <input type="text" name="editTxtPhone2" id="editTxtPhone2" class="form-control"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" id="inputGroup-sizing-default">CPF/CNPJ</label>
+                            <input type="text" name="editTxtCPFCNPJ" id="editTxtCPFCNPJ" class="form-control"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function loadClientData(clientID) {
+        $.ajax({
+            url: '/cliente/search/' + clientID,
+            type: 'GET',
+            dataType: 'json', // Especifica que a resposta é JSON
+            success: function (response) {
+                // Verifica se a resposta contém os dados esperados
+                if (response && response.IDCliente) {
+                    $('#editClientID').val(response.IDCliente);
+                    $('#editTxtNameClient').val(response.Nome);
+                    $('#editTxtAddress').val(response.Endereco);
+                    $('#editTxtPhone1').val(response.Telefone1);
+                    $('#editTxtPhone2').val(response.Telefone2);
+                    $('#editTxtCPFCNPJ').val(response.cpf); // Verifique se 'cpf' está correto
+                } else {
+                    console.log('Dados inválidos recebidos do servidor.');
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert('Erro ao carregar dados do cliente.');
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        $('#editarClienteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var clientID = button.data('client-id');
+            loadClientData(clientID);
+        });
+    });
+
+    //     $('#submitBtn').click(function (e) {
+    //         e.preventDefault(); // Prevent the default form submission
+
+    //         var clientID = $('#editClientID').val();
+    //         var name = $('#editTxtNameClient').val();
+    //         var address = $('#editTxtAddress').val();
+    //         var phone1 = $('#editTxtPhone1').val();
+    //         var phone2 = $('#editTxtPhone2').val();
+    //         var cpf = $('#editTxtCPFCNPJ').val();
+
+    //         $.ajax({
+    //             url: '/cliente/update',
+    //             type: 'POST',
+    //             data: {
+    //                 clientID: clientID,
+    //                 editTxtNameClient: name,
+    //                 editTxtAddress: address,
+    //                 editTxtPhone1: phone1,
+    //                 editTxtPhone2: phone2,
+    //                 editTxtCPFCNPJ: cpf
+    //             },
+    //             success: function (response) {
+    //                 $('#editarClienteModal').modal('hide');
+    //                 location.reload();
+    //             },
+    //             error: function (error) {
+    //                 console.log(error);
+    //                 alert('Erro ao atualizar cliente.');
+    //             }
+    //         });
+    //     });
+    // });
+</script>
 <!-- modal EXLUIR cliente -->
-<div class="modal fade" id="excluirCliente2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="excluirCliente2" tabindex="-1" aria-labelledby="modalExcluir" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header" id="md-excluir">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Excluir</h1>
+                <h1 class="modal-title fs-5" id="modalExcluir">Excluir</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -191,9 +280,41 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="md-close">Excluir</button>
+                <button type="button" class="btn btn-primary excluir-button" id="md-close">Excluir</button>
             </div>
         </div>
     </div>
 </div>
-</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        var IDCliente;
+
+        $('.getId-excluir').click(function () {
+            IDCliente = $(this).data('id');
+        })
+
+
+        $('.excluir-button').click(function () {
+
+            console.log("btn ex", IDCliente);
+            if (IDCliente) {
+
+                console.log($.ajax({
+                    type: 'POST',
+                    url: '/cliente/delete',
+                    data: { IDCliente: IDCliente },
+                    success: function (response) {
+                        $('#modalExcluir').modal('hide');
+                        location.reload();
+                    }
+                }));
+            } else {
+                alert("Erro: Não foi possível obter o ID do produto.");
+            }
+        });
+    });
+
+</script>

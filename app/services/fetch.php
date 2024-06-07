@@ -18,16 +18,14 @@ function findBy($table, $field, $value, $fields = '*')
   try {
     $connect = connect();
     $prepare = $connect->prepare("select {$fields} from {$table} where {$field} = :{$field}");
-    var_dump($prepare);
     $prepare->execute([
       $field => $value
     ]);
-    return $prepare->fetch();
+    return $prepare->fetch(PDO::FETCH_OBJ);
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-}
-;
+};
 
 //////////// Sales
 function findAllSalesMonth($table, $dateField, $valueField, $fields = '*')

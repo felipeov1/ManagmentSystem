@@ -41,7 +41,7 @@
             <tbody>
                 <?php foreach ($allProducts as $product): ?>
                     <tr>
-                        <td id="numId"><?php echo $product->IDProduto; ?></td>
+                        <td><?php echo $product->IDProduto; ?></td>
                         <td><?php echo $product->Nome; ?> </td>
                         <td><?php echo $product->ValorQuantidade; ?> </td>
                         <td><?php echo $product->Quantidade; ?> </td>
@@ -183,7 +183,6 @@
 
 <script>
 $(document).ready(function () {
-    // Lógica para carregar os dados do produto no modal de edição
     $('.editar-btn').click(function () {
         var productID = $(this).data('id');
         
