@@ -45,26 +45,31 @@ class ProductsController
     public function searchProduct()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
             $productID = isset($_GET["id"]) ? intval($_GET["id"]) : null;
-
-            echo $productID;
-
-            
+    
             if ($productID) {
                 $stmt = $this->db->prepare("SELECT * FROM produtos WHERE IDProduto = :id");
                 $stmt->bindParam(':id', $productID);
                 $stmt->execute();
                 $resultSelected = $stmt->fetch(PDO::FETCH_OBJ);
-                header('Content-Type: application/json');
-                echo json_encode($resultSelected);
+                if ($resultSelected) {
+                    header('Content-Type: application/json');
+                    echo json_encode($resultSelected);
+                    exit;
+                } else {
+                    header('Content-Type: application/json');
+                    echo json_encode(["error" => "Produto não encontrado."]);
+                    exit;
+                }
             } else {
                 header('Content-Type: application/json');
                 echo json_encode(["error" => "ID do produto inválido."]);
+                exit;
             }
         } else {
             header('Content-Type: application/json');
             echo json_encode(["error" => "Método de requisição inválido."]);
+            exit;
         }
     }
 

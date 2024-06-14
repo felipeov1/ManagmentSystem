@@ -50,8 +50,8 @@
                         <td><?php echo $client->Telefone2; ?></td>
                         <td><?php echo $client->cpf; ?></td>
                         <td>
-                            <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                                data-client-id="<?php echo $client->IDCliente ?>" data-bs-target="#editarClienteModal">
+                            <button style="background-color: white; border: none; height: 20px" class="editarClienteModal" data-bs-toggle="modal"
+                                data-id="<?php echo $client->IDCliente ?>" data-bs-target="#editarClienteModal">
                                 <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
                             </button>
                             <button class="getId-excluir" style="background-color: white; border: none"
@@ -162,7 +162,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="txt-news">
-                        <input type="hidden" name="clientID" id="editClientID">
                         <div class="input-group mb-3">
                             <label class="input-group-text" id="inputGroup-sizing-default">Nome</label>
                             <input type="text" name="editTxtNameClient" id="editTxtNameClient" value=""
@@ -200,39 +199,111 @@
     </div>
 </div>
 <script>
-    function loadClientData(clientID) {
-        $.ajax({
-            url: '/cliente/search/' + clientID,
-            type: 'GET',
-            dataType: 'json', // Especifica que a resposta é JSON
-            success: function (response) {
-                // Verifica se a resposta contém os dados esperados
-                if (response && response.IDCliente) {
-                    $('#editClientID').val(response.IDCliente);
-                    $('#editTxtNameClient').val(response.Nome);
-                    $('#editTxtAddress').val(response.Endereco);
-                    $('#editTxtPhone1').val(response.Telefone1);
-                    $('#editTxtPhone2').val(response.Telefone2);
-                    $('#editTxtCPFCNPJ').val(response.cpf); // Verifique se 'cpf' está correto
-                } else {
-                    console.log('Dados inválidos recebidos do servidor.');
-                }
-            },
-            error: function (error) {
-                console.log(error);
-                alert('Erro ao carregar dados do cliente.');
-            }
-        });
-    }
-
-
     $(document).ready(function () {
-        $('#editarClienteModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var clientID = button.data('client-id');
-            loadClientData(clientID);
+        console.log("Document is ready");
+
+        $('.editarClienteModal').click(function () {
+            var clientID = $(this).data('id');
+            console.log("Button clicked, productID:", clientID);
+
+            $.ajax({
+                type: 'GET',
+                url: '/cliente/search/' + clientID,
+                data: { id: clientID },
+                success: function (response) {
+                    console.log("Raw response: ", response);
+
+                    // Attempt to parse the response if it is a string
+                    let data;
+                    if (typeof response === 'string') {
+                        try {
+                            data = JSON.parse(response);
+                        } catch (e) {
+                            console.error("Erro ao decodificar JSON: ", e);
+                            alert("Erro ao carregar os dados do produto.");
+                            return;
+                        }
+                    } else {
+                        data = response;
+                    }
+
+                    // Ensure data contains the expected fields
+                    if (data.IDProduto && data.Nome && data.Endereco && data.Telefone1 && data.Telefone2 && data.cpf ) {
+                        $('#editClientID').val(response.IDCliente);
+                        $('#editTxtNameClient').val(response.Nome);
+                        $('#editTxtAddress').val(response.Endereco);
+                        $('#editTxtPhone1').val(response.Telefone1);
+                        $('#editTxtPhone2').val(response.Telefone2);
+                        $('#editTxtCPFCNPJ').val(response.cpf); 
+                        $('#editarModal').modal('show');
+
+                    } else {
+                        console.error("Dados do produto incompletos: ", data);
+                        alert("Erro ao carregar os dados do produto.");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error: ", status, error);
+                    console.error("Response Text: ", xhr.responseText);
+                    alert("Erro ao carregar os dados do produto.");
+                }
+            });
+
+        });
+
+
+        $('#editarClienteModal').submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '/produtos/update',
+                data: $(this).serialize(),
+                success: function (response) {
+                    if (response.error) {
+                        alert(response.error);
+                    } else {
+                        alert(response.success);
+                        $('#editarClienteModal').modal('hide');
+                        location.reload();
+                    }
+                },
+                error: function () {
+                    alert("Erro ao atualizar o produto.");
+                }
+            });
         });
     });
+
+
+    // function loadClientData(clientID) {
+    //     $.ajax({
+    //         url: '/cliente/search/' + clientID,
+    //         type: 'GET',
+    //         dataType: 'json', // Especifica que a resposta é JSON
+    //         success: function (response) {
+    //             // Verifica se a resposta contém os dados esperados
+    //             if (response && response.IDCliente) {
+
+    //             } else {
+    //                 console.log('Dados inválidos recebidos do servidor.');
+    //             }
+    //         },
+    //         error: function (error) {
+    //             console.log(error);
+    //             alert('Erro ao carregar dados do cliente.');
+    //         }
+    //     });
+    // }
+
+
+    // $(document).ready(function () {
+    //     $('#editarClienteModal').on('show.bs.modal', function (event) {
+    //         var button = $(event.relatedTarget);
+    //         var clientID = button.data('client-id');
+    //         loadClientData(clientID);
+    //     });
+    // });
 
     //     $('#submitBtn').click(function (e) {
     //         e.preventDefault(); // Prevent the default form submission
@@ -266,6 +337,8 @@
     //         });
     //     });
     // });
+
+
 </script>
 <!-- modal EXLUIR cliente -->
 <div class="modal fade" id="excluirCliente2" tabindex="-1" aria-labelledby="modalExcluir" aria-hidden="true">

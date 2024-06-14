@@ -26,9 +26,9 @@
                     <span class="material-icons-sharp">inventory_2</span>
                     <h3>Produtos</h3>
                 </a>
-                <a href="/sistema" class="nav-link">
+                <a href="/usuarios" class="nav-link">
                     <span class="material-icons-sharp">admin_panel_settings</span>
-                    <h3>Sistema</h3>
+                    <h3>Usuarios</h3>
                 </a>
                 <a href='/logout'>
                     <span class="material-icons-sharp">logout</span>

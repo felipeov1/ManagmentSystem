@@ -9,15 +9,15 @@
                 <i class="fa fa-search"></i>
                 <input type="text" class="form-control form-input" placeholder="Busque um produto...">
             </div>
-            <div class="select-show"  style="background-color: #F5F5F5;">
+            <div class="select-show" style="background-color: #F5F5F5;">
                 <label for="text">Mostrar</label>
                 <select>
-                    <option >5</option>
-                    <option >15</option>
-                    <option >20</option>
-                    <option >25</option>
-                    <option >30</option>
-                    <option >todos</option>
+                    <option>5</option>
+                    <option>15</option>
+                    <option>20</option>
+                    <option>25</option>
+                    <option>30</option>
+                    <option>todos</option>
                 </select>
                 <label for="text">produtos</label>
             </div>
@@ -182,54 +182,81 @@
 
 
 <script>
-$(document).ready(function () {
-    $('.editar-btn').click(function () {
-        var productID = $(this).data('id');
-        
-        console.log($.ajax({
-            type: 'GET',
-            url: '/produtos/search',
-            data: { id: productID },
-            success: function (response) {
-                if (response.error) {
-                    alert(response.error);
-                } else {
-                    $('#editProductID').val(response.IDProduto);
-                    $('#editTxtNameProduct').val(response.Nome);
-                    $('#editOptionsQuantity').val(response.Quantidade);
-                    $('#editTxtValuePerQuantity').val(response.ValorQuantidade);
-                    $('#editarModal').modal('show');
+    $(document).ready(function () {
+        console.log("Document is ready");
+
+        $('.editar-btn').click(function () {
+            var productID = $(this).data('id');
+            console.log("Button clicked, productID:", productID);
+
+            $.ajax({
+                type: 'GET',
+                url: '/produtos/search/' + productID,
+                data: { id: productID },
+                success: function (response) {
+                    console.log("Raw response: ", response);
+
+                    // Attempt to parse the response if it is a string
+                    let data;
+                    if (typeof response === 'string') {
+                        try {
+                            data = JSON.parse(response);
+                        } catch (e) {
+                            console.error("Erro ao decodificar JSON: ", e);
+                            alert("Erro ao carregar os dados do produto.");
+                            return;
+                        }
+                    } else {
+                        data = response;
+                    }
+
+                    // Ensure data contains the expected fields
+                    if (data.IDProduto && data.Nome && data.Quantidade && data.ValorQuantidade) {
+                        $('#editProductID').val(data.IDProduto);
+                        $('#editTxtNameProduct').val(data.Nome);
+                        $('#editOptionsQuantity').val(data.Quantidade);
+                        $('#editTxtValuePerQuantity').val(data.ValorQuantidade);
+                        $('#editarModal').modal('show');
+                    } else {
+                        console.error("Dados do produto incompletos: ", data);
+                        alert("Erro ao carregar os dados do produto.");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error: ", status, error);
+                    console.error("Response Text: ", xhr.responseText);
+                    alert("Erro ao carregar os dados do produto.");
                 }
-            },
-            error: function () {
-                alert("Erro ao carregar os dados do produto.");
-            }
-        }));
-    });
+            });
+
+        });
 
 
-    $('#editProductForm').submit(function (e) {
-        e.preventDefault();
 
-        $.ajax({
-            type: 'POST',
-            url: '/produtos/update',
-            data: $(this).serialize(),
-            success: function (response) {
-                if (response.error) {
-                    alert(response.error);
-                } else {
-                    alert(response.success);
-                    $('#editarModal').modal('hide');
-                    location.reload();
+
+
+        $('#editProductForm').submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '/produtos/update',
+                data: $(this).serialize(),
+                success: function (response) {
+                    if (response.error) {
+                        alert(response.error);
+                    } else {
+                        alert(response.success);
+                        $('#editarModal').modal('hide');
+                        location.reload();
+                    }
+                },
+                error: function () {
+                    alert("Erro ao atualizar o produto.");
                 }
-            },
-            error: function () {
-                alert("Erro ao atualizar o produto.");
-            }
+            });
         });
     });
-});
 </script>
 
 <!-- modal EXLUIR produto -->

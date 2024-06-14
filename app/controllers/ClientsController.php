@@ -47,22 +47,33 @@ class ClientsController
         }
     }
 
-    public function searchClient($id) {
-        $clientID = intval($id);
+    public function searchClient()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            $clientID = isset($_GET["id"]) ? intval($_GET["id"]) : null;
     
-        if ($clientID) {
-            $resultSelected = findBy('clientes', 'IDCliente', $clientID);
+            if ($clientID) {
+                $stmt = $this->db->prepare("SELECT * FROM clientes WHERE IDCliente = :id");
+                $stmt->bindParam(':id', $clientID);
+                $stmt->execute();
+                $resultSelected = $stmt->fetch(PDO::FETCH_ASSOC); // Use FETCH_ASSOC for associative array
     
-            header('Content-Type: application/json');
-            if (isset($resultSelected->IDCliente)) {
-                echo json_encode($resultSelected);
+                if ($resultSelected) {
+                    header('Content-Type: application/json');
+                    echo json_encode($resultSelected); // Encode as JSON
+                } else {
+                    header('Content-Type: application/json');
+                    echo json_encode(["error" => "Cliente não encontrado."]);
+                }
             } else {
-                echo json_encode(["error" => "Cliente não encontrado."]);
+                header('Content-Type: application/json');
+                echo json_encode(["error" => "ID do cliente inválido."]);
             }
         } else {
             header('Content-Type: application/json');
-            echo json_encode(["error" => "ID do cliente inválido."]);
+            echo json_encode(["error" => "Método de requisição inválido."]);
         }
+        exit;
     }
 
     public function updateClient()

@@ -6,8 +6,8 @@ class SistemaController
     public function index()
     {
         return [
-            'view' => 'sistema.php',
-            'data' => ['title' => 'Sistema']
+            'view' => 'usuarios.php',
+            'data' => ['title' => 'Usuários']
         ];
     }
 
