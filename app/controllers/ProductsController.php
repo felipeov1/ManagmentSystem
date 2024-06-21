@@ -101,6 +101,7 @@ class ProductsController
         }
     }
 
+
     public function deleteProduct()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

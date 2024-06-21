@@ -276,68 +276,6 @@
     });
 
 
-    // function loadClientData(clientID) {
-    //     $.ajax({
-    //         url: '/cliente/search/' + clientID,
-    //         type: 'GET',
-    //         dataType: 'json', // Especifica que a resposta é JSON
-    //         success: function (response) {
-    //             // Verifica se a resposta contém os dados esperados
-    //             if (response && response.IDCliente) {
-
-    //             } else {
-    //                 console.log('Dados inválidos recebidos do servidor.');
-    //             }
-    //         },
-    //         error: function (error) {
-    //             console.log(error);
-    //             alert('Erro ao carregar dados do cliente.');
-    //         }
-    //     });
-    // }
-
-
-    // $(document).ready(function () {
-    //     $('#editarClienteModal').on('show.bs.modal', function (event) {
-    //         var button = $(event.relatedTarget);
-    //         var clientID = button.data('client-id');
-    //         loadClientData(clientID);
-    //     });
-    // });
-
-    //     $('#submitBtn').click(function (e) {
-    //         e.preventDefault(); // Prevent the default form submission
-
-    //         var clientID = $('#editClientID').val();
-    //         var name = $('#editTxtNameClient').val();
-    //         var address = $('#editTxtAddress').val();
-    //         var phone1 = $('#editTxtPhone1').val();
-    //         var phone2 = $('#editTxtPhone2').val();
-    //         var cpf = $('#editTxtCPFCNPJ').val();
-
-    //         $.ajax({
-    //             url: '/cliente/update',
-    //             type: 'POST',
-    //             data: {
-    //                 clientID: clientID,
-    //                 editTxtNameClient: name,
-    //                 editTxtAddress: address,
-    //                 editTxtPhone1: phone1,
-    //                 editTxtPhone2: phone2,
-    //                 editTxtCPFCNPJ: cpf
-    //             },
-    //             success: function (response) {
-    //                 $('#editarClienteModal').modal('hide');
-    //                 location.reload();
-    //             },
-    //             error: function (error) {
-    //                 console.log(error);
-    //                 alert('Erro ao atualizar cliente.');
-    //             }
-    //         });
-    //     });
-    // });
-
 
 </script>
 <!-- modal EXLUIR cliente -->
