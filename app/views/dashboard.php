@@ -1,254 +1,289 @@
-<div class="boxDashboard">
-    <main>
-        <h1>Dashboard</h1>
+<div id="wrapper">
+    <!-- Content wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main content -->
+        <div id="content">
 
-        <div class="txtSytem">
-            <h2>Olá <?php echo user()->Nome; ?>,
-                <br>- <span style="font-size: 70%;">Aqui está um resumo de sua loja</span>
-            </h2>
-        </div>
-        <div class="salesData">
-            <div class="sales">
-                <span class="material-icons-sharp">insert_chart</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3>Vendas nesse mês:</h3>
-                        <h1>
-                            <?php echo "R$" . $allSalesMonth; ?>
-                        </h1> <!--  recebe dados do banco de dados -->
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" id="topbar">
+
+                <!-- Topbar Search -->
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light small" placeholder="Pesquisar..." aria-label="Search" aria-describedby="basic-addon2" id="inputPesquisar">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="btnPesquisar">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Alerts -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <!-- Counter - Alerts -->
+                            <span class="badge badge-danger badge-counter">3+</span>
+                        </a>
+                        <!-- Dropdown - Alerts -->
+                        <ul class="dropdown-menu dropdown-menu-end shadow animated--grow-in" id="dropdown-alert" aria-labelledby="alertsDropdown">
+                            <li>
+                                <h6 class="dropdown-header">Alertas</h6>
+                            </li>
+
+                            <!-- <?php foreach ($ordersNotifications as $notification) : ?>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="me-3"></div>
+                                        <div>
+                                            <span class="font-weight-bold">A entrega do pedido do(a) <?php echo $notification->NomeCliente ?> está próxima</span>
+                                            <div class="small text-gray-500"><?php echo timeElapsedString($notification->DataEntrega, $notification->HorarioEntrega); ?></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?> -->
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3"></div>
+                                    <div>
+                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está próxima</span>
+                                        <div class="small text-gray-500">1 hora e 49 minutos</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3"></div>
+                                    <div>
+                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está próxima</span>
+                                        <div class="small text-gray-500">1 hora e 49 minutos</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3"></div>
+                                    <div>
+                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está próxima</span>
+                                        <div class="small text-gray-500">1 hora e 49 minutos</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <li class="d-flex align-items-center justify-content-center">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo user()->Nome; ?></span>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+
+            <?php
+            function timeElapsedString($deliveryDate, $deliveryTime, $full = false)
+            {
+                $deliveryDateTime = new DateTime("$deliveryDate $deliveryTime");
+                $now = new DateTime();
+                $diff = $now->diff($deliveryDateTime);
+
+                $hours = $diff->h + ($diff->days * 24); // Converter dias em horas
+
+                $string = [
+                    'h' => 'hora',
+                    'i' => 'minuto',
+                    's' => 'segundo',
+                ];
+
+                $result = [];
+                foreach ($string as $key => $value) {
+                    if ($diff->$key) {
+                        if ($key === 'i' && $hours > 0) {
+                            $result[] = $diff->$key . ' ' . $value . ($diff->$key > 1 ? 's' : '');
+                        } else {
+                            $result[] = $diff->$key . ' ' . $value . ($diff->$key > 1 ? 's' : '');
+                        }
+                    }
+                }
+
+                if (!$full) {
+                    $result = array_slice($result, 0, 2); // Limitar a dois elementos (hora e minutos)
+                }
+
+                return $result ? implode(' e ', $result) . ' atrás' : 'agora';
+            }
+            ?>
+
+            <!-- Page content -->
+            <div class="container-fluid" id="container-main">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800" style="font-weight: 400;">Dashboard</h1>
+                    <div id="icons-add">
+                        <a href="#" class="btn btn-sm btn-outline-primary shadow-sm">
+                            <i class="fas fa-user-plus fa-sm"></i>
+                            Novo cliente
+                        </a>
+                        <a href="#" class="btn btn-sm btn-outline-success shadow-sm ml-3">
+                            <i class="fas fa-cart-plus fa-sm"></i>
+                            Novo pedido
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="compare">
-                <span class="material-icons-sharp">insert_chart</span>
-                <div class="middle">
-                    <div class="left" id="left2">
-                        <div id="container-compare">
-                            <h3>Comparação Mensal:</h3>
-                            <h1>
-                                <?php
-                                if ($monthlySalesProgression >= 0) {
-                                    echo "+R$$monthlySalesProgression";
-                                } else {
-                                    echo "-R$$monthlySalesProgression";
-                                }
+                <!-- Content Row -->
+                <div class="row">
 
-                                ?>
-                            </h1>
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs fw-semibold text-primary text-uppercase mb-1">
+                                            Vendas nesse mês</div>
+                                        <div class="h5 mb-0 fw-semibold text-gray-800"><?php echo "R$" . $allSalesMonth; ?></div> <!-- recebe dados do banco de dados -->
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs fw-semibold text-success text-uppercase mb-1">
+                                            Comparação mensal</div>
+                                        <div class="h5 mb-0 fw-semibold text-gray-800">
+                                            <?php
+                                            if ($monthlySalesProgression >= 0) {
+                                                echo "+R$$monthlySalesProgression";
+                                            } else {
+                                                echo "-R$$monthlySalesProgression";
+                                            }
+                                            ?>
+                                        </div><!-- recebe dados do banco de dados -->
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs fw-semibold text-warning text-uppercase mb-1">
+                                            Vendas esse ano</div>
+                                        <div class="h5 mb-0 fw-semibold text-gray-800"><?php echo "R$$allSalesYear"; ?></div><!-- recebe dados do banco de dados -->
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar-check fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-
-            <div class="yearly">
-                <span class="material-icons-sharp">insert_chart</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3>Vendas esse ano:</h3>
-                        <h1>
-                            <?php echo "R$$allSalesYear"; ?>
-                        </h1> <!--  recebe dados do banco de dados -->
+                <!-- Tabela e botões -->
+                <div class="row mt-3">
+                    <div class="col-12" id="table-scroll">
+                        <table class="table-striped text-center shadow" width="100%" id="tabela-dashboard">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Número do pedido</th>
+                                    <th scope="col">Data de entrega</th>
+                                    <th scope="col">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($orders as $order) : ?>
+                                    <form action="/dashboard/changeStatus" method="POST">
+                                        <tr>
+                                            <td>
+                                                <?php echo $order->NomeCliente; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $order->IDVenda; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo date('d/m/Y', strtotime($order->DataEntrega)); ?>
+                                                <?php echo date($order->HorarioEntrega); ?>
+                                            </td>
+                                            <td>
+                                                <button type="button" name="Visualize" value="Visualizar" data-bs-toggle="modal" data-bs-target="#modalVisualize">
+                                                    <span>
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </span>
+                                                </button>
+                                                <button type="submit" name="AddMsgCont" value="Entregue">
+                                                    <span>
+                                                        <i class="fa-solid fa-check"></i>
+                                                    </span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </form>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="mostrarPedidos">
+                        <h1 class="text-center mt-3" style="font-size: 0.8rem;"><a href="#">Mostrar mais pedidos</a></h1>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- fim dados de vendas -->
-        <h2 id="nextOrder-h2">Próximas entregas</h2>
-        <div class="nextOrder">
-            <table>
-                <thead>
-                    <tr id="color-th">
-                        <th>Cliente</th>
-                        <th>Número do pedido</th>
-                        <th>Data da entrega</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($orders as $order): ?>
-                        <form action="/dashboard/changeStatus" method="POST">
-                            <tr id="linha-tabela">
-                                <td>
-                                    <?php echo $order->NomeCliente; ?>
-                                </td>
-                                <td>
-                                    <input type="text"
-                                        style="border: none; pointer-events: none; background-color: transparent; text-align: center;"
-                                        name="IDVenda" value="<?php echo $order->IDVenda; ?>">
-                                </td>
-                                <td>
-                                    <?php echo date('d/m/Y', strtotime($order->DataEntrega)); ?>
-                                    <?php echo date($order->HorarioEntrega); ?>
-                                </td>
-                                <td>
-                                    <input type="submit" name="AddMsgCont" class="btn btn3" value="Entregue">
-                                    <input type="button" name="Visualize" class="btn btn2" value="Visualizar"
-                                        data-bs-toggle="modal" data-bs-target="#MyModal">
-                                </td>
-                            </tr>
-                        </form>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-        <div id="mostrar-pedidos">
-            <a href="">Mostrar Todos Pedidos</a>
-        </div>
-        <!-- fim das vendas recentes e da main-->
-    </main>
+                <!-- fim tabela -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="MyModal" tabindex="-1" aria-labelledby="MyModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="MyModalLabel">Informações do pedido</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p><span class="fw-bold">Nome do cliente:</span> <?php echo $order->NomeCliente ?></p>
-                    <p><span class="fw-bold">Telefone 1:</span> <?php echo $order->Telefone1 ?></p>
-                    <p><span class="fw-bold">Telefone 2:</span> <?php echo $order->Telefone2 ?></p>
-                    <p><span class="fw-bold">Número do pedido:</span> <?php echo $order->IDVenda ?></p>
-                    <p><span class="fw-bold">Data da entrega:</span> <?php echo $order->DataEntrega ?></p>
-                    <p><span class="fw-bold">Horario da entrega:</span> <?php echo $order->HorarioEntrega ?></p>
-                    <p><span class="fw-bold">Valor:</span> <?php echo $order->Valor ?></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="right">
-        <div class="orderAlert">
-            <h2>Notificações</h2>
-            <div class="new">
-                <div class="news">
-                    <div class="message">
-                        <!-- <?php foreach ($ordersNotifications as $notification): ?>
-                            <p>
-                                <b>Alerta!</b>
-                                A entrega do pedido do(a) <?php echo $notification->NomeCliente ?> está próxima.<br>
-                                <small
-                                    class="text-muted"><?php echo timeElapsedString($notification->DataEntrega, $notification->HorarioEntrega); ?></small><br>
-
-                                <a href="">Visualizar pedido</a>
-                            </p>
-                        <?php endforeach; ?> -->
-
-                        <p>
-                            <b>Alerta!</b>
-                            A entrega do pedido do(a) cliente<br>
-                            <small>1 hora e 49 minutos</small><br>
-
-                            <a href="">Visualizar pedido</a>
-                        </p>
-
-                        <p>
-                            <b>Alerta!</b>
-                            A entrega do pedido do(a) cliente<br>
-                            <small>1 hora e 49 minutos</small><br>
-
-                            <a href="">Visualizar pedido</a>
-                        </p>
-
-                        <p>
-                            <b>Alerta!</b>
-                            A entrega do pedido do(a) cliente<br>
-                            <small>1 hora e 49 minutos</small><br>
-
-                            <a href="">Visualizar pedido</a>
-                        </p>
-                        <p>
-                            <b>Alerta!</b>
-                            A entrega do pedido do(a) cliente<br>
-                            <small>1 hora e 49 minutos</small><br>
-
-                            <a href="">Visualizar pedido</a>
-                        </p>
-                        <p>
-                            <b>Alerta!</b>
-                            A entrega do pedido do(a) cliente<br>
-                            <small>1 hora e 49 minutos</small><br>
-
-                            <a href="">Visualizar pedido</a>
-                        </p>
-                        <p>
-                            <b>Alerta!</b>
-                            A entrega do pedido do(a) cliente<br>
-                            <small>1 hora e 49 minutos</small><br>
-
-                            <a href="">Visualizar pedido</a>
-                        </p>
-                        <p>
-                            <b>Alerta!</b>
-                            A entrega do pedido do(a) cliente<br>
-                            <small>1 hora e 49 minutos</small><br>
-
-                            <a href="">Visualizar pedido</a>
-                        </p>
-                        <p>
-                            <b>Alerta!</b>
-                            A entrega do pedido do(a) cliente<br>
-                            <small>1 hora e 49 minutos</small><br>
-
-                            <a href="">Visualizar pedido</a>
-                        </p>
+                <!-- Modal -->
+                <div class="modal fade" id="modalVisualize" tabindex="-1" aria-labelledby="modalVisualizeLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modalVisualizeLabel">Informações do pedido</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><span class="fw-bold">Nome do cliente:</span> <?php echo $order->NomeCliente ?></p>
+                                <p><span class="fw-bold">Telefone 1:</span> <?php echo $order->Telefone1 ?></p>
+                                <p><span class="fw-bold">Telefone 2:</span> <?php echo $order->Telefone2 ?></p>
+                                <p><span class="fw-bold">Número do pedido:</span> <?php echo $order->IDVenda ?></p>
+                                <p><span class="fw-bold">Data da entrega:</span> <?php echo $order->DataEntrega ?></p>
+                                <p><span class="fw-bold">Horario da entrega:</span> <?php echo $order->HorarioEntrega ?></p>
+                                <p><span class="fw-bold">Valor:</span> <?php echo $order->Valor ?></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
+            <!-- End Page content -->
         </div>
-
-        <?php
-        function timeElapsedString($deliveryDate, $deliveryTime, $full = false)
-        {
-            $deliveryDateTime = new DateTime("$deliveryDate $deliveryTime");
-            $now = new DateTime();
-            $diff = $now->diff($deliveryDateTime);
-
-            $hours = $diff->h + ($diff->days * 24); // Converter dias em horas
-        
-            $string = [
-                'h' => 'hora',
-                'i' => 'minuto',
-                's' => 'segundo',
-            ];
-
-            $result = [];
-            foreach ($string as $key => $value) {
-                if ($diff->$key) {
-                    if ($key === 'i' && $hours > 0) {
-                        $result[] = $diff->$key . ' ' . $value . ($diff->$key > 1 ? 's' : '');
-                    } else {
-                        $result[] = $diff->$key . ' ' . $value . ($diff->$key > 1 ? 's' : '');
-                    }
-                }
-            }
-
-            if (!$full) {
-                $result = array_slice($result, 0, 2); // Limitar a dois elementos (hora e minutos)
-            }
-
-            return $result ? implode(' e ', $result) . ' atrás' : 'agora';
-        }
-        ?>
-
-        <div class="client">
-            <div class="addClient">
-                <button><span class="material-icons-sharp" style="font-size: 45px;">person_add</span><br>
-                    <h2>Novo Cliente</h2>
-                </button>
-            </div>
-
-            <div class="addPedido">
-                <button><span class="material-icons-sharp" style="font-size: 45px;">add_shopping_cart</span><br>
-                    <h2>Novo Pedido</h2>
-                </button>
-            </div>
-        </div>
+        <!-- End Main content -->
     </div>
+    <!-- End Content wrapper -->
+
 </div>

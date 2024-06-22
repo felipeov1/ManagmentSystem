@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
     var currentUrl = window.location.pathname;
-    var navLinks = document.querySelectorAll(".nav-link");
+    var navItems = document.querySelectorAll(".nav-item");
 
-    navLinks.forEach(function (link) {
+    navItems.forEach(function (item) {
+        var link = item.querySelector(".nav-link");
         var href = link.getAttribute("href");
+
+        // Verifica se o caminho atual corresponde ao href do item de navegação
         if (currentUrl === href) {
-            link.classList.add("selected");
+            item.classList.add("active"); // Adiciona a classe .active ao item de navegação
+        } else {
+            item.classList.remove("active"); // Remove a classe .active caso não corresponda
         }
     });
 });
