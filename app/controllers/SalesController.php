@@ -11,8 +11,8 @@ class SalesController
         $totalSalesMonth = 0;
 
         foreach ($salesMonth as $sales) {
-            $salesMonth = $sales->Valor;
-            $totalSalesMonth += $salesMonth;
+            /* $salesMonth = $sales->Valor; */
+            $totalSalesMonth += $sales->Valor; /* += $salesMonth == antigo */
         }
         $valueTotalSalesMonth = number_format($totalSalesMonth, 2, ',', '.');
 
@@ -21,16 +21,21 @@ class SalesController
 
     public function allSalesYear()
     {
-        $salesMonth = findAllSalesYear('vendas', 'DataEntrega', 'Valor');
+        /* $salesMonth = findAllSalesYear('vendas', 'DataEntrega', 'Valor'); */
+        $salesYear = findAllSalesYear('vendas', 'DataEntrega', 'Valor'); // adicionado
 
         $totalSalesYears = 0;
 
-        foreach ($salesMonth as $sales) {
-            $salesMonth = $sales->Valor;
+        /* foreach ($salesMonth as $sales) == antigo */
+        foreach ($salesYear as $sales) {
+            /* $salesMonth = $sales->Valor;
             $totalSalesYears += $salesMonth;
-            $valueTotalSalesYear = number_format($totalSalesYears, 2, ',', '.');
+            $valueTotalSalesYear = number_format($totalSalesYears, 2, ',', '.'); */
+            $totalSalesYears += $sales->Valor; // adicionado
 
         }
+        $valueTotalSalesYear = number_format($totalSalesYears, 2, ',', '.'); // adicionado
+
         return $valueTotalSalesYear;
     }
 
@@ -44,10 +49,13 @@ class SalesController
         $totalsalesLastMonth = 0;
 
         foreach ($salesLastMonth as $sales) {
-            $salesLastMonth = $sales->Valor;
+            /* $salesLastMonth = $sales->Valor;
             $totalsalesLastMonth += $salesLastMonth;
-            $valueTotalSalesLastMonth = number_format($totalsalesLastMonth, 2, ',', '.');
+            $valueTotalSalesLastMonth = number_format($totalsalesLastMonth, 2, ',', '.'); */
+            $totalsalesLastMonth += $sales->Valor; // adicionado
         }
+
+        $valueTotalSalesLastMonth = number_format($totalsalesLastMonth, 2, ',', '.'); // adicionado
 
         $valueTotalSalesLastMonthGraphic = $valueTotalSalesLastMonth;
 
@@ -75,6 +83,10 @@ class SalesController
         $monthlySalesProgression = str_replace(',', '.', $formatedCompareProgression);
         $allSalesLastMonth = str_replace(',', '.', $valueTotalSalesLastMonthGraphic);
 
+        // evitar divisão por 0 == adicionado
+        if($monthlySalesProgression == 0) {
+            return 0;
+        } // fim
 
         $percentageIncrease = number_format(((floatval($allSalesLastMonth) / 100) / $monthlySalesProgression) * 100, 2, '.', '') * 100;
         
