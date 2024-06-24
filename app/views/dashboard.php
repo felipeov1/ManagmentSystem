@@ -10,7 +10,8 @@
                 <!-- Topbar Search -->
                 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light small" placeholder="Pesquisar..." aria-label="Search" aria-describedby="basic-addon2" id="inputPesquisar">
+                        <input type="text" class="form-control bg-light small" placeholder="Pesquisar..."
+                            aria-label="Search" aria-describedby="basic-addon2" id="inputPesquisar">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button" id="btnPesquisar">
                                 <i class="fas fa-search fa-sm"></i>
@@ -24,18 +25,20 @@
 
                     <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-bell fa-fw"></i>
                             <!-- Counter - Alerts -->
                             <span class="badge badge-danger badge-counter">3+</span>
                         </a>
                         <!-- Dropdown - Alerts -->
-                        <ul class="dropdown-menu dropdown-menu-end shadow animated--grow-in" id="dropdown-alert" aria-labelledby="alertsDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end shadow animated--grow-in" id="dropdown-alert"
+                            aria-labelledby="alertsDropdown">
                             <li>
                                 <h6 class="dropdown-header">Alertas</h6>
                             </li>
 
-                            <!-- <?php foreach ($ordersNotifications as $notification) : ?>
+                            <!-- <?php foreach ($ordersNotifications as $notification): ?>
                                 <li>
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="me-3"></div>
@@ -51,7 +54,8 @@
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="me-3"></div>
                                     <div>
-                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está próxima</span>
+                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está
+                                            próxima</span>
                                         <div class="small text-gray-500">1 hora e 49 minutos</div>
                                     </div>
                                 </a>
@@ -60,7 +64,8 @@
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="me-3"></div>
                                     <div>
-                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está próxima</span>
+                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está
+                                            próxima</span>
                                         <div class="small text-gray-500">1 hora e 49 minutos</div>
                                     </div>
                                 </a>
@@ -69,7 +74,8 @@
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="me-3"></div>
                                     <div>
-                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está próxima</span>
+                                        <span class="font-weight-bold">A entrega do pedido do(a) cliente está
+                                            próxima</span>
                                         <div class="small text-gray-500">1 hora e 49 minutos</div>
                                     </div>
                                 </a>
@@ -95,7 +101,7 @@
                 $diff = $now->diff($deliveryDateTime);
 
                 $hours = $diff->h + ($diff->days * 24); // Converter dias em horas
-
+            
                 $string = [
                     'h' => 'hora',
                     'i' => 'minuto',
@@ -150,7 +156,10 @@
                                     <div class="col mr-2">
                                         <div class="text-xs fw-semibold text-primary text-uppercase mb-1">
                                             Vendas nesse mês</div>
-                                        <div class="h5 mb-0 fw-semibold text-gray-800"><?php echo "R$" . $allSalesMonth; ?></div> <!-- recebe dados do banco de dados -->
+                                        <div class="h5 mb-0 fw-semibold text-gray-800">
+                                            <?php echo "R$" . $allSalesMonth; ?>
+                                        </div>
+                                        <!-- recebe dados do banco de dados -->
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -194,7 +203,8 @@
                                     <div class="col mr-2">
                                         <div class="text-xs fw-semibold text-warning text-uppercase mb-1">
                                             Vendas esse ano</div>
-                                        <div class="h5 mb-0 fw-semibold text-gray-800"><?php echo "R$$allSalesYear"; ?></div><!-- recebe dados do banco de dados -->
+                                        <div class="h5 mb-0 fw-semibold text-gray-800"><?php echo "R$$allSalesYear"; ?>
+                                        </div><!-- recebe dados do banco de dados -->
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-calendar-check fa-2x text-gray-300"></i>
@@ -218,21 +228,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($orders as $order) : ?>
+                                <?php foreach ($orders as $order): ?>
                                     <form action="/dashboard/changeStatus" method="POST">
                                         <tr>
                                             <td>
                                                 <?php echo $order->NomeCliente; ?>
                                             </td>
                                             <td>
-                                                <?php echo $order->IDVenda; ?>
+                                                <input type="text" style="border: none; pointer-events: none; background-color: transparent; text-align: center;"name="IDVenda" value="<?php echo $order->IDVenda; ?>">
                                             </td>
                                             <td>
                                                 <?php echo date('d/m/Y', strtotime($order->DataEntrega)); ?>
                                                 <?php echo date($order->HorarioEntrega); ?>
                                             </td>
                                             <td>
-                                                <button type="button" name="Visualize" value="Visualizar" data-bs-toggle="modal" data-bs-target="#modalVisualize">
+                                                <button type="button" name="Visualize" value="Visualizar"
+                                                    data-bs-toggle="modal" data-bs-target="#modalVisualize">
                                                     <span>
                                                         <i class="fa-solid fa-eye"></i>
                                                     </span>
@@ -250,18 +261,21 @@
                         </table>
                     </div>
                     <div id="mostrarPedidos">
-                        <h1 class="text-center mt-3" style="font-size: 0.8rem;"><a href="#">Mostrar mais pedidos</a></h1>
+                        <h1 class="text-center mt-3" style="font-size: 0.8rem;"><a href="#">Mostrar mais pedidos</a>
+                        </h1>
                     </div>
                 </div>
                 <!-- fim tabela -->
 
                 <!-- Modal -->
-                <div class="modal fade" id="modalVisualize" tabindex="-1" aria-labelledby="modalVisualizeLabel" aria-hidden="true">
+                <div class="modal fade" id="modalVisualize" tabindex="-1" aria-labelledby="modalVisualizeLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="modalVisualizeLabel">Informações do pedido</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <p><span class="fw-bold">Nome do cliente:</span> <?php echo $order->NomeCliente ?></p>
@@ -269,11 +283,13 @@
                                 <p><span class="fw-bold">Telefone 2:</span> <?php echo $order->Telefone2 ?></p>
                                 <p><span class="fw-bold">Número do pedido:</span> <?php echo $order->IDVenda ?></p>
                                 <p><span class="fw-bold">Data da entrega:</span> <?php echo $order->DataEntrega ?></p>
-                                <p><span class="fw-bold">Horario da entrega:</span> <?php echo $order->HorarioEntrega ?></p>
+                                <p><span class="fw-bold">Horario da entrega:</span> <?php echo $order->HorarioEntrega ?>
+                                </p>
                                 <p><span class="fw-bold">Valor:</span> <?php echo $order->Valor ?></p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-danger"
+                                    data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>

@@ -9,18 +9,7 @@
                 <i class="fa fa-search"></i>
                 <input type="text" class="form-control form-input" placeholder="Busque um cliente...">
             </div>
-            <div class="select-show" style="background-color: #F5F5F5;">
-                <label for="text">Mostrar</label>
-                <select>
-                    <option>5</option>
-                    <option>15</option>
-                    <option>20</option>
-                    <option>25</option>
-                    <option>30</option>
-                    <option>todos</option>
-                </select>
-                <label for="text">Clientes</label>
-            </div>
+     
             <div class="createBtn">
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                     data-bs-target="#novoClienteModal">Novo Cliente</button>

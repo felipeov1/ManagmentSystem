@@ -13,9 +13,13 @@ class OrdersController
 
     public function changeStatus(){
         $orderID = filter_input(INPUT_POST, 'IDVenda', FILTER_SANITIZE_EMAIL);
+
+        echo "id" . $orderID;
+
         changeStatus('Vendas', 'Situacao', 'IDVenda', $orderID);
 
-        redirect('/dashboard');
+
+        // redirect('/dashboard');
     }
 
     public function ordersNotification(){
