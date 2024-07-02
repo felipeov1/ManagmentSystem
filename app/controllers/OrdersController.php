@@ -19,7 +19,7 @@ class OrdersController
         changeStatus('Vendas', 'Situacao', 'IDVenda', $orderID);
 
 
-        // redirect('/dashboard');
+        redirect('/dashboard');
     }
 
     public function ordersNotification(){

@@ -9,7 +9,7 @@
                 <i class="fa fa-search"></i>
                 <input type="text" class="form-control form-input" placeholder="Busque um cliente...">
             </div>
-     
+
             <div class="createBtn">
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                     data-bs-target="#novoClienteModal">Novo Cliente</button>
@@ -39,8 +39,9 @@
                         <td><?php echo $client->Telefone2; ?></td>
                         <td><?php echo $client->cpf; ?></td>
                         <td>
-                            <button style="background-color: white; border: none; height: 20px" class="editarClienteModal" data-bs-toggle="modal"
-                                data-id="<?php echo $client->IDCliente ?>" data-bs-target="#editarClienteModal">
+                            <button style="background-color: white; border: none; height: 20px" class="editarClienteModal"
+                                data-bs-toggle="modal" data-id="<?php echo $client->IDCliente ?>"
+                                data-bs-target="#editarClienteModal">
                                 <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
                             </button>
                             <button class="getId-excluir" style="background-color: white; border: none"
@@ -145,6 +146,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="editClientForm" action="/cliente/update" method="POST">
+                <input type="hidden" name="ClientID" id="editClientID">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="editarModal">Editar Cliente</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -193,7 +195,7 @@
 
         $('.editarClienteModal').click(function () {
             var clientID = $(this).data('id');
-            console.log("Button clicked, productID:", clientID);
+            console.log("Button clicked, clientID:", clientID);
 
             $.ajax({
                 type: 'GET',
@@ -202,51 +204,46 @@
                 success: function (response) {
                     console.log("Raw response: ", response);
 
-                    // Attempt to parse the response if it is a string
                     let data;
                     if (typeof response === 'string') {
                         try {
                             data = JSON.parse(response);
                         } catch (e) {
                             console.error("Erro ao decodificar JSON: ", e);
-                            alert("Erro ao carregar os dados do produto.");
+                            alert("Erro ao carregar os dados do cliente.");
                             return;
                         }
                     } else {
                         data = response;
                     }
 
-                    // Ensure data contains the expected fields
-                    if (data.IDProduto && data.Nome && data.Endereco && data.Telefone1 && data.Telefone2 && data.cpf ) {
-                        $('#editClientID').val(response.IDCliente);
-                        $('#editTxtNameClient').val(response.Nome);
-                        $('#editTxtAddress').val(response.Endereco);
-                        $('#editTxtPhone1').val(response.Telefone1);
-                        $('#editTxtPhone2').val(response.Telefone2);
-                        $('#editTxtCPFCNPJ').val(response.cpf); 
-                        $('#editarModal').modal('show');
-
+                    if (data.IDCliente && data.Nome && data.Endereco && data.Telefone1 && data.Telefone2 && data.cpf) {
+                        $('#editClientID').val(data.IDCliente);
+                        $('#editTxtNameClient').val(data.Nome);
+                        $('#editTxtAddress').val(data.Endereco);
+                        $('#editTxtPhone1').val(data.Telefone1);
+                        $('#editTxtPhone2').val(data.Telefone2);
+                        $('#editTxtCPFCNPJ').val(data.cpf);
+                        $('#editarClienteModal').modal('show');
                     } else {
-                        console.error("Dados do produto incompletos: ", data);
-                        alert("Erro ao carregar os dados do produto.");
+                        console.error("Dados do cliente incompletos: ", data);
+                        alert("Erro ao carregar os dados do cliente.");
                     }
                 },
                 error: function (xhr, status, error) {
                     console.error("AJAX Error: ", status, error);
                     console.error("Response Text: ", xhr.responseText);
-                    alert("Erro ao carregar os dados do produto.");
+                    alert("Erro ao carregar os dados do cliente.");
                 }
             });
-
         });
 
-
-        $('#editarClienteModal').submit(function (e) {
+        $('#editClientForm').submit(function (e) {
             e.preventDefault();
 
             $.ajax({
                 type: 'POST',
-                url: '/produtos/update',
+                url: '/cliente/update',
                 data: $(this).serialize(),
                 success: function (response) {
                     if (response.error) {
@@ -254,11 +251,10 @@
                     } else {
                         alert(response.success);
                         $('#editarClienteModal').modal('hide');
-                        location.reload();
                     }
                 },
                 error: function () {
-                    alert("Erro ao atualizar o produto.");
+                    alert("Erro ao atualizar o cliente.");
                 }
             });
         });
