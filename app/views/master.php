@@ -45,9 +45,15 @@
 
     <script src="/scripts/produt-modal.js"></script>
     <!-- FIM JS -->
-    <?php if ($_SERVER['REQUEST_URI'] !== "/"): ?>
+    <?php if ($_SERVER['REQUEST_URI'] !== "/"):
+        ?>
         <div id="header">
-            <?php require "partials/header.php"; ?>
+            <?php 
+            if (!isset($_SESSION['LOGGED']) && $_SERVER['REQUEST_URI'] !== '/login') {
+                header('Location: /');
+                exit;
+            }
+            require "partials/header.php"; ?>
         </div>
     <?php endif; ?>
     <?php require VIEWS . $view; ?>
