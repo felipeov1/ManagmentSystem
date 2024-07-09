@@ -25,6 +25,7 @@ class OrdersController
     public function ordersNotification(){
 
         $notification = ordersNotification('Vendas', 'Situacao', 'DataEntrega', 'HorarioEntrega');
+
         return $notification;
     }
 

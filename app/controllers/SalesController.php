@@ -21,20 +21,15 @@ class SalesController
 
     public function allSalesYear()
     {
-        /* $salesMonth = findAllSalesYear('vendas', 'DataEntrega', 'Valor'); */
-        $salesYear = findAllSalesYear('vendas', 'DataEntrega', 'Valor'); // adicionado
+        $salesYear = findAllSalesYear('vendas', 'DataEntrega', 'Valor');
 
         $totalSalesYears = 0;
 
-        /* foreach ($salesMonth as $sales) == antigo */
         foreach ($salesYear as $sales) {
-            /* $salesMonth = $sales->Valor;
-            $totalSalesYears += $salesMonth;
-            $valueTotalSalesYear = number_format($totalSalesYears, 2, ',', '.'); */
-            $totalSalesYears += $sales->Valor; // adicionado
-
+            $totalSalesYears += $sales->Valor;
         }
-        $valueTotalSalesYear = number_format($totalSalesYears, 2, ',', '.'); // adicionado
+        $valueTotalSalesYear = number_format($totalSalesYears, 2, ',', '.');
+
 
         return $valueTotalSalesYear;
     }
@@ -49,13 +44,11 @@ class SalesController
         $totalsalesLastMonth = 0;
 
         foreach ($salesLastMonth as $sales) {
-            /* $salesLastMonth = $sales->Valor;
-            $totalsalesLastMonth += $salesLastMonth;
-            $valueTotalSalesLastMonth = number_format($totalsalesLastMonth, 2, ',', '.'); */
-            $totalsalesLastMonth += $sales->Valor; // adicionado
+
+            $totalsalesLastMonth += $sales->Valor; 
         }
 
-        $valueTotalSalesLastMonth = number_format($totalsalesLastMonth, 2, ',', '.'); // adicionado
+        $valueTotalSalesLastMonth = number_format($totalsalesLastMonth, 2, ',', '.'); 
 
         $valueTotalSalesLastMonthGraphic = $valueTotalSalesLastMonth;
 
@@ -68,7 +61,7 @@ class SalesController
         $compareProgression = $valueTotalSalesMonth - $valueTotalSalesLastMonth;
 
         $formatedCompareProgression = number_format($compareProgression / 100, 2, ',', '.');
-        
+
 
         return array(
             'monthlyProgression' => $formatedCompareProgression,
@@ -83,13 +76,12 @@ class SalesController
         $monthlySalesProgression = str_replace(',', '.', $formatedCompareProgression);
         $allSalesLastMonth = str_replace(',', '.', $valueTotalSalesLastMonthGraphic);
 
-        // evitar divisão por 0 == adicionado
-        if($monthlySalesProgression == 0) {
+        if ($monthlySalesProgression == 0) {
             return 0;
-        } // fim
+        } 
 
         $percentageIncrease = number_format(((floatval($allSalesLastMonth) / 100) / $monthlySalesProgression) * 100, 2, '.', '') * 100;
-        
+
         return $percentageIncrease;
     }
 

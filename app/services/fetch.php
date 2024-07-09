@@ -10,7 +10,8 @@ function all($table, $fields = '*')
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-};
+}
+;
 
 
 function findBy($table, $field, $value, $fields = '*')
@@ -25,7 +26,8 @@ function findBy($table, $field, $value, $fields = '*')
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-};
+}
+;
 
 //////////// Sales
 function findAllSalesMonth($table, $dateField, $valueField, $fields = '*')
@@ -125,7 +127,7 @@ function ordersNotification($table, $situationField, $deliveryDateField, $delive
 {
   try {
     $connect = connect();
-    $query = $connect->prepare("
+    $queryStr = ("
             SELECT v.*, c.Nome AS NomeCliente 
             FROM {$table} v 
             JOIN clientes c ON v.IDCliente = c.IDCliente 
@@ -134,14 +136,18 @@ function ordersNotification($table, $situationField, $deliveryDateField, $delive
             AND TIMESTAMP({$deliveryDateField}, {$deliveryTimeField}) <= NOW() + INTERVAL 2 HOUR
         ");
 
+    $query = $connect->prepare($queryStr);
     $query->execute();
+
     $results = $query->fetchAll(PDO::FETCH_OBJ);
+    
     return $results;
   } catch (PDOException $e) {
     var_dump($e->getMessage());
     return false;
   }
 }
+
 
 //////////// Products
 
@@ -154,7 +160,8 @@ function allProducts($table, $fields = '*')
   } catch (PDOException $e) {
     var_dump($e->getMessage());
   }
-};
+}
+;
 
 
 //teste

@@ -19,7 +19,6 @@ return [
         '/user/create' => 'User@create',
         '/user/[0-9]+' => 'User@show',
         '/logout' => 'Login@destroy',
-        '/recuperar' => 'Recuperar@index',
         '/sistema' => 'SistemaController@index',
         '/clientes' => 'PageClientsController@index',
         '/pedidos' => 'PageOrdersController@index',
