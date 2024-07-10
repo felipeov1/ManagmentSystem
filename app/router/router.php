@@ -55,6 +55,7 @@ function router()
 
     $matchedUri = exactMatchUriInArrayRoutes($uri, $routes[$requestMethod]);
 
+
     $params = [];
     if (empty($matchedUri)) {
         $matchedUri = regularExpressionMatchArrayRoutes($uri, $routes[$requestMethod]);
@@ -64,6 +65,7 @@ function router()
     }
 
     if(!empty($matchedUri)){
+
         return controller($matchedUri, $params);
         
     }

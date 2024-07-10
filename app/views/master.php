@@ -8,9 +8,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- adicionado -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 
 
     <!-- fim links -->
@@ -21,7 +28,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/products.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/clientes.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/body.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/recuperar.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/sistema.css">
     <link rel="shortcut icon" href="/assets/images/faviconImg.ico" type="image/x-icon">
     <!-- fim css -->
@@ -38,9 +44,15 @@
 
     <script src="/scripts/produt-modal.js"></script>
     <!-- FIM JS -->
-    <?php if ($_SERVER['REQUEST_URI'] !== "/"): ?>
+    <?php if ($_SERVER['REQUEST_URI'] !== "/"):
+        ?>
         <div id="header">
-            <?php require "partials/header.php"; ?>
+            <?php 
+            if (!isset($_SESSION['LOGGED']) && $_SERVER['REQUEST_URI'] !== '/login') {
+                header('Location: /');
+                exit;
+            }
+            require "partials/header.php"; ?>
         </div>
     <?php endif; ?>
     <?php require VIEWS . $view; ?>
@@ -52,8 +64,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-    crossorigin="anonymous"></script>
-
 </html>

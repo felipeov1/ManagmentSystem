@@ -27,7 +27,7 @@ class ProductsController
                 $productQuantity = $_POST['optionsQuantity'];
                 $productPrice = $_POST['txtValuePerQuantity'];
 
-                $stmt = $this->db->prepare("INSERT INTO produtos (Nome, Quantidade, ValorQuantidade) VALUES (:name, :quantity, :price)");
+                $stmt = $this->db->prepare("INSERT INTO produtos (Nome, Quantidade, ValorQuantidade, ativo) VALUES (:name, :quantity, :price, 0)");
                 $stmt->bindParam(':name', $productName);
                 $stmt->bindParam(':quantity', $productQuantity);
                 $stmt->bindParam(':price', $productPrice);
@@ -45,21 +45,31 @@ class ProductsController
     public function searchProduct()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $productID = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+            $productID = isset($_GET["id"]) ? intval($_GET["id"]) : null;
+    
             if ($productID) {
                 $stmt = $this->db->prepare("SELECT * FROM produtos WHERE IDProduto = :id");
                 $stmt->bindParam(':id', $productID);
                 $stmt->execute();
                 $resultSelected = $stmt->fetch(PDO::FETCH_OBJ);
-                header('Content-Type: application/json');
-                echo json_encode($resultSelected);
+                if ($resultSelected) {
+                    header('Content-Type: application/json');
+                    echo json_encode($resultSelected);
+                    exit;
+                } else {
+                    header('Content-Type: application/json');
+                    echo json_encode(["error" => "Produto não encontrado."]);
+                    exit;
+                }
             } else {
                 header('Content-Type: application/json');
                 echo json_encode(["error" => "ID do produto inválido."]);
+                exit;
             }
         } else {
             header('Content-Type: application/json');
             echo json_encode(["error" => "Método de requisição inválido."]);
+            exit;
         }
     }
 
@@ -90,6 +100,7 @@ class ProductsController
             echo json_encode(["error" => "Método de requisição inválido."]);
         }
     }
+
 
     public function deleteProduct()
     {

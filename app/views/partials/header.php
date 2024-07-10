@@ -1,50 +1,51 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <div class="boxSide">
-        <aside>
-            <div class="slideBarHeader">
-                <div class="logo">
-                    <img src="/assets/images/logo.png" alt="Logo Lú Salgados">
-                </div>
-                <div class="btnClose">
-                    <span class="material-icons-sharp">close</span>
-                </div>
-            </div>
-            <div class="slideBar">
-                <a href="/dashboard" class="nav-link">
-                    <span class="material-icons-sharp">grid_view</span>
-                    <h3>Visão Geral</h3>
-                </a>
-                <a href="/pedidos" class="nav-link">
-                    <span class="material-icons-sharp">shopping_basket</span>
-                    <h3>Pedidos</h3>
-                </a>
-                <a href="/clientes" class="nav-link">
-                    <span class="material-icons-sharp">group</span>
-                    <h3>Clientes</h3>
-                </a>
-                <a href="/produtos" class="nav-link">
-                    <span class="material-icons-sharp">inventory_2</span>
-                    <h3>Produtos</h3>
-                </a>
-                <a href="/sistema" class="nav-link">
-                    <span class="material-icons-sharp">admin_panel_settings</span>
-                    <h3>Sistema</h3>
-                </a>
-                <a href='/logout'>
-                    <span class="material-icons-sharp">logout</span>
-                    <h3>Sair</h3>
-                </a>
-            </div>
-        </aside>
+    <!-- Sidebar - Logo -->
+    <div class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-text mt-4"><img src="/assets/images/logo.png" alt="Logo Lú Salgados" width="120" height="120"></div>
+    </div>
 
-        <!-- <ul id="menu_list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/user/create">Create</a></li>
-            <li><a href="/products">Produtos</a></li>
+    <!-- Divisor -->
+    <hr class="sidebar-divider my-0 mt-4 mb-3">
 
-            <div id="status_login">
-                Bem vindo,
-                <?php echo user()->nome; ?> | <a href="/logout">Logout</a>
-            </div>
-        </ul> -->
+    <!-- Nav Item - Visão geral -->
+    <li class="nav-item">
+        <a class="nav-link" href="/dashboard">
+            <i class="fas fa-fw fa-border-all"></i>
+            <span>Visão Geral</span></a>
+    </li>
+    <!-- Nav Item - Pedidos -->
+    <li class="nav-item">
+        <a class="nav-link" href="/pedidos">
+            <i class="fas fa-fw fa-basket-shopping"></i>
+            <span>Pedidos</span></a>
+    </li>
+    <!-- Nav Item - Clientes -->
+    <li class="nav-item">
+        <a class="nav-link" href="/clientes">
+            <i class="fas fa-fw fa-user-group"></i>
+            <span>Clientes</span></a>
+    </li>
+    <!-- Nav Item - Produtos -->
+    <li class="nav-item">
+        <a class="nav-link" href="/produtos">
+            <i class="fas fa-fw fa-box-archive"></i>
+            <span>Produtos</span></a>
+    </li>
+    <!-- Nav Item - Sistema -->
+    <li class="nav-item">
+        <a class="nav-link" href="/usuarios">
+            <i class="fas fa-fw fa-user-gear"></i>
+            <span>Sistema</span></a>
+    </li>
+
+    <!-- Nav Item - Sair -->
+    <li class="nav-item" style="position: absolute; bottom: 0;">
+        <a class="nav-link" href="/logout">
+            <i class="fas fa-fw fa-arrow-right-from-bracket"></i>
+            <span>Sair</span></a>
+    </li>
+
+</ul>
+<!-- Final da sidebar -->

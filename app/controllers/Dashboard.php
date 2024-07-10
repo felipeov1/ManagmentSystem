@@ -17,6 +17,11 @@ class Dashboard
 
         $monthlySalesProgressionData = $salesController->monthlySalesProgression($allSalesMonth);
         $monthlySalesProgression = $monthlySalesProgressionData['monthlyProgression'];
+        $monthlySalesProgression = floatval(str_replace(',', '.', str_replace('.', '', $monthlySalesProgression)));
+
+        
+
+
         $allSalesLastMonth = $monthlySalesProgressionData['lastMonthTotalSales'];
 
         $graphicData = $salesController->graphicResult($monthlySalesProgression, $allSalesLastMonth);
@@ -24,6 +29,8 @@ class Dashboard
         $ordersController = new OrdersController();
         $orders = $ordersController->getOrders();
         $ordersNotifications = $ordersController->ordersNotification();
+
+
 
         return [
             'view' => 'dashboard.php',
