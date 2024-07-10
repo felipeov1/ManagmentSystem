@@ -15,7 +15,7 @@ class AdminController
 
     public function getAllAdmins()
     {
-        $stmt = $this->db->query("SELECT * FROM administradores WHERE ativo = 0");
+        $stmt = $this->db->query("SELECT * FROM usuarios WHERE ativo = 0");
         $allAdmins = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $allAdmins;
     }

@@ -1,7 +1,7 @@
 <div class="table" style="margin-right: 20px">
     <div class="table_header">
         <div class="pageTitle">
-            <h5>Administradores</h5>
+            <h5>Usuários</h5>
         </div>
         <hr>
         <div class="options_header">
@@ -9,21 +9,9 @@
                 <i class="fa fa-search"></i>
                 <input type="text" class="form-control form-input" placeholder="Busque um administrador...">
             </div>
-            <div class="select-show" style="background-color: #F5F5F5;">
-                <label for="text">Mostrar</label>
-                <select>
-                    <option>5</option>
-                    <option>15</option>
-                    <option>20</option>
-                    <option>25</option>
-                    <option>30</option>
-                    <option>todos</option>
-                </select>
-                <label for="text">Administradores</label>
-            </div>
             <div class="createBtn">
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#novoAdminModal">Novo
-                    Administrador</button>
+                    Usuário</button>
             </div>
         </div>
     </div>
@@ -40,20 +28,20 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($allAdmins as $admin): ?>
+                <?php foreach ($allAdmins as $admin):?>
                     <tr>
-                        <td><?php echo $admin->IDAdmin; ?></td>
+                        <td><?php echo $admin->IDUsuario; ?></td>
                         <td><?php echo $admin->Nome; ?></td>
                         <td><?php echo $admin->Email; ?></td>
                         <td><?php echo $admin->CPF; ?></td>
                         <td><?php echo $admin->Setor; ?></td>
                         <td>
                             <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
-                                data-admin-id="<?php echo $admin->IDAdmin ?>" data-bs-target="#editarAdminModal">
+                                data-admin-id="<?php echo $admin->IDUsuario ?>" data-bs-target="#editarAdminModal">
                                 <i class="fa-solid fa-pen-to-square" style="font-size: 15px"></i>
                             </button>
                             <button class="getId-excluir" style="background-color: white; border: none"
-                                data-bs-toggle="modal" data-id="<?php echo $admin->IDAdmin ?>"
+                                data-bs-toggle="modal" data-id="<?php echo $admin->IDUsuario ?>"
                                 data-bs-target="#excluirAdmin">
                                 <i class="fa-solid fa-trash" style="font-size: 15px"></i>
                             </button>

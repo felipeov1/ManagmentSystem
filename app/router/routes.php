@@ -19,7 +19,7 @@ return [
         '/user/create' => 'User@create',
         '/user/[0-9]+' => 'User@show',
         '/logout' => 'Login@destroy',
-        '/sistema' => 'SistemaController@index',
+        '/sistema' => 'PageAdminController@index',
         '/clientes' => 'PageClientsController@index',
         '/pedidos' => 'PageOrdersController@index',
         '/produtos/search/[0-9]+' => 'ProductsController@searchProduct',
