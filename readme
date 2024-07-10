@@ -1,6 +1,6 @@
 * Iniciar Servidor:
-1 - cd appphp -S localhost:8000 -t public
-2 - 
+1 - cd app
+2 - php -S localhost:8000 -t public
 3 - Na URL do navegador colocar: http://localhost:8000/login
 
 
