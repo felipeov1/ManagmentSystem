@@ -30,7 +30,7 @@ class AdminController
                 $adminSetor = $_POST['txtSetor'];
                 $adminSenha = password_hash($_POST['txtSenha'], PASSWORD_BCRYPT);
 
-                $stmt = $this->db->prepare("INSERT INTO administradores (Nome, Email, CPF, Setor, Senha, DataAtualizacao, ativo) VALUES (:name, :email, :cpf, :setor, :senha, NOW(), 0)");
+                $stmt = $this->db->prepare("INSERT INTO usuarios (Nome, Email, Senha, CPF, Setor, ativo ) VALUES (:name, :email, :cpf, :setor, :senha, 0)");
                 $stmt->bindParam(':name', $adminName);
                 $stmt->bindParam(':email', $adminEmail);
                 $stmt->bindParam(':cpf', $adminCPF);
@@ -47,40 +47,45 @@ class AdminController
         }
     }
 
-    public function searchAdmin($id)
+    public function searchAdmin()
     {
-        $adminID = intval($id);
 
-        if ($adminID) {
-            $stmt = $this->db->prepare("SELECT * FROM administradores WHERE IDAdmin = :id AND ativo = 0");
-            $stmt->bindParam(':id', $adminID);
-            $stmt->execute();
-            $admin = $stmt->fetch(PDO::FETCH_OBJ);
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            $adminID = isset($_GET["id"]) ? intval($_GET["id"]) : null;
+    
+            if ($adminID) {
+                $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE IDUsuario = :id AND ativo = 0");
+                $stmt->bindParam(':id', $adminID);
+                $stmt->execute();
+                $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            header('Content-Type: application/json');
-            if ($admin) {
-                echo json_encode($admin);
+                if ($admin) {
+                    echo json_encode($admin);
+                } else {
+                    echo json_encode(["error" => "Administrador não encontrado."]);
+                }
             } else {
-                echo json_encode(["error" => "Administrador não encontrado."]);
+                header('Content-Type: application/json');
+                echo json_encode(["error" => "ID do administrador inválido."]);
             }
         } else {
             header('Content-Type: application/json');
-            echo json_encode(["error" => "ID do administrador inválido."]);
+            echo json_encode(["error" => "Método de requisição inválido."]);
         }
+        exit;
     }
-
     public function updateAdmin()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['adminID']) && isset($_POST['editTxtNameAdmin']) && isset($_POST['editTxtEmailAdmin']) && isset($_POST['editTxtCPF']) && isset($_POST['editTxtSetor']) && isset($_POST['editTxtSenha'])) {
-                $adminID = $_POST['adminID'];
+            if (isset($_POST['editAdminID']) && isset($_POST['editTxtNameAdmin']) && isset($_POST['editTxtEmailAdmin']) && isset($_POST['editTxtCPF']) && isset($_POST['editTxtSetor']) && isset($_POST['editTxtSenha'])) {
+                $adminID = $_POST['editAdminID'];
                 $adminName = $_POST['editTxtNameAdmin'];
                 $adminEmail = $_POST['editTxtEmailAdmin'];
                 $adminCPF = $_POST['editTxtCPF'];
                 $adminSetor = $_POST['editTxtSetor'];
                 $adminSenha = password_hash($_POST['editTxtSenha'], PASSWORD_BCRYPT);
 
-                $stmt = $this->db->prepare("UPDATE administradores SET Nome = :name, Email = :email, CPF = :cpf, Setor = :setor, Senha = :senha WHERE IDAdmin = :id AND ativo = 0");
+                $stmt = $this->db->prepare("UPDATE usuarios SET Nome = :name, Email = :email, CPF = :cpf, Setor = :setor, Senha = :senha WHERE IDAdmin = :id AND ativo = 0");
                 $stmt->bindParam(':id', $adminID);
                 $stmt->bindParam(':name', $adminName);
                 $stmt->bindParam(':email', $adminEmail);
@@ -107,7 +112,7 @@ class AdminController
             if (isset($_POST['IDAdmin'])) {
                 $adminID = $_POST['IDAdmin'];
 
-                $stmt = $this->db->prepare("UPDATE administradores SET ativo = 1 WHERE IDAdmin = :id");
+                $stmt = $this->db->prepare("UPDATE usuarios SET ativo = 1 WHERE IDUsuario = :id");
                 $stmt->bindParam(':id', $adminID);
                 if ($stmt->execute()) {
                     echo "Administrador inativado com sucesso.";

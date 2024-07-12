@@ -57,7 +57,7 @@ class ClientsController
                 $stmt = $this->db->prepare("SELECT * FROM clientes WHERE IDCliente = :id");
                 $stmt->bindParam(':id', $clientID);
                 $stmt->execute();
-                $resultSelected = $stmt->fetch(PDO::FETCH_ASSOC); // Use FETCH_ASSOC for associative array
+                $resultSelected = $stmt->fetch(PDO::FETCH_ASSOC); 
 
                 if ($resultSelected) {
                     header('Content-Type: application/json');

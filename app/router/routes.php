@@ -11,6 +11,10 @@ return [
         '/cliente/add' => 'ClientsController@addClient',
         '/cliente/update' => 'ClientsController@updateClient',
         '/cliente/delete' => 'ClientsController@deleteClient',
+        '/admin/add' => 'AdminController@addAdmin',
+        '/admin/delete' => 'AdminController@deleteAdmin',
+        '/admin/update' => 'AdminController@updateAdmin',
+
     ],
     'GET' => [
         '/' => 'Login@index',
@@ -24,5 +28,6 @@ return [
         '/pedidos' => 'PageOrdersController@index',
         '/produtos/search/[0-9]+' => 'ProductsController@searchProduct',
         '/cliente/search/[0-9]+' => 'ClientsController@searchClient',
+        '/admin/search/[0-9]+' => 'AdminController@searchAdmin',
     ]
 ];

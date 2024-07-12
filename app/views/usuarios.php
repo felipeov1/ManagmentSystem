@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($allAdmins as $admin):?>
+                <?php foreach ($allAdmins as $admin): ?>
                     <tr>
                         <td><?php echo $admin->IDUsuario; ?></td>
                         <td><?php echo $admin->Nome; ?></td>
@@ -50,23 +50,6 @@
                 <?php endforeach ?>
             </tbody>
         </table>
-        <nav aria-label="Page navigation ">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 </div>
 
@@ -190,37 +173,79 @@
 </div>
 
 <script>
-    function loadAdminData(adminID) {
-        $.ajax({
-            url: '/admin/search/' + adminID,
-            type: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                if (response && response.IDAdmin) {
-                    $('#editAdminID').val(response.IDAdmin);
-                    $('#editTxtNameAdmin').val(response.Nome);
-                    $('#editTxtEmailAdmin').val(response.Email);
-                    $('#editTxtCPF').val(response.CPF);
-                    $('#editTxtSetor').val(response.Setor);
-                    $('#editTxtSenha').val(response.Senha);
-                } else {
-                    console.log('Dados inválidos recebidos do servidor.');
-                }
-            },
-            error: function (error) {
-                console.log(error);
-                alert('Erro ao carregar dados do administrador.');
-            }
-        });
-    }
-
     $(document).ready(function () {
+        console.log("Document is ready");
+
         $('#editarAdminModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var adminID = button.data('admin-id');
-            loadAdminData(adminID);
+            console.log("Admin ID:", adminID);
+
+            console.log($.ajax({
+                type: 'GET',
+                url: '/admin/search/' + adminID,
+                data: { id: adminID },
+                success: function (response) {
+                    console.log("Raw response:", response);
+
+                    let data;
+                    if (typeof response === 'string') {
+                        try {
+                            data = JSON.parse(response);
+                        } catch (e) {
+                            console.error("Erro ao decodificar JSON: ", e);
+                            alert("Erro ao carregar os dados do cliente.");
+                            return;
+                        }
+                    } else {
+                        data = response;
+                    }
+                    if (data && data.IDUsuario && data.Nome && data.Email && data.CPF && data.Setor && data.Senha) {
+                        $('#editAdminID').val(data.IDUsuario);
+                        $('#editTxtNameAdmin').val(data.Nome);
+                        $('#editTxtEmailAdmin').val(data.Email);
+                        $('#editTxtCPF').val(data.CPF);
+                        $('#editTxtSetor').val(data.Setor);
+                        $('#editTxtSenha').val(data.Senha);
+                        $('#editarAdminModal').modal('show');
+                    } else {
+                        console.log('Dados inválidos recebidos do servidor.');
+                        alert('Erro ao carregar dados do administrador.');
+                    }
+                },
+                error: function (error) {
+                    console.log('Erro na requisição:', error);
+                    alert('Erro ao carregar dados do administrador.');
+                }
+            }));
+
+
+        });
+
+        $('#editarAdminModal').submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '/admin/update',
+                data: $(this).serialize(),
+                success: function (response) {
+                    if (response.error) {
+                        alert(response.error);
+                    } else {
+                        alert(response.success);
+                        $('#editarAdminModal').modal('hide');
+                    }
+                },
+                error: function () {
+                    alert("Erro ao atualizar o cliente.");
+                }
+            });
         });
     });
+
+
+
 </script>
 
 <!-- Modal Excluir Administrador -->

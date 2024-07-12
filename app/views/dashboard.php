@@ -83,8 +83,8 @@
                 $now = new DateTime();
                 $diff = $now->diff($deliveryDateTime);
 
-                $hours = $diff->h + ($diff->days * 24); 
-            
+                $hours = $diff->h + ($diff->days * 24);
+
                 $string = [
                     'h' => 'hora',
                     'i' => 'minuto',
@@ -216,42 +216,43 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($orders as $order): ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $order->NomeCliente; ?>
-                                        </td>
-                                        <td>
-                                            <input type="text"
-                                                style="border: none; pointer-events: none; background-color: transparent; text-align: center;"
-                                                name="IDVenda" value="<?php echo $order->IDVenda; ?>">
-                                        </td>
-                                        <td>
-                                            <?php echo date('d/m/Y', strtotime($order->DataEntrega)); ?>
-                                            <?php echo date($order->HorarioEntrega); ?>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn-visualize" data-bs-toggle="modal"
-                                                data-bs-target="#modalVisualize_<?php echo $order->IDVenda; ?>"
-                                                data-nome="<?php echo $order->NomeCliente; ?>"
-                                                data-telefone1="<?php echo $order->Telefone1; ?>"
-                                                data-telefone2="<?php echo $order->Telefone2; ?>"
-                                                data-idvenda="<?php echo $order->IDVenda; ?>"
-                                                data-dataentrega="<?php echo $order->DataEntrega; ?>"
-                                                data-horarioentrega="<?php echo $order->HorarioEntrega; ?>"
-                                                data-valor="<?php echo $order->Valor; ?>">
-                                                <span>
-                                                    <i class="fa-solid fa-eye"></i>
-                                                </span>
-                                            </button>
-                                            <form action="/dashboard/changeStatus" method="POST" style="display:inline;">
+                                    <form action="/dashboard/changeStatus" method="POST" style="display:inline;">
+
+                                        <tr>
+                                            <td>
+                                                <?php echo $order->NomeCliente; ?>
+                                            </td>
+                                            <td>
+                                                <input type="text"
+                                                    style="border: none; pointer-events: none; background-color: transparent; text-align: center;"
+                                                    name="IDVenda" value="<?php echo $order->IDVenda; ?>">
+                                            </td>
+                                            <td>
+                                                <?php echo date('d/m/Y', strtotime($order->DataEntrega)); ?>
+                                                <?php echo date($order->HorarioEntrega); ?>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn-visualize" data-bs-toggle="modal"
+                                                    data-bs-target="#modalVisualize_<?php echo $order->IDVenda; ?>"
+                                                    data-nome="<?php echo $order->NomeCliente; ?>"
+                                                    data-telefone1="<?php echo $order->Telefone1; ?>"
+                                                    data-telefone2="<?php echo $order->Telefone2; ?>"
+                                                    data-idvenda="<?php echo $order->IDVenda; ?>"
+                                                    data-dataentrega="<?php echo $order->DataEntrega; ?>"
+                                                    data-horarioentrega="<?php echo $order->HorarioEntrega; ?>"
+                                                    data-valor="<?php echo $order->Valor; ?>">
+                                                    <span>
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </span>
+                                                </button>
                                                 <button type="submit" name="AddMsgCont" value="Entregue">
                                                     <span>
                                                         <i class="fa-solid fa-check"></i>
                                                     </span>
                                                 </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    </form>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -263,8 +264,8 @@
                 </div>
                 <!-- fim tabela -->
 
+                <!-- Modal Visualizar Pedido -->
                 <?php foreach ($orders as $order): ?>
-                    <!-- Modal -->
                     <div class="modal fade" id="modalVisualize_<?php echo $order->IDVenda; ?>" tabindex="-1"
                         aria-labelledby="modalVisualizeLabel_<?php echo $order->IDVenda; ?>" aria-hidden="true">
                         <div class="modal-dialog">
@@ -280,7 +281,7 @@
                                     <p><span class="fw-bold">Telefone 1:</span> <?php echo $order->Telefone1; ?></p>
                                     <p><span class="fw-bold">Telefone 2:</span> <?php echo $order->Telefone2; ?></p>
                                     <p><span class="fw-bold">Número do pedido:</span> <?php echo $order->IDVenda; ?></p>
-                                    <p><span class="fw-bold">Data da entrega:</span> <?php echo $order->DataEntrega; ?></p>
+                                    <p><span class="fw-bold">Data da entrega:</span> <?php echo date('d/m/Y', strtotime($order->DataEntrega)); ?></p>
                                     <p><span class="fw-bold">Horário da entrega:</span>
                                         <?php echo $order->HorarioEntrega; ?></p>
                                     <p><span class="fw-bold">Valor:</span> <?php echo $order->Valor; ?></p>
@@ -293,6 +294,8 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+                <!-- Fim Modal Visualizar Pedido -->
+
             </div>
             <!-- End Page content -->
         </div>
