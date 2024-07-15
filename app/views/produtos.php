@@ -180,7 +180,6 @@
                         data = response;
                     }
 
-                    // Ensure data contains the expected fields
                     if (data.IDProduto && data.Nome && data.Quantidade && data.ValorQuantidade) {
                         $('#editProductID').val(data.IDProduto);
                         $('#editTxtNameProduct').val(data.Nome);

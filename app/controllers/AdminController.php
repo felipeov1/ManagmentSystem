@@ -30,7 +30,7 @@ class AdminController
                 $adminSetor = $_POST['txtSetor'];
                 $adminSenha = password_hash($_POST['txtSenha'], PASSWORD_BCRYPT);
 
-                $stmt = $this->db->prepare("INSERT INTO usuarios (Nome, Email, Senha, CPF, Setor, ativo ) VALUES (:name, :email, :cpf, :setor, :senha, 0)");
+                $stmt = $this->db->prepare("INSERT INTO usuarios (Nome, Email, Senha, CPF, Setor, ativo ) VALUES (:name, :email, :senha, :cpf, :setor, 0)");
                 $stmt->bindParam(':name', $adminName);
                 $stmt->bindParam(':email', $adminEmail);
                 $stmt->bindParam(':cpf', $adminCPF);
@@ -78,15 +78,15 @@ class AdminController
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['editAdminID']) && isset($_POST['editTxtNameAdmin']) && isset($_POST['editTxtEmailAdmin']) && isset($_POST['editTxtCPF']) && isset($_POST['editTxtSetor']) && isset($_POST['editTxtSenha'])) {
-                $adminID = $_POST['editAdminID'];
+                $IDUsuario = $_POST['editAdminID'];
                 $adminName = $_POST['editTxtNameAdmin'];
                 $adminEmail = $_POST['editTxtEmailAdmin'];
                 $adminCPF = $_POST['editTxtCPF'];
                 $adminSetor = $_POST['editTxtSetor'];
                 $adminSenha = password_hash($_POST['editTxtSenha'], PASSWORD_BCRYPT);
 
-                $stmt = $this->db->prepare("UPDATE usuarios SET Nome = :name, Email = :email, CPF = :cpf, Setor = :setor, Senha = :senha WHERE IDAdmin = :id AND ativo = 0");
-                $stmt->bindParam(':id', $adminID);
+                $stmt = $this->db->prepare("UPDATE usuarios SET Nome = :name, Email = :email, CPF = :cpf, Setor = :setor, Senha = :senha WHERE IDUsuario = :id AND ativo = 0");
+                $stmt->bindParam(':id', $IDUsuario);
                 $stmt->bindParam(':name', $adminName);
                 $stmt->bindParam(':email', $adminEmail);
                 $stmt->bindParam(':cpf', $adminCPF);

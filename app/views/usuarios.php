@@ -65,7 +65,7 @@
                 <div class="modal-body">
                     <div class="txt-news">
                         <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Nome</label>
+                            <label class="input-group-text" id="inputGroup-sizing-default">Nome Completo</label>
                             <input type="text" name="txtNameAdmin" class="form-control"
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
@@ -86,6 +86,11 @@
                         </div>
                         <div class="input-group mb-3">
                             <label class="input-group-text" id="inputGroup-sizing-default">Senha</label>
+                            <input type="password" name="txtSenha" class="form-control"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" id="inputGroup-sizing-default">Confirme a Senha</label>
                             <input type="password" name="txtSenha" class="form-control"
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
@@ -133,7 +138,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="txt-news">
-                        <input type="hidden" name="adminID" id="editAdminID">
+                        <input type="hidden" name="editAdminID" id="editAdminID">
                         <div class="input-group mb-3">
                             <label class="input-group-text" id="inputGroup-sizing-default">Nome</label>
                             <input type="text" name="editTxtNameAdmin" id="editTxtNameAdmin" value=""
@@ -222,25 +227,28 @@
 
         });
 
-        $('#editarAdminModal').submit(function (e) {
+        $('#editAdminForm').submit(function (e) {
             e.preventDefault();
 
-            $.ajax({
+            console.log($.ajax({
                 type: 'POST',
                 url: '/admin/update',
                 data: $(this).serialize(),
                 success: function (response) {
                     if (response.error) {
                         alert(response.error);
+                        location.reload();
                     } else {
                         alert(response.success);
                         $('#editarAdminModal').modal('hide');
+                        location.reload();
+
                     }
                 },
                 error: function () {
                     alert("Erro ao atualizar o cliente.");
                 }
-            });
+            }));
         });
     });
 
