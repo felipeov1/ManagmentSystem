@@ -23,22 +23,31 @@ class ClientsController
     public function addClient()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['txtNameCliente']) && isset($_POST['txtEndCliente']) && isset($_POST['txtTelCel1']) && isset($_POST['txtTelCel2']) && isset($_POST['txtCPFCNPJ'])) {
-                $clientID = $_POST['ClientID'];
+            if (isset($_POST['txtNameCliente']) && isset($_POST['txtEndCliente']) && isset($_POST['txtTelCel1']) && isset($_POST['txtTelCel2']) && isset($_POST['txtCPFCNPJ']) && isset($_POST['txtSenha']) && isset($_POST['txtConfirmSenha'])) {
                 $clientName = $_POST['txtNameCliente'];
                 $clientAddress = $_POST['txtEndCliente'];
                 $clientPhone1 = $_POST['txtTelCel1'];
                 $clientPhone2 = $_POST['txtTelCel2'];
                 $cpf = $_POST['txtCPFCNPJ'];
-
-                $stmt = $this->db->prepare("INSERT INTO clientes (ClientID, Nome, Endereco, Telefone1, Telefone2, cpf, DataAtualizacao, ativo) VALUES (:name, :address, :phone1, :phone2, :cpf, '2024-06-05 14:39:15', 0)");
+                $senha = $_POST['txtSenha'];
+                $confirmSenha = $_POST['txtConfirmSenha'];
+    
+                if ($senha !== $confirmSenha) {
+                    echo "As senhas estão diferentes!";
+                    return;
+                }
+    
+                $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
+    
+                $stmt = $this->db->prepare("INSERT INTO clientes (Nome, Endereco, Telefone1, Telefone2, cpf, Senha, DataAtualizacao, ativo) VALUES (:name, :address, :phone1, :phone2, :cpf, :senha, '2024-06-05 14:39:15', 0)");
                 $stmt->bindParam(':name', $clientName);
                 $stmt->bindParam(':address', $clientAddress);
                 $stmt->bindParam(':phone1', $clientPhone1);
                 $stmt->bindParam(':phone2', $clientPhone2);
                 $stmt->bindParam(':cpf', $cpf);
+                $stmt->bindParam(':senha', $senhaHash);
                 $stmt->execute();
-
+    
                 echo "Cliente adicionado com sucesso.";
             } else {
                 echo "Por favor, preencha todos os campos do formulário.";

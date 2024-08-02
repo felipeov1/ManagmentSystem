@@ -11,8 +11,9 @@
             </div>
 
             <div class="createBtn">
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                    data-bs-target="#novoClienteModal">Novo Cliente</button>
+                <button type="button" class="btn btn-dark" id="openAlertClientChoice">Novo Cliente</button>
+                <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                    data-bs-target="#novoClienteModal">Novo Cliente</button> -->
             </div>
         </div>
     </div>
@@ -57,7 +58,10 @@
     </div>
 </div>
 
-<!-- Modal Novo Cliente -->
+
+
+
+<!-- Modal Novo Cliente Sem NFe -->
 <div class="modal fade" tabindex="-1" aria-labelledby="novoProdutoModal" id="novoClienteModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -106,7 +110,117 @@
     </div>
 </div>
 
+<!-- Modal Novo Cliente Com NFe -->
+<div class="modal fade" tabindex="-1" aria-labelledby="novoClienteNFeModal" id="novoClienteNFeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <form id="clientsNFeForm" action="/cliente/addNFe" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title">Novo Cliente com NFe</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="txtCpf" class="form-label">CPF/CNPJ</label>
+                            <input type="text" name="cpf" class="form-control form-control-lg" id="txtCpf">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="txtNomeCompleto" class="form-label">Nome Completo/Razão Social</label>
+                            <input type="text" name="nome_completo" class="form-control form-control-lg" id="txtNomeCompleto">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label for="txtEndereco" class="form-label">Endereço</label>
+                            <input type="text" name="endereco" class="form-control form-control-lg" id="txtEndereco">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtComplemento" class="form-label">Complemento</label>
+                            <input type="text" name="complemento" class="form-control form-control-lg" id="txtComplemento">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-2">
+                            <label for="txtNumero" class="form-label">Número</label>
+                            <input type="number" name="numero" class="form-control form-control-lg" id="txtNumero">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="txtBairro" class="form-label">Bairro</label>
+                            <input type="text" name="bairro" class="form-control form-control-lg" id="txtBairro">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="txtCidade" class="form-label">Cidade</label>
+                            <input type="text" name="cidade" class="form-control form-control-lg" id="txtCidade">
+                        </div>
+                        <div class="col-md-1">
+                            <label for="txtUF" class="form-label">UF</label>
+                            <input type="text" name="uf" class="form-control form-control-lg" id="txtUF">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="txtCep" class="form-label">CEP</label>
+                            <input type="text" name="cep" class="form-control form-control-lg" id="txtCep">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="txtTelefone" class="form-label">Telefone</label>
+                            <input type="text" name="telefone" class="form-control form-control-lg" id="txtTelefone">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="txtEmail" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control form-control-lg" id="txtEmail">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Custom Alert -->
+<div class="modal fade" tabindex="-1" aria-labelledby="customAlertModal" id="customAlertModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Os pedidos desse cliente terá NFe?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCancel">Não</button>
+                <button type="button" class="btn btn-primary" id="btnConfirm">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
+    document.getElementById('openAlertClientChoice').addEventListener('click', function () {
+        let customAlertModal = new bootstrap.Modal(document.getElementById('customAlertModal'));
+        customAlertModal.show();
+
+        document.getElementById('btnCancel').addEventListener('click', function () {
+            customAlertModal.hide();
+            let novoClienteModal = new bootstrap.Modal(document.getElementById('novoClienteModal'));
+            novoClienteModal.show();
+        });
+
+        document.getElementById('btnConfirm').addEventListener('click', function () {
+            customAlertModal.hide();
+            let outroModal = new bootstrap.Modal(document.getElementById('novoClienteNFeModal'));
+            outroModal.show();
+        });
+    });
+
     $(document).ready(function () {
         $('#clientsForm').submit(function (e) {
             e.preventDefault();

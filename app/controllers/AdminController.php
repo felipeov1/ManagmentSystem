@@ -23,19 +23,19 @@ class AdminController
     public function addAdmin()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['txtNameAdmin']) && isset($_POST['txtEmailAdmin']) && isset($_POST['txtCPF']) && isset($_POST['txtSetor']) && isset($_POST['txtSenha'])) {
+            if (isset($_POST['txtNameAdmin']) && isset($_POST['txtEmailAdmin']) && isset($_POST['txtCPF']) && isset($_POST['txtSenha']) && isset($_POST['txtAdmin'])) {
                 $adminName = $_POST['txtNameAdmin'];
                 $adminEmail = $_POST['txtEmailAdmin'];
                 $adminCPF = $_POST['txtCPF'];
-                $adminSetor = $_POST['txtSetor'];
                 $adminSenha = password_hash($_POST['txtSenha'], PASSWORD_BCRYPT);
+                $adminAdmin = $_POST['txtAdmin'];
 
-                $stmt = $this->db->prepare("INSERT INTO usuarios (Nome, Email, Senha, CPF, Setor, ativo ) VALUES (:name, :email, :senha, :cpf, :setor, 0)");
+                $stmt = $this->db->prepare("INSERT INTO usuarios (Nome, Email, Senha, CPF, ativo, Admin) VALUES (:name, :email, :senha, :cpf, 0, :admin)");
                 $stmt->bindParam(':name', $adminName);
                 $stmt->bindParam(':email', $adminEmail);
                 $stmt->bindParam(':cpf', $adminCPF);
-                $stmt->bindParam(':setor', $adminSetor);
                 $stmt->bindParam(':senha', $adminSenha);
+                $stmt->bindParam(':admin', $adminAdmin);
                 $stmt->execute();
 
                 echo "Administrador adicionado com sucesso.";
@@ -52,13 +52,13 @@ class AdminController
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $adminID = isset($_GET["id"]) ? intval($_GET["id"]) : null;
-    
+
             if ($adminID) {
-                $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE IDUsuario = :id AND ativo = 0");
+                $stmt = $this->db->prepare("SELECT IDUsuario, Nome, Email, CPF, Admin FROM usuarios WHERE IDUsuario = :id AND Ativo = 0");
                 $stmt->bindParam(':id', $adminID);
                 $stmt->execute();
                 $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
+                
                 if ($admin) {
                     echo json_encode($admin);
                 } else {
@@ -74,36 +74,49 @@ class AdminController
         }
         exit;
     }
-    public function updateAdmin()
-    {
+
+
+    public function updateAdmin() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['editAdminID']) && isset($_POST['editTxtNameAdmin']) && isset($_POST['editTxtEmailAdmin']) && isset($_POST['editTxtCPF']) && isset($_POST['editTxtSetor']) && isset($_POST['editTxtSenha'])) {
-                $IDUsuario = $_POST['editAdminID'];
-                $adminName = $_POST['editTxtNameAdmin'];
-                $adminEmail = $_POST['editTxtEmailAdmin'];
-                $adminCPF = $_POST['editTxtCPF'];
-                $adminSetor = $_POST['editTxtSetor'];
-                $adminSenha = password_hash($_POST['editTxtSenha'], PASSWORD_BCRYPT);
-
-                $stmt = $this->db->prepare("UPDATE usuarios SET Nome = :name, Email = :email, CPF = :cpf, Setor = :setor, Senha = :senha WHERE IDUsuario = :id AND ativo = 0");
-                $stmt->bindParam(':id', $IDUsuario);
-                $stmt->bindParam(':name', $adminName);
-                $stmt->bindParam(':email', $adminEmail);
-                $stmt->bindParam(':cpf', $adminCPF);
-                $stmt->bindParam(':setor', $adminSetor);
-                $stmt->bindParam(':senha', $adminSenha);
+            $adminID = isset($_POST["editAdminID"]) ? intval($_POST["editAdminID"]) : null;
+            $name = isset($_POST["editTxtNameAdmin"]) ? $_POST["editTxtNameAdmin"] : null;
+            $email = isset($_POST["editTxtEmailAdmin"]) ? $_POST["editTxtEmailAdmin"] : null;
+            $cpf = isset($_POST["editTxtCPF"]) ? $_POST["editTxtCPF"] : null;
+            $admin = isset($_POST["editTxtAdmin"]) ? $_POST["editTxtAdmin"] : null;
+            $password = isset($_POST["editTxtSenha"]) ? $_POST["editTxtSenha"] : null;
+    
+            if ($adminID) {
+                $query = "UPDATE usuarios SET Nome = :name, Email = :email, CPF = :cpf, Admin = :admin";
+    
+                if ($password) {
+                    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+                    $query .= ", Senha = :password";
+                }
+    
+                $query .= " WHERE IDUsuario = :id";
+    
+                $stmt = $this->db->prepare($query);
+    
+                $stmt->bindParam(':name', $name);
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':cpf', $cpf);
+                $stmt->bindParam(':admin', $admin);
+                $stmt->bindParam(':id', $adminID);
+    
+                if ($password) {
+                    $stmt->bindParam(':password', $hashedPassword);
+                }
+    
                 $stmt->execute();
-
-                header('Content-Type: application/json');
-                echo json_encode(["success" => "Administrador atualizado com sucesso."]);
+    
+                echo json_encode(["success" => true]);
             } else {
-                header('Content-Type: application/json');
-                echo json_encode(["error" => "Por favor, preencha todos os campos do formulário."]);
+                echo json_encode(["error" => "ID do administrador inválido."]);
             }
         } else {
-            header('Content-Type: application/json');
             echo json_encode(["error" => "Método de requisição inválido."]);
         }
+        exit;
     }
 
     public function deleteAdmin()

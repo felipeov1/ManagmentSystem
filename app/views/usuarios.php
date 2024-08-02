@@ -1,3 +1,15 @@
+<?php
+
+
+if (user()->Admin == 0) {
+    echo '<script>
+        alert("Você não tem permissão para acessar esta área.");
+            window.location.href = document.referrer;
+    </script>';
+    exit();
+}
+
+?>
 <div class="table" style="margin-right: 20px">
     <div class="table_header">
         <div class="pageTitle">
@@ -23,7 +35,6 @@
                     <th>Nome</th>
                     <th>Email</th>
                     <th>CPF</th>
-                    <th>Setor</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -34,7 +45,6 @@
                         <td><?php echo $admin->Nome; ?></td>
                         <td><?php echo $admin->Email; ?></td>
                         <td><?php echo $admin->CPF; ?></td>
-                        <td><?php echo $admin->Setor; ?></td>
                         <td>
                             <button style="background-color: white; border: none; height: 20px" data-bs-toggle="modal"
                                 data-admin-id="<?php echo $admin->IDUsuario ?>" data-bs-target="#editarAdminModal">
@@ -80,9 +90,11 @@
                                 aria-describedby="inputGroup-sizing-default">
                         </div>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Setor</label>
-                            <input type="text" name="txtSetor" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-default">
+                            <label class="input-group-text" id="inputGroup-sizing-default">Administrador</label>
+                            <select name="txtAdmin" class="form-select" aria-label="Selecione se é administrador">
+                                <option value="0">Não</option>
+                                <option value="1">Sim</option>
+                            </select>
                         </div>
                         <div class="input-group mb-3">
                             <label class="input-group-text" id="inputGroup-sizing-default">Senha</label>
@@ -90,8 +102,8 @@
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Confirme a Senha</label>
-                            <input type="password" name="txtSenha" class="form-control"
+                            <label class="input-group-text" id="inputGroup-sizing-default">Confirmar Senha</label>
+                            <input type="password" name="txtConfirmSenha" class="form-control"
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
                     </div>
@@ -106,23 +118,30 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('#adminForm').submit(function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '/admin/add',
-                data: $(this).serialize(),
-                success: function (response) {
-                    alert("Administrador adicionado com sucesso!");
-                    $('#adminForm').modal('hide');
-                    location.reload();
-                },
-                error: function (error) {
-                    console.log(error);
-                    alert('Erro ao adicionar administrador.');
-                }
-            });
+    $('#adminForm').submit(function (e) {
+        e.preventDefault();
+
+        var senha = $('input[name="txtSenha"]').val();
+        var confirmSenha = $('input[name="txtConfirmSenha"]').val();
+
+        if (senha !== confirmSenha) {
+            alert('As senhas não coincidem.');
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/admin/add',
+            data: $(this).serialize(),
+            success: function (response) {
+                alert("Administrador adicionado com sucesso!");
+                $('#novoAdminModal').modal('hide');
+                location.reload();
+            },
+            error: function (error) {
+                console.log(error);
+                alert('Erro ao adicionar administrador.');
+            }
         });
     });
 </script>
@@ -139,6 +158,7 @@
                 <div class="modal-body">
                     <div class="txt-news">
                         <input type="hidden" name="editAdminID" id="editAdminID">
+
                         <div class="input-group mb-3">
                             <label class="input-group-text" id="inputGroup-sizing-default">Nome</label>
                             <input type="text" name="editTxtNameAdmin" id="editTxtNameAdmin" value=""
@@ -157,12 +177,15 @@
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Setor</label>
-                            <input type="text" name="editTxtSetor" id="editTxtSetor" class="form-control"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <label class="input-group-text" id="inputGroup-sizing-default">Administrador</label>
+                            <select name="editTxtAdmin" id="editTxtAdmin" class="form-select"
+                                aria-label="Selecione se é administrador">
+                                <option value="0">Não</option>
+                                <option value="1">Sim</option>
+                            </select>
                         </div>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" id="inputGroup-sizing-default">Senha</label>
+                            <label class="input-group-text" id="inputGroup-sizing-default">Nova Senha</label>
                             <input type="password" name="editTxtSenha" id="editTxtSenha" class="form-control"
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
@@ -179,52 +202,31 @@
 
 <script>
     $(document).ready(function () {
-        console.log("Document is ready");
-
         $('#editarAdminModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var adminID = button.data('admin-id');
-            console.log("Admin ID:", adminID);
 
-            console.log($.ajax({
+            $.ajax({
                 type: 'GET',
                 url: '/admin/search/' + adminID,
                 data: { id: adminID },
                 success: function (response) {
-                    console.log("Raw response:", response);
-
-                    let data;
-                    if (typeof response === 'string') {
-                        try {
-                            data = JSON.parse(response);
-                        } catch (e) {
-                            console.error("Erro ao decodificar JSON: ", e);
-                            alert("Erro ao carregar os dados do cliente.");
-                            return;
-                        }
-                    } else {
-                        data = response;
-                    }
-                    if (data && data.IDUsuario && data.Nome && data.Email && data.CPF && data.Setor && data.Senha) {
+                    var data = typeof response === 'string' ? JSON.parse(response) : response;
+                    if (data && data.IDUsuario && data.Nome && data.Email && data.CPF && data.Admin !== undefined) {
                         $('#editAdminID').val(data.IDUsuario);
                         $('#editTxtNameAdmin').val(data.Nome);
                         $('#editTxtEmailAdmin').val(data.Email);
                         $('#editTxtCPF').val(data.CPF);
-                        $('#editTxtSetor').val(data.Setor);
-                        $('#editTxtSenha').val(data.Senha);
+                        $('#editTxtAdmin').val(data.Admin);
                         $('#editarAdminModal').modal('show');
                     } else {
-                        console.log('Dados inválidos recebidos do servidor.');
                         alert('Erro ao carregar dados do administrador.');
                     }
                 },
                 error: function (error) {
-                    console.log('Erro na requisição:', error);
                     alert('Erro ao carregar dados do administrador.');
                 }
-            }));
-
-
+            });
         });
 
         $('#editAdminForm').submit(function (e) {
@@ -236,17 +238,15 @@
                 data: $(this).serialize(),
                 success: function (response) {
                     if (response.error) {
-                        alert(response.error);
-                        location.reload();
+                        alert("Erro ao atualizar o administrador.");
                     } else {
-                        alert(response.success);
                         $('#editarAdminModal').modal('hide');
                         location.reload();
-
+                        alert("Dados atualizados com sucesso.");
                     }
                 },
                 error: function () {
-                    alert("Erro ao atualizar o cliente.");
+                    alert("Erro ao atualizar o administrador.");
                 }
             }));
         });
